@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<sc-if value="{{ showCta }}" hint-placeholder-val="{{ true }}">
+<section id="consultation" data-theme="dark" data-screen-label="Consultation" style="scroll-margin-top:76px;background:#080808;color:#fff;padding:clamp(96px,14vw,200px) clamp(20px,6vw,96px) clamp(80px,10vw,140px)">
+  <div style="max-width:1320px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,440px),1fr));gap:56px;align-items:end">
+    <div data-reveal>
+      <div style="font-size:12px;letter-spacing:.2em;color:#B7B7B7;font-weight:500;margin-bottom:28px">CONSULTATION</div>
+      <sc-if value="{{ big }}" hint-placeholder-val="{{ true }}"><h2 style="margin:0;font-size:clamp(28px,4.4vw,66px);line-height:1;font-weight:500;letter-spacing:-.02em">START WITH<br>A CONVERSATION.</h2></sc-if>
+      <sc-if value="{{ small }}" hint-placeholder-val="{{ false }}"><h2 style="margin:0;font-size:clamp(26px,3.8vw,56px);line-height:1;font-weight:500;letter-spacing:-.02em">START WITH<br>A CONVERSATION.</h2></sc-if>
+      <p style="margin:32px 0 0;font-size:clamp(19px,2vw,24px);line-height:1.6;color:#E8E8E8;font-weight:400">필요한 범위부터<br>먼저 이야기해보세요.</p>
+    </div>
+    <div data-reveal data-reveal-delay="120" style="display:flex;flex-direction:column;border-top:1px solid #2a2a2a">
+      <a href="http://pf.kakao.com/_nxenxmG" target="_blank" rel="noopener" data-cursor="TALK" style="display:flex;justify-content:space-between;align-items:center;padding:26px 0;border-bottom:1px solid #2a2a2a;font-size:clamp(18px,1.8vw,22px);font-weight:500;letter-spacing:.06em"><span>KAKAO CONSULT</span><span style="font-size:15px;color:#B7B7B7;letter-spacing:0">카카오톡 채널 상담 →</span></a>
+      <a href="tel:01039240143" data-cursor="TALK" style="display:flex;justify-content:space-between;align-items:center;padding:26px 0;border-bottom:1px solid #2a2a2a;font-size:clamp(18px,1.8vw,22px);font-weight:500;letter-spacing:.06em"><span>CALL</span><span style="font-size:15px;color:#B7B7B7;letter-spacing:.02em">010-3924-0143 →</span></a>
+      <a href="/contact" data-cursor="TALK" style="display:flex;justify-content:space-between;align-items:center;padding:26px 0;border-bottom:1px solid #2a2a2a;font-size:clamp(18px,1.8vw,22px);font-weight:500;letter-spacing:.06em"><span>VISIT</span><span style="font-size:15px;color:#B7B7B7;letter-spacing:0">오시는 길 →</span></a>
+    </div>
+  </div>
+</section>
+</sc-if>
+<footer data-theme="dark" style="background:#080808;color:#B7B7B7;border-top:1px solid #1B1B1B;padding:72px clamp(20px,6vw,96px) 120px">
+  <div style="max-width:1320px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:48px">
+    <div style="display:flex;flex-direction:column;gap:18px">
+      <img src="assets/logo-white.png" alt="U BLACK" style="width:72px;height:auto">
+      <div style="font-size:12px;letter-spacing:.2em;color:#fff">SCALP DESIGN STUDIO · ULSAN</div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:12px;font-size:15px">
+      <div style="font-size:11px;letter-spacing:.2em;color:#777;margin-bottom:6px">MENU</div>
+      <a href="/brand">Brand</a><a href="/program">Program</a><a href="/cases">Cases</a><a href="/academy">Academy</a><a href="/reviews">Reviews</a><a href="/contact">Contact</a>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:12px;font-size:15px">
+      <div style="font-size:11px;letter-spacing:.2em;color:#777;margin-bottom:6px">CHANNEL</div>
+      <a href="http://pf.kakao.com/_nxenxmG" target="_blank" rel="noopener">KakaoTalk</a>
+      <a href="https://naver.me/xoHQXTFw" target="_blank" rel="noopener">Naver Place</a>
+      <a href="https://m.blog.naver.com/nnn0100" target="_blank" rel="noopener">Blog</a>
+      <a href="https://www.instagram.com/u.black_scalp" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://youtube.com/@u.black_sclap" target="_blank" rel="noopener">YouTube</a>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:12px;font-size:15px;line-height:1.6">
+      <div style="font-size:11px;letter-spacing:.2em;color:#777;margin-bottom:6px">CONTACT</div>
+      <a href="tel:01039240143" style="color:#fff">010-3924-0143</a>
+      <span>울산광역시 북구 신천로 55-22, 404호<br>(신천동, 신천수테라스타운)</span>
+      
+    </div>
+  </div>
+  <div style="max-width:1320px;margin:64px auto 0;padding-top:24px;border-top:1px solid #1B1B1B;display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;font-size:12.5px;color:#777;line-height:1.7">
+    <span>상호 유블랙 울산본점 · 대표 조영진 · 사업자등록번호 876-34-01323<br>© U.BLACK. All rights reserved.</span>
+    <span>유블랙의 SMP(두피문신)는 미용 목적의 시각적 보완 작업이며, 결과에는 개인차가 있습니다.</span>
+  </div>
+</footer>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;showCta&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;},&quot;compact&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;}}">
+class Component extends DCLogic {
+  renderVals() { const c = !!this.props.compact; return { showCta: this.props.showCta ?? true, big: !c, small: c }; }
+}
+</script>
+</body>
+</html>

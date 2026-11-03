@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="canonical" href="https://ublack.pages.dev/reviews">
+<meta property="og:site_name" content="U.BLACK 유블랙">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://ublack.pages.dev/reviews">
+<meta property="og:image" content="https://ublack.pages.dev/assets/director.png">
+<link rel="alternate" type="application/rss+xml" title="U.BLACK 유블랙" href="/rss.xml">
+<link rel="icon" href="/assets/symbol-black.png">
+<title>REVIEWS — 실제 후기 | U.BLACK 유블랙</title>
+<meta name="description" content="유블랙 SMP 두피문신 실제 고객 후기 아카이브. 사진 후기, 텍스트 후기, 영상 후기.">
+</helmet>
+<template id="__bundler_thumbnail"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="#080808"/><text x="50" y="62" font-family="Helvetica,Arial,sans-serif" font-size="30" font-weight="600" fill="#fff" text-anchor="middle">U.B</text></svg></template>
+<dc-import name="SiteChrome" active="reviews" admin="{{ adminNotes }}" hint-size="100%,0px"></dc-import>
+<main>
+<section data-theme="dark" data-screen-label="01 REVIEWS Hero" style="background:#080808;color:#fff;min-height:min(88svh,760px);padding:clamp(112px,16vw,160px) clamp(20px,6vw,96px) clamp(40px,6vw,64px);display:flex;flex-direction:column;justify-content:space-between;gap:64px">
+  <div style="font-size:12px;letter-spacing:.2em;color:#B7B7B7">REVIEWS</div>
+  <div style="max-width:1320px;width:100%;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:48px">
+    <div data-reveal><h1 style="margin:0;font-size:clamp(44px,7vw,108px);line-height:1.02;font-weight:500;letter-spacing:-.035em">IN THEIR<br>WORDS.</h1><p style="margin:22px 0 0;font-size:clamp(17px,1.6vw,22px);line-height:1.5;font-weight:500;color:#B7B7B7">실제 고객 후기</p></div>
+    <img data-reveal src="assets/symbol-white.png" alt="" style="width:clamp(90px,10vw,150px);height:auto">
+  </div>
+  <div style="max-width:1320px;width:100%;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-between;gap:24px;font-size:17px;line-height:1.8;color:#B7B7B7;border-top:1px solid #2a2a2a;padding-top:28px">
+    <span>유블랙 · U.BLACK · ULSAN</span><span style="max-width:460px">고객이 직접 남긴 후기만 게시합니다. 원문을 수정하거나 임의로 작성하지 않습니다.</span>
+  </div>
+</section>
+
+
+
+<section data-theme="light" data-screen-label="02 Review Archive" style="background:#F6F6F4;padding:56px clamp(20px,6vw,96px) clamp(100px,10vw,150px)">
+  <div style="max-width:1320px;margin:0 auto">
+    <div data-reveal style="background:#FFFFFF;padding:clamp(32px,5vw,64px);display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:32px;margin-bottom:48px">
+      <div style="max-width:560px">
+        <div style="font-size:12px;letter-spacing:.2em;color:#666;margin-bottom:14px">REVIEW ARCHIVE</div>
+        <p style="margin:0;font-size:clamp(20px,1.8vw,24px);line-height:1.6;font-weight:500">실제 후기는 네이버 플레이스와 인스타그램에서도 확인하실 수 있습니다.</p>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:12px">
+        <a href="https://naver.me/xoHQXTFw" target="_blank" rel="noopener" style="padding:16px 22px;background:#080808;color:#fff;font-size:13px;letter-spacing:.14em;font-weight:600">NAVER PLACE 후기 →</a>
+        <a href="https://www.instagram.com/u.black_scalp" target="_blank" rel="noopener" style="padding:16px 22px;border:1px solid #080808;font-size:13px;letter-spacing:.14em;font-weight:600">INSTAGRAM →</a>
+      </div>
+    </div>
+    <div>
+            <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:24px">
+        <sc-for list="{{ shown }}" as="r" hint-placeholder-count="6">
+          <article style="background:#FFFFFF;padding:24px;display:flex;flex-direction:column;gap:18px;min-width:0">
+            <div style="aspect-ratio:4/5;overflow:hidden;position:relative;background:#E8E8E8"><img src="{{ r.img }}" alt="{{ r.alt }}" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:{{ r.pos }};display:block"></div>
+            <div style="font-size:13px;letter-spacing:.3em">★★★★★</div>
+            <p style="margin:0;font-size:16.5px;line-height:1.8;color:#333;white-space:pre-line;display:-webkit-box;-webkit-line-clamp:8;-webkit-box-orient:vertical;overflow:hidden;height:calc(1.8em * 8)">{{ r.text }}</p>
+          </article>
+        </sc-for>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+<dc-import name="SiteFooter" compact="{{ true }}" hint-size="100%,600px"></dc-import>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;adminNotes&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;}}">
+const REVIEWS = [{"img":"assets/review-9-sm.jpg","pos":"50% 35%","text":"나이가 들면서 정수리 쪽이 많이 비어 보여서 신경이 쓰였는데 이번에 큰맘 먹고 받았습니다.\n\n처음에는 너무 진하게 되거나 티가 날까 걱정했는데 생각했던 것보다 훨씬 자연스럽네요.\n\n상담도 차분하게 잘해주시고 제 머리 상태에 맞게 필요한 부분만 설명해주셔서 믿음이 갔습니다.\n\n받고 나니 머리가 훨씬 풍성해 보이고 아침마다 거울 볼 때 스트레스도 많이 줄었습니다.\n\n괜히 오래 고민했다 싶네요. 만족합니다.","alt":"작업 후 고객과 대표원장 기념 사진","video":false},{"img":"assets/review-8-sm.jpg","pos":"40% 45%","text":"울산두피문신 알아보다가 유블랙에서 하게 됐습니다. 처음에는 문신한 티가 많이 날까 봐 걱정했는데 막상 해보니 생각보다 자연스럽고 괜찮네요 !\n\n원장님도 젊으신데 설명도 잘해주시고 꼼꼼하게 신경 써주십니다. 결과도 마음에 들고 대 만족해요 ㅋ\n\n회사동료 소개 많이하겠습니다 !\n\n잘해주셔요 ~~~","alt":"작업 후 고객과 대표원장 기념 사진","video":false},{"img":"assets/review-10-sm.jpg","pos":"45% 45%","text":"우리 엄니 ,,, 늘 항상 탈모 때문에 스트레스 받으시고\n오랜 시간 힘들어하셨는데\n두피문신 시켜줘야지 시켜줘야지 2년동안 고민만 하다가\n해드렸는데 드디어 제대로 된 효도를 해드린것 같아서\n너무 기분이 좋네요\n그냥 까맣게 되겠지 라고 생각했는데\n진짜 자연스럽게 된 모습보고 많이 놀랬어요\n\n덕분에 가족의 평화가 찾아온거 같아요 원장님 히히)(\n\n번창하시구 리터치때 뵙겠습니다 !!!\n건강하시고 명절인데 가족분과 좋은시간 되세요 💛🩷","alt":"작업 후 고객과 대표원장 기념 사진","video":false},{"img":"assets/review-6-sm.jpg","pos":"40% 40%","text":"울산두피문신 알아보면서 여기저기 비교도 많이 해봤는데 유블랙으로 결정하길 잘한 것 같아요. 처음에는 너무 진하거나 어색할까 봐 걱정했는데 생각보다 훨씬 자연스럽게 잘됐네요. 상담도 친절하게 해주시고 시술도 꼼꼼하게 해주셔서 만족스럽습니다. 괜히 고민만 오래 했네요ㅎㅎ 감사합니다~","alt":"작업 후 고객과 대표원장 기념 사진","video":false},{"img":"assets/review-7-sm.jpg","pos":"40% 35%","text":"머리 때문에 신경이 많이 쓰였는데 하고 나니 정말 자연스럽고 좋네요~ 과하게 진하지도 않고 원래 머리인 것처럼 보여서 만족해요. 감사합니다 젊고 꼼꼼하신 유블랙 원장님^^","alt":"작업 후 고객과 대표원장 기념 사진","video":false},{"img":"assets/review-11-sm.jpg","pos":"40% 40%","text":"처음에는 어색할까 봐 걱정했는데 생각보다 훨씬 자연스럽네요. 가까이서 봐도 티가 거의 안 나고 만족스럽습니다. 꼼꼼하게 잘해주시네요 ^^ 홍보 많이할게요","alt":"작업 후 고객과 대표원장 기념 사진","video":false},{"img":"assets/review-5-sm.jpg","pos":"40% 50%","text":"머리 뿐만 아니라 마음까지 치유되었습니다.\n콤플렉스를 완전히 없애준 유블랙에 감사를 표합니다~~","alt":"작업 후 고객과 대표원장 기념 사진","video":false},{"img":"assets/review-12-sm.jpg","pos":"40% 50%","text":"매주 고생많으셨습니다\n신경 많이 써주신 덕분에\n자신감 많이 생겼네요 ㅎ\n\n정말 감사합니다","alt":"작업 후 고객과 대표원장 기념 사진","video":false},{"img":"assets/review-1-sm.jpg","pos":"45% 55%","text":"받기 전엔 고민이 정말 많았는데, 직접 받아보니 너무 만족스럽고 자연스러워서 깜짝 놀랐네요\n\n눈에 띄지 않게 잘 커버돼서 주변 사람들도 눈치 못 챌 정도 ?,,\n\n섬세하고 꼼꼼하게 진행해주셔서 믿음도 갔고요\n\n관리 방법도 자세히 설명해주셔서 걱정 없이 받았습니다","alt":"작업 후 고객과 대표원장 기념 사진","video":false},{"img":"assets/review-2-sm.jpg","pos":"45% 50%","text":"처음엔 조금 걱정도 있었는데 막상 커버 받고 나니 너무 자연스럽고 마음에 들어요. 티 안 나게 채워져서 거울 볼 때마다 기분이 좋아집니다. 손기술이 정말 좋으신 것 같아요. 자연스럽게 커버 원하시는 분들께 꼭 추천드리고 싶은 마음입니다","alt":"작업 후 고객과 대표원장 기념 사진","video":false},{"img":"assets/review-3-sm.jpg","pos":"50% 40%","text":"처음엔 진짜 자연스러울까 걱정했는데, 막상 작업받고 나니 괜한 고민이더라고요\n\nM자 이마랑 정수리 부분이 정말 자연스럽게 커버됐고, 가까이서 봐도 티가 안 나요. 주변에서도 관리했냐고 물어볼 정도입니다\n\n상담부터 시술까지 정말 꼼꼼하고 위생도 철저해서 안심하고 맡길 수 있었습니다. 고민하시는 분들께 진심으로 추천드려요 !!!","alt":"작업 후 고객과 대표원장 기념 사진","video":false},{"img":"assets/review-4-sm.jpg","pos":"50% 40%","text":"탈모 때문에 모자만 쓰고 다녔는데 이제는 자신감이 생겼어요!\n\n경계도 자연스럽고 밀도감도 딱 좋아서 모르는 사람은 받은 줄 전혀 모릅니다,,,\n\n디자인부터 마무리까지 너무 섬세하게 해주셔서 믿음이 갔고, 위생이나 관리도 정말 철저하네요,,,\n\n저처럼 탈모로 스트레스 받는 분들께 꼭 추천드리고 싶어요. 선택 잘한 것 같아요","alt":"작업 후 고객과 대표원장 기념 사진","video":false}];
+class Component extends DCLogic {
+  state = { f: 'ALL' };
+  renderVals() {
+    const S = [['PHOTO', 'HAIRLINE', '4/3'], ['TEXT', 'CROWN'], ['VIDEO', 'M-LINE', '16/9'], ['PHOTO', 'SCAR COVER', '1/1'], ['TEXT', 'PART'], ['PHOTO', 'SHAVED DESIGN', '4/5'], ['TEXT', 'SMP CORRECTION'], ['VIDEO', 'CROWN', '16/9']];
+    const L = { ALL: '전체', PHOTO: '사진 후기', TEXT: '텍스트 후기', VIDEO: '영상 후기' };
+    const f = this.state.f;
+    return {
+      adminNotes: false,
+      filters: Object.keys(L).map(k => { const on = k === f; return { label: L[k], on, bg: on ? '#080808' : 'transparent', fg: on ? '#fff' : '#080808', line: on ? '#080808' : '#B7B7B7', pick: () => this.setState({ f: k }) }; }),
+      shown: REVIEWS,
+    };
+  }
+}
+</script>
+</body>
+</html>

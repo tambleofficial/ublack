@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<channel>
+  <title>U.BLACK 유블랙 — 울산 두피문신 SMP</title>
+  <link>https://ublack.pages.dev/</link>
+  <description>울산 SMP 두피문신 스튜디오 유블랙. 상담부터 사후관리까지 대표원장이 직접 진행합니다.</description>
+  <language>ko-kr</language>
+  <lastBuildDate>Tue, 03 Nov 2026 09:00:00 +0900</lastBuildDate>
+  <atom:link href="https://ublack.pages.dev/rss.xml" rel="self" type="application/rss+xml"/>
+  <item><title>U.BLACK 브랜드 · 대표원장</title><link>https://ublack.pages.dev/brand</link><guid isPermaLink="true">https://ublack.pages.dev/brand</guid><description>대표원장이 직접 운영하는 독립 SMP 브랜드 유블랙의 이야기와 운영 철학.</description><pubDate>Tue, 03 Nov 2026 09:00:00 +0900</pubDate></item>
+  <item><title>두피문신 프로그램</title><link>https://ublack.pages.dev/program</link><guid isPermaLink="true">https://ublack.pages.dev/program</guid><description>헤어라인, M자, 정수리, 가르마, 삭발, 흉터 커버 등 부위별 SMP 프로그램 안내.</description><pubDate>Tue, 03 Nov 2026 09:00:00 +0900</pubDate></item>
+  <item><title>시술 사례</title><link>https://ublack.pages.dev/cases</link><guid isPermaLink="true">https://ublack.pages.dev/cases</guid><description>유블랙의 실제 SMP 두피문신 작업 사례.</description><pubDate>Tue, 03 Nov 2026 09:00:00 +0900</pubDate></item>
+  <item><title>아카데미</title><link>https://ublack.pages.dev/academy</link><guid isPermaLink="true">https://ublack.pages.dev/academy</guid><description>현장의 SMP 디자인 기준을 교육과 세미나, 심사 활동으로 이어갑니다.</description><pubDate>Tue, 03 Nov 2026 09:00:00 +0900</pubDate></item>
+  <item><title>실제 고객 후기</title><link>https://ublack.pages.dev/reviews</link><guid isPermaLink="true">https://ublack.pages.dev/reviews</guid><description>유블랙에서 작업을 받은 고객의 실제 후기.</description><pubDate>Tue, 03 Nov 2026 09:00:00 +0900</pubDate></item>
+  <item><title>상담 · 오시는 길</title><link>https://ublack.pages.dev/contact</link><guid isPermaLink="true">https://ublack.pages.dev/contact</guid><description>울산광역시 북구 신천로 55-22, 404호 · 카카오톡 · 전화 010-3924-0143</description><pubDate>Tue, 03 Nov 2026 09:00:00 +0900</pubDate></item>
+</channel>
+</rss>

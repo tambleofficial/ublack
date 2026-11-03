@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+html{scroll-behavior:auto}
+body{margin:0;background:#080808;color:#080808;font-family:"Pretendard Variable",Pretendard,"Helvetica Neue",Helvetica,sans-serif;-webkit-font-smoothing:antialiased;word-break:keep-all;overflow-wrap:break-word}
+a{color:inherit;text-decoration:none}
+a:hover{color:inherit;opacity:.72}
+*{box-sizing:border-box}
+html,body{overflow-x:hidden;max-width:100%}
+img,iframe,video{max-width:100%}
+/* Mobile only: preserve all desktop rules and inline layouts. */
+@media (max-width:640px){
+ body{font-size:16px}
+ h1,h2,h3{word-break:keep-all}
+ main{padding-bottom:calc(60px + env(safe-area-inset-bottom,0px))}
+ main section div[style*="flex:"]{min-width:0;max-width:100%}
+ main section[data-screen-label="01 Hero"]{gap:36px!important}
+ main section[data-screen-label="01 Hero"] h1{font-size:clamp(32px,9.5vw,38px)!important}
+ [role="dialog"]{overflow-y:auto;padding-bottom:calc(24px + env(safe-area-inset-bottom,0px))!important}
+ [role="dialog"]>div:first-child{flex-shrink:0}
+ [role="dialog"] nav{margin-top:8px!important}
+ [role="dialog"] nav a{padding:12px 0!important;font-size:22px!important;min-height:44px}
+ [role="dialog"]>div:last-child{margin-top:24px!important}
+ div[style*="z-index:850"]{padding-bottom:env(safe-area-inset-bottom,0px)}
+ div[role="menu"][style*="bottom:60px"]{bottom:calc(60px + env(safe-area-inset-bottom,0px))!important}
+ main a,main button{touch-action:manipulation}
+}
+@media (max-width:380px){
+ main dl>div[style*="grid-template-columns:96px"]{grid-template-columns:60px minmax(0,1fr)!important;gap:12px!important}
+}
+::selection{background:#080808;color:#fff}
+@media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important}}
+</style>
+</helmet>
+<header style="position:fixed;top:0;left:0;right:0;z-index:900;height:76px;display:flex;align-items:center;justify-content:space-between;padding:0 clamp(20px,4vw,56px);background:{{ headerBg }};color:{{ headerFg }};border-bottom:1px solid {{ headerLine }};backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);transition:background .45s ease,color .45s ease,border-color .45s ease">
+  <a href="/" aria-label="U.BLACK 홈" style="display:flex;align-items:center;gap:12px;height:40px">
+    <img src="{{ symbolSrc }}" alt="" style="height:26px;width:auto;display:block">
+    <img src="{{ wordmarkSrc }}" alt="U BLACK" style="height:12px;width:auto;display:block">
+  </a>
+  <sc-if value="{{ desktop }}" hint-placeholder-val="{{ true }}">
+    <nav aria-label="주 메뉴" style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);display:flex;align-items:center;gap:clamp(20px,2.6vw,40px)">
+      <sc-for list="{{ nav }}" as="item" hint-placeholder-count="6">
+        <a href="{{ item.href }}" style="position:relative;display:flex;flex-direction:column;align-items:center;gap:3px;padding:8px 0">
+          <span style="font-size:12.5px;font-weight:500;letter-spacing:.14em">{{ item.label }}</span>
+          <span style="font-size:10.5px;font-weight:400;opacity:.62">{{ item.ko }}</span>
+          <span style="position:absolute;left:0;right:0;bottom:0;height:1px;background:currentColor;opacity:{{ item.on }}"></span>
+        </a>
+      </sc-for>
+    </nav>
+    <a href="#consultation" style="display:flex;flex-direction:column;align-items:center;gap:3px;padding:8px 16px;border:1px solid currentColor"><span style="font-size:12px;font-weight:600;letter-spacing:.14em">CONSULTATION</span><span style="font-size:10.5px;opacity:.7">상담 / 예약</span></a>
+  </sc-if>
+  <sc-if value="{{ mobile }}" hint-placeholder-val="{{ false }}">
+    <button onClick="{{ openMenu }}" aria-label="메뉴 열기" style="background:none;border:0;color:inherit;font:inherit;font-size:14px;font-weight:600;letter-spacing:.14em;padding:12px 0 12px 16px;min-height:44px;cursor:pointer">MENU</button>
+  </sc-if>
+</header>
+
+<sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}">
+  <div role="dialog" aria-modal="true" aria-label="메뉴" style="position:fixed;inset:0;z-index:950;background:#080808;color:#fff;display:flex;flex-direction:column;padding:0 24px 32px">
+    <div style="height:76px;display:flex;align-items:center;justify-content:space-between">
+      <img src="assets/wordmark-white.png" alt="U BLACK" style="height:13px">
+      <button onClick="{{ closeMenu }}" aria-label="메뉴 닫기" style="background:none;border:0;color:#fff;font:inherit;font-size:14px;font-weight:600;letter-spacing:.14em;min-height:44px;cursor:pointer">CLOSE</button>
+    </div>
+    <nav style="display:flex;flex-direction:column;margin-top:24px;border-top:1px solid #1B1B1B">
+      <a href="/" style="display:flex;justify-content:space-between;align-items:baseline;padding:18px 0;border-bottom:1px solid #1B1B1B;font-size:26px;font-weight:500;letter-spacing:.04em"><span>HOME</span><span style="font-size:14px;color:#B7B7B7">홈</span></a>
+      <sc-for list="{{ nav }}" as="item" hint-placeholder-count="6">
+        <a href="{{ item.href }}" style="display:flex;justify-content:space-between;align-items:baseline;padding:18px 0;border-bottom:1px solid #1B1B1B;font-size:26px;font-weight:500;letter-spacing:.04em"><span>{{ item.label }}</span><span style="font-size:14px;color:#B7B7B7">{{ item.ko }}</span></a>
+      </sc-for>
+    </nav>
+    <div style="margin-top:auto;display:grid;grid-template-columns:1fr 1fr;gap:10px">
+      <a href="http://pf.kakao.com/_nxenxmG" target="_blank" rel="noopener" style="background:#fff;color:#080808;text-align:center;padding:18px 0;font-size:16px;font-weight:600">카카오 상담</a>
+      <a href="tel:01039240143" style="border:1px solid #777;text-align:center;padding:18px 0;font-size:16px;font-weight:600">전화 문의</a>
+    </div>
+  </div>
+</sc-if>
+
+<sc-if value="{{ desktop }}" hint-placeholder-val="{{ true }}">
+  <aside aria-label="빠른 문의" style="position:fixed;right:20px;top:50%;transform:translateY(-50%);z-index:800;width:68px;display:flex;flex-direction:column;background:#080808;color:#fff;border:1px solid rgba(255,255,255,.16);box-shadow:0 10px 30px rgba(0,0,0,.18)">
+    <a href="#cases" aria-label="시술 사진 보기" style="height:76px;display:flex;align-items:center;justify-content:center;border-bottom:1px solid #222;text-align:center;transition:background .3s ease" style-hover="background:#1B1B1B;opacity:1">
+      <span style="font-size:13px;font-weight:600;line-height:1.3">시술<br>사진</span>
+    </a>
+    <button data-fab onClick="{{ toggleFab }}" aria-expanded="{{ fabOpen }}" aria-label="상담 예약 채널 열기" style="all:unset;box-sizing:border-box;cursor:pointer;height:76px;display:flex;align-items:center;justify-content:center;background:{{ fabBg }};color:{{ fabFg }};text-align:center;transition:background .3s ease,color .3s ease">
+      <span style="font-size:13px;font-weight:700;line-height:1.3">{{ fabLabel1 }}<br>{{ fabLabel2 }}</span>
+    </button>
+    <sc-if value="{{ fabOpen }}" hint-placeholder-val="{{ false }}">
+      <div role="menu" aria-label="상담 채널" style="position:absolute;right:calc(100% + 12px);bottom:0;width:240px;background:#FFFFFF;color:#080808;border:1px solid #E8E8E8;box-shadow:0 16px 40px rgba(0,0,0,.18)">
+        <div style="padding:18px 20px 14px;border-bottom:1px solid #E8E8E8">
+          <div style="font-size:11px;letter-spacing:.2em;font-weight:600;color:#666">CONSULTATION</div>
+          <div style="margin-top:6px;font-size:16px;font-weight:600">상담 · 예약 채널</div>
+        </div>
+        <sc-for list="{{ channels }}" as="c" hint-placeholder-count="6">
+          <a role="menuitem" href="{{ c.href }}" target="{{ c.target }}" rel="noopener" style="display:flex;align-items:center;gap:14px;padding:13px 20px;border-bottom:1px solid #F0F0EE;transition:background .25s ease" style-hover="background:#F6F6F4;opacity:1">
+            <img src="{{ c.icon }}" alt="" style="width:22px;height:22px;flex:0 0 auto;display:block">
+            <span style="flex:1;display:flex;flex-direction:column;gap:2px"><span style="font-size:15px;font-weight:600">{{ c.label }}</span><span style="font-size:12.5px;color:#666">{{ c.sub }}</span></span>
+            <span aria-hidden="true" style="font-size:13px;color:#999">→</span>
+          </a>
+        </sc-for>
+      </div>
+    </sc-if>
+  </aside>
+</sc-if>
+
+<sc-if value="{{ mobile }}" hint-placeholder-val="{{ false }}">
+  <sc-if value="{{ fabOpen }}" hint-placeholder-val="{{ false }}">
+    <div onClick="{{ closeFab }}" style="position:fixed;inset:0;z-index:840;background:rgba(8,8,8,.45)"></div>
+    <div role="menu" aria-label="상담 채널" style="position:fixed;left:0;right:0;bottom:60px;z-index:845;background:#FFFFFF;color:#080808;max-height:70svh;overflow-y:auto">
+      <div style="padding:20px 24px 14px;border-bottom:1px solid #E8E8E8;display:flex;justify-content:space-between;align-items:baseline">
+        <span style="font-size:17px;font-weight:600">상담 · 예약 채널</span><span style="font-size:11px;letter-spacing:.2em;color:#666">CONSULTATION</span>
+      </div>
+      <sc-for list="{{ channels }}" as="c" hint-placeholder-count="6">
+        <a role="menuitem" href="{{ c.href }}" target="{{ c.target }}" rel="noopener" style="display:flex;align-items:center;gap:16px;padding:16px 24px;border-bottom:1px solid #F0F0EE;min-height:56px">
+          <img src="{{ c.icon }}" alt="" style="width:24px;height:24px;flex:0 0 auto;display:block">
+          <span style="flex:1;display:flex;flex-direction:column;gap:2px"><span style="font-size:16px;font-weight:600">{{ c.label }}</span><span style="font-size:13.5px;color:#666">{{ c.sub }}</span></span>
+          <span aria-hidden="true" style="color:#999">→</span>
+        </a>
+      </sc-for>
+    </div>
+  </sc-if>
+  <div style="position:fixed;left:0;right:0;bottom:0;z-index:850;display:grid;grid-template-columns:1fr 1fr;background:#080808;border-top:1px solid #1B1B1B">
+    <a href="#cases" style="color:#fff;display:flex;align-items:center;justify-content:center;height:60px;font-size:16px;font-weight:600">시술 사진</a>
+    <button data-fab onClick="{{ toggleFab }}" aria-expanded="{{ fabOpen }}" style="all:unset;box-sizing:border-box;cursor:pointer;background:#F6F6F4;color:#080808;display:flex;align-items:center;justify-content:center;height:60px;font-size:16px;font-weight:600">{{ fabMobileLabel }}</button>
+  </div>
+</sc-if>
+
+
+
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;active&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;&quot;,&quot;brand&quot;,&quot;program&quot;,&quot;cases&quot;,&quot;reviews&quot;,&quot;academy&quot;,&quot;contact&quot;],&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;admin&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;}}">
+class Component extends DCLogic {
+  constructor(p) {
+    super(p);
+    let entering = false;
+    try { entering = sessionStorage.getItem('ub-nav') === '1'; } catch (e) {}
+    this.entering = false;
+    try { sessionStorage.removeItem('ub-nav'); } catch (e) {}
+    this.state = { fabOpen: false, theme: 'dark', scrolled: false, mobile: window.innerWidth < 1080, menuOpen: false, fine: window.matchMedia('(pointer:fine)').matches };
+    this.dotRef = React.createRef(); this.dotInner = React.createRef(); this.labelRef = React.createRef(); this.overlayRef = React.createRef();
+    this.reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  }
+  componentDidMount() {
+    this.onScroll = () => { if (!this.raf) this.raf = requestAnimationFrame(() => { this.raf = 0; this.tick(); }); };
+    this.onResize = () => { this.setState({ mobile: window.innerWidth < 1080 }); this.tick(); };
+    window.addEventListener('scroll', this.onScroll, { passive: true });
+    window.addEventListener('resize', this.onResize);
+    this.io = new IntersectionObserver(es => es.forEach(e => {
+      if (e.isIntersecting) { const el = e.target; if (el.hasAttribute('data-reveal-img')) el.style.clipPath = 'inset(0 0 0 0)'; else { el.style.opacity = '1'; el.style.transform = 'none'; } this.io.unobserve(el); }
+    }), { rootMargin: '0px 0px -8% 0px' });
+    this.scan = () => {
+      document.querySelectorAll('[data-reveal]:not([data-rv])').forEach(el => {
+        el.setAttribute('data-rv', '1');
+        if (this.reduce) return;
+        const r = el.getBoundingClientRect();
+        if (r.top < window.innerHeight * 0.92) return;
+        const d = el.getAttribute('data-reveal-delay') || 0;
+        el.style.opacity = '0'; el.style.transform = 'translate3d(0,20px,0)';
+        el.style.transition = `opacity .8s cubic-bezier(.2,.7,.2,1) ${d}ms, transform .8s cubic-bezier(.2,.7,.2,1) ${d}ms`;
+        this.io.observe(el);
+      });
+      document.querySelectorAll('[data-reveal-img]:not([data-rvi])').forEach(el => {
+        el.setAttribute('data-rvi', '1');
+        if (this.reduce) return;
+        if (el.getBoundingClientRect().top < window.innerHeight * 0.92) return;
+        el.style.clipPath = 'inset(100% 0 0 0)';
+        el.style.transition = (el.style.transition ? el.style.transition + ',' : '') + 'clip-path 1.1s cubic-bezier(.2,.7,.2,1)';
+        this.io.observe(el);
+      });
+      this.applyAdmin(); this.tick();
+    };
+    this.mo = new MutationObserver(() => { clearTimeout(this.mt); this.mt = setTimeout(this.scan, 120); });
+    this.mo.observe(document.body, { childList: true, subtree: true });
+    setTimeout(this.scan, 60);
+    this.onClick = e => {
+      const a = e.target.closest && e.target.closest('a[href]');
+      if (!a || a.target === '_blank' || e.metaKey || e.ctrlKey || e.shiftKey) return;
+      const href = a.getAttribute('href');
+      if (href && href.charAt(0) === '#' && href.length > 1) {
+        e.preventDefault();
+        this.setState({ menuOpen: false, fabOpen: false });
+        const el = document.getElementById(href.slice(1));
+        if (el) { window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 76, behavior: this.reduce ? 'auto' : 'smooth' }); return; }
+        if (href === '#cases') {
+          if (window.__ubRouter) window.__ubRouter('cases', '');
+          else if (/UBLACK-[a-z]+\.html$/i.test(location.pathname)) location.href = 'UBLACK-cases.html';
+          else location.href = '/cases';
+        }
+        if (href === '#consultation') {
+          if (window.__ubRouter) window.__ubRouter('contact', '');
+          else if (/UBLACK-[a-z]+\.html$/i.test(location.pathname)) location.href = 'UBLACK-contact.html';
+          else location.href = '/contact';
+        }
+        return;
+      }
+      if (!/\.dc\.html(#.*)?$/.test(href)) return;
+      this.setState({ menuOpen: false });
+      if (window.__ubRouter) {
+        e.preventDefault();
+        const m = href.match(/([a-z]+)\.dc\.html(#.*)?$/);
+        window.__ubRouter(m[1], m[2] || '');
+        return;
+      }
+      if (/UBLACK-[a-z]+\.html$/i.test(location.pathname)) {
+        e.preventDefault();
+        const m = href.match(/([a-z]+)\.dc\.html(#.*)?$/);
+        location.href = 'UBLACK-' + m[1] + '.html' + (m[2] || '');
+      }
+    };
+    document.addEventListener('click', this.onClick, true);
+    this.onKey = e => { if (e.key === 'Escape') this.setState({ menuOpen: false, fabOpen: false }); };
+    this.onDocDown = e => { if (this.state.fabOpen && !(e.target.closest && e.target.closest('aside,[role=menu]')) && !this.state.mobile) this.setState({ fabOpen: false }); };
+    document.addEventListener('pointerdown', this.onDocDown);
+    window.addEventListener('keydown', this.onKey);
+    this.tick();
+  }
+  componentDidUpdate() { this.applyAdmin(); }
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.onScroll); window.removeEventListener('resize', this.onResize);
+    window.removeEventListener('keydown', this.onKey); document.removeEventListener('click', this.onClick, true);
+    this.io && this.io.disconnect(); this.mo && this.mo.disconnect(); cancelAnimationFrame(this.cRaf);
+  }
+  applyAdmin() {
+    const mob = window.innerWidth < 1080;
+    document.querySelectorAll('[data-sticky]').forEach(el => { el.style.position = mob ? 'static' : 'sticky'; });
+    const show = this.props.admin ?? true;
+    document.querySelectorAll('[data-admin]').forEach(el => { el.style.display = show ? '' : 'none'; });
+  }
+  tick() {
+    const y = 38; let theme = 'dark';
+    document.querySelectorAll('[data-theme]').forEach(s => { const r = s.getBoundingClientRect(); if (r.top <= y && r.bottom > y) theme = s.getAttribute('data-theme'); });
+    const scrolled = window.scrollY > 12;
+    if (theme !== this.state.theme || scrolled !== this.state.scrolled) this.setState({ theme, scrolled });
+    if (!this.reduce) document.querySelectorAll('[data-parallax]').forEach(el => {
+      const r = el.parentElement.getBoundingClientRect();
+      if (r.bottom < 0 || r.top > window.innerHeight) return;
+      const f = parseFloat(el.getAttribute('data-parallax')) || 0.08;
+      el.style.transform = `translate3d(0,${((r.top + r.height / 2 - window.innerHeight / 2) * -f).toFixed(1)}px,0)`;
+    });
+  }
+  initCursor() {
+    let mx = -100, my = -100, x = -100, y = -100;
+    const dot = this.dotRef.current, lab = this.labelRef.current, inner = this.dotInner.current;
+    let cur = null;
+    this.onMove = e => {
+      mx = e.clientX; my = e.clientY;
+      const t = e.target.closest && e.target.closest('[data-cursor]');
+      const l = t ? t.getAttribute('data-cursor') : null;
+      if (l !== cur) { cur = l; if (l) { lab.textContent = l; lab.style.opacity = '1'; inner.style.width = '0px'; inner.style.height = '0px'; } else { lab.style.opacity = '0'; inner.style.width = '8px'; inner.style.height = '8px'; } }
+    };
+    window.addEventListener('mousemove', this.onMove, { passive: true });
+    const loop = () => {
+      x += (mx - x) * 0.22; y += (my - y) * 0.22;
+      dot.style.transform = `translate3d(${x - 4}px,${y - 11}px,0)`;
+      lab.style.transform = `translate3d(${mx + 14}px,${my + 14}px,0)`;
+      this.cRaf = requestAnimationFrame(loop);
+    };
+    loop();
+  }
+  renderVals() {
+    const { theme, scrolled, mobile, menuOpen } = this.state;
+    const active = this.props.active || '';
+    const light = theme === 'light';
+    const nav = [['BRAND', 'brand', '브랜드'], ['PROGRAM', 'program', '시술 안내'], ['CASES', 'cases', '시술 사례'], ['ACADEMY', 'academy', '아카데미'], ['REVIEWS', 'reviews', '고객 후기'], ['CONTACT', 'contact', '상담 · 오시는 길']]
+      .map(([label, k, ko]) => ({ label, ko, href: '/' + k, on: active === k ? 1 : 0 }));
+    const fabOpen = this.state.fabOpen;
+    const channels = [
+      { label: '카카오톡 상담', sub: '채널 메시지로 문의', href: 'http://pf.kakao.com/_nxenxmG', target: '_blank', icon: "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20fill%3D%22%23080808%22%20d%3D%22M12%203C6.5%203%202%206.6%202%2011c0%202.8%201.9%205.3%204.7%206.7L5.8%2021.5l4.3-2.8c.6.1%201.3.2%201.9.2%205.5%200%2010-3.6%2010-8s-4.5-8-10-8z%22%2F%3E%3C%2Fsvg%3E" },
+      { label: '전화 문의', sub: '010-3924-0143', href: 'tel:01039240143', target: '_self', icon: "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20fill%3D%22%23080808%22%20d%3D%22M6.6%2010.8c1.4%202.8%203.8%205.1%206.6%206.6l2.2-2.2c.3-.3.7-.4%201-.2%201.1.4%202.3.6%203.6.6.6%200%201%20.4%201%201V20c0%20.6-.4%201-1%201C10.6%2021%203%2013.4%203%204c0-.6.4-1%201-1h3.5c.6%200%201%20.4%201%201%200%201.3.2%202.5.6%203.6.1.3%200%20.7-.2%201L6.6%2010.8z%22%2F%3E%3C%2Fsvg%3E" },
+      { label: '네이버 플레이스', sub: '예약 · 오시는 길', href: 'https://naver.me/xoHQXTFw', target: '_blank', icon: "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20fill%3D%22%23080808%22%20d%3D%22M12%202C8.1%202%205%205.1%205%209c0%205.2%207%2013%207%2013s7-7.8%207-13c0-3.9-3.1-7-7-7zm0%209.5a2.5%202.5%200%201%201%200-5%202.5%202.5%200%200%201%200%205z%22%2F%3E%3C%2Fsvg%3E" },
+      { label: '인스타그램', sub: '@u.black_scalp', href: 'https://www.instagram.com/u.black_scalp', target: '_blank', icon: "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cg%20fill%3D%22none%22%20stroke%3D%22%23080808%22%20stroke-width%3D%221.8%22%3E%3Crect%20x%3D%223%22%20y%3D%223%22%20width%3D%2218%22%20height%3D%2218%22%20rx%3D%225%22%2F%3E%3Ccircle%20cx%3D%2212%22%20cy%3D%2212%22%20r%3D%224.2%22%2F%3E%3C%2Fg%3E%3Ccircle%20cx%3D%2217.3%22%20cy%3D%226.7%22%20r%3D%221%22%20fill%3D%22%23080808%22%2F%3E%3C%2Fsvg%3E" },
+      { label: '유튜브', sub: '@u.black_sclap', href: 'https://youtube.com/@u.black_sclap', target: '_blank', icon: "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Crect%20x%3D%222%22%20y%3D%225%22%20width%3D%2220%22%20height%3D%2214%22%20rx%3D%224%22%20fill%3D%22%23080808%22%2F%3E%3Cpath%20d%3D%22M10%209l5%203-5%203z%22%20fill%3D%22%23fff%22%2F%3E%3C%2Fsvg%3E" },
+      { label: '네이버 블로그', sub: '상담 전 읽을거리', href: 'https://m.blog.naver.com/nnn0100', target: '_blank', icon: "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Crect%20x%3D%223%22%20y%3D%223%22%20width%3D%2218%22%20height%3D%2218%22%20rx%3D%224%22%20fill%3D%22%23080808%22%2F%3E%3Cpath%20fill%3D%22%23fff%22%20d%3D%22M9%207h1.6v3.4c.5-.6%201.2-.9%202-.9%201.7%200%202.9%201.3%202.9%203.3S14.3%2016%2012.6%2016c-.8%200-1.5-.3-2-.9v.8H9V7zm3.3%204c-1%200-1.7.8-1.7%201.9s.7%201.9%201.7%201.9%201.6-.8%201.6-1.9-.6-1.9-1.6-1.9z%22%2F%3E%3C%2Fsvg%3E" }
+    ];
+    return {
+      channels, fabOpen,
+      toggleFab: () => this.setState(s => ({ fabOpen: !s.fabOpen })),
+      closeFab: () => this.setState({ fabOpen: false }),
+      fabBg: fabOpen ? '#E8E8E8' : '#FFFFFF', fabFg: '#080808',
+      fabLabel1: fabOpen ? '닫기' : '상담', fabLabel2: fabOpen ? '✕' : '예약',
+      fabMobileLabel: fabOpen ? '닫기 ✕' : '상담 예약',
+      nav, mobile, desktop: !mobile, menuOpen,
+      headerBg: light ? 'rgba(246,246,244,.92)' : (scrolled ? 'rgba(8,8,8,.86)' : 'rgba(8,8,8,0)'),
+      headerFg: light ? '#080808' : '#FFFFFF',
+      headerLine: light ? 'rgba(8,8,8,.08)' : (scrolled ? 'rgba(255,255,255,.07)' : 'rgba(255,255,255,0)'),
+      symbolSrc: light ? 'assets/symbol-black.png' : 'assets/symbol-white.png',
+      wordmarkSrc: light ? 'assets/wordmark-black.png' : 'assets/wordmark-white.png',
+      openMenu: () => this.setState({ menuOpen: true }),
+      closeMenu: () => this.setState({ menuOpen: false }),
+      cursorDisplay: this.state.fine && !mobile ? 'flex' : 'none',
+      overlayTransform: this.entering ? 'scaleX(1)' : 'scaleX(0)',
+      dotRef: this.dotRef, dotInner: this.dotInner, labelRef: this.labelRef, overlayRef: this.overlayRef
+    };
+  }
+}
+</script>
+</body>
+</html>
