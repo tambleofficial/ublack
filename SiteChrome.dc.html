@@ -86,7 +86,7 @@ img,iframe,video{max-width:100%}
 
 <sc-if value="{{ desktop }}" hint-placeholder-val="{{ true }}">
   <aside aria-label="빠른 문의" style="position:fixed;right:20px;top:50%;transform:translateY(-50%);z-index:800;width:68px;display:flex;flex-direction:column;background:#080808;color:#fff;border:1px solid rgba(255,255,255,.16);box-shadow:0 10px 30px rgba(0,0,0,.18)">
-    <a href="#cases" aria-label="시술 사진 보기" style="height:76px;display:flex;align-items:center;justify-content:center;border-bottom:1px solid #222;text-align:center;transition:background .3s ease" style-hover="background:#1B1B1B;opacity:1">
+    <a href="/cases" aria-label="시술 사진 보기" style="height:76px;display:flex;align-items:center;justify-content:center;border-bottom:1px solid #222;text-align:center;transition:background .3s ease" style-hover="background:#1B1B1B;opacity:1">
       <span style="font-size:13px;font-weight:600;line-height:1.3">시술<br>사진</span>
     </a>
     <button data-fab onClick="{{ toggleFab }}" aria-expanded="{{ fabOpen }}" aria-label="상담 예약 채널 열기" style="all:unset;box-sizing:border-box;cursor:pointer;height:76px;display:flex;align-items:center;justify-content:center;background:{{ fabBg }};color:{{ fabFg }};text-align:center;transition:background .3s ease,color .3s ease">
@@ -127,7 +127,7 @@ img,iframe,video{max-width:100%}
     </div>
   </sc-if>
   <div style="position:fixed;left:0;right:0;bottom:0;z-index:850;display:grid;grid-template-columns:1fr 1fr;background:#080808;border-top:1px solid #1B1B1B">
-    <a href="#cases" style="color:#fff;display:flex;align-items:center;justify-content:center;height:60px;font-size:16px;font-weight:600">시술 사진</a>
+    <a href="/cases" style="color:#fff;display:flex;align-items:center;justify-content:center;height:60px;font-size:16px;font-weight:600">시술 사진</a>
     <button data-fab onClick="{{ toggleFab }}" aria-expanded="{{ fabOpen }}" style="all:unset;box-sizing:border-box;cursor:pointer;background:#F6F6F4;color:#080808;display:flex;align-items:center;justify-content:center;height:60px;font-size:16px;font-weight:600">{{ fabMobileLabel }}</button>
   </div>
 </sc-if>
