@@ -86,7 +86,7 @@
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:clamp(16px,2vw,28px)">
       <figure data-reveal="" style="margin:0;min-width:0">
         <div data-reveal-img="" style="position:relative;aspect-ratio:4/5;overflow:hidden;background:#E8E8E8"><img src="assets/cases-sm/hair/z10.jpg" alt="" loading="lazy" draggable="false" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block"></div>
-        <figcaption style="display:flex;justify-content:space-between;gap:16px;margin-top:16px;font-size:12px;letter-spacing:.16em;font-weight:500"><span>CASE 014</span><span style="color:#666">M-LINE</span></figcaption>
+        <figcaption style="display:flex;justify-content:space-between;gap:16px;margin-top:16px;font-size:12px;letter-spacing:.16em;font-weight:500"><span>CASE 014</span><span style="color:#666">우먼 헤어라인</span></figcaption>
       </figure>
       <sc-for list="{{ selected }}" as="c" hint-placeholder-count="2">
         <a href="/cases" data-reveal="" data-cursor="VIEW CASE" style="display:block;min-width:0">
@@ -369,7 +369,7 @@ class Component extends DCLogic {
       ['남성 헤어라인', 'HAIRLINE', 'hairline', '얼굴형과 나이대에 어울리는 헤어라인 높이와 형태를 함께 정합니다.'],
       ['원형탈모 부위 커버', 'SPOT COVER', 'spot', '두피 노출이 두드러지는 부위를 주변 모발과의 연결감을 고려해 커버 상담합니다.']
     ];
-    const PI = { cover: 'assets/cases-sm/crown/z05.jpg', shaved: 'assets/cases-sm/shaved/1790228230564.jpg', scar: 'assets/cases-sm/scar/z02.jpg', sideburn: 'assets/cases-sm/hair/z03.jpg', 'm-line': 'assets/cases-sm/hair/z10.jpg', crown: 'assets/cases-sm/crown/z01.jpg', part: 'assets/cases/part-01.jpg', women: 'assets/cases-sm/hair/z00.png', hairline: 'assets/cases-sm/hair/z01.jpg', transplant: 'assets/cases-sm/crown/z08.jpg', spot: 'assets/cases-sm/scar/z03.jpg' };
+    const PI = { cover: 'assets/cases-sm/crown/z05.jpg', shaved: 'assets/cases-sm/shaved/1790228230564.jpg', scar: 'assets/cases-sm/scar/z02.jpg', sideburn: 'assets/cases-sm/hair/z14.jpg', 'm-line': 'assets/cases-sm/hair/z12.jpg', crown: 'assets/cases-sm/crown/z01.jpg', part: 'assets/cases/part-01.jpg', women: 'assets/cases-sm/hair/z00.png', hairline: 'assets/cases-sm/hair/z07.jpg', transplant: 'assets/cases-sm/crown/z08.jpg', spot: 'assets/cases-sm/scar/z03.jpg' };
     const F = [
       ['비용은 어떻게 결정되나요?', '작업 범위와 현재 상태, 필요한 디자인을 확인한 뒤 상담을 통해 견적을 안내합니다.'],
       ['작업 기간은 어떻게 안내되나요?', '작업 범위와 상태에 따라 상담 시 안내됩니다.'],
@@ -394,7 +394,7 @@ class Component extends DCLogic {
       baMove: e => { if (this.baDrag) this.setBa(e); },
       baUp: () => { this.baDrag = false; },
       baInput: e => this.setState({ ba: +e.target.value }),
-      selected: [{ id: 'CASE 021', area: 'HAIRLINE', src: 'assets/cases-sm/hair/z01.jpg' }, { id: 'CASE 027', area: 'CROWN', src: 'assets/cases-sm/crown/1790228230416.jpg' }],
+      selected: [{ id: 'CASE 021', area: '맨즈 헤어라인', src: 'assets/cases-sm/hair/z13.jpg' }, { id: 'CASE 027', area: '정수리', src: 'assets/cases-sm/crown/1790228230416.jpg' }],
       why: [
         { n: '01', t: 'ONE ARTIST', d: '상담부터 디자인, 시술과 사후관리까지 대표원장이 직접 진행합니다.' },
         { n: '02', t: 'LIMITED SESSIONS', d: '하루 시술 인원을 제한해 한 고객에게 집중할 수 있는 운영 방식을 유지합니다.' },
@@ -412,9 +412,9 @@ class Component extends DCLogic {
       ],
       process: S.map((s, i) => { const on = i === step; return { n: String(i + 1).padStart(2, '0'), t: s[0], d: s[1], numColor: on ? '#080808' : '#999', titleColor: on ? '#080808' : '#777', line: on ? '#080808' : '#E8E8E8' }; }),
       studies: [
-        { n: 'CASE 01', src: 'assets/cases-sm/hair/z11.jpg', t: 'M-LINE', worry: '앞쪽 두피 노출.', dirTxt: '기존 헤어라인과 모발 방향을 함께 살펴 시각적 연결감을 고려.' },
-        { n: 'CASE 02', src: 'assets/cases-sm/crown/z03.jpg', t: 'CROWN', worry: '정수리 부위 두피 노출.', dirTxt: '가마 방향과 주변 모발 톤을 기준으로 도트 밀도를 조율.' },
-        { n: 'CASE 03', src: 'assets/cases-sm/scar/z01.jpg', t: 'SCAR', worry: '짧은 머리에서 흉터 라인이 드러남.', dirTxt: '흉터 주변 피부 톤을 확인하고 주변 모발과 어우러지는 범위로 한정.' }
+        { n: 'CASE 01', src: 'assets/cases-sm/hair/z12.jpg', t: 'M자 헤어라인', worry: '앞쪽 두피 노출.', dirTxt: '기존 헤어라인과 모발 방향을 함께 살펴 시각적 연결감을 고려.' },
+        { n: 'CASE 02', src: 'assets/cases-sm/crown/z03.jpg', t: '정수리', worry: '정수리 부위 두피 노출.', dirTxt: '가마 방향과 주변 모발 톤을 기준으로 도트 밀도를 조율.' },
+        { n: 'CASE 03', src: 'assets/cases-sm/scar/z01.jpg', t: '흉터 커버', worry: '짧은 머리에서 흉터 라인이 드러남.', dirTxt: '흉터 주변 피부 톤을 확인하고 주변 모발과 어우러지는 범위로 한정.' }
       ],
       trackRef: this.trackRef,
       dragDown: e => { if (e.pointerType !== 'mouse') return; this.drag = { x: e.clientX, s: this.trackRef.current.scrollLeft }; this.trackRef.current.style.scrollSnapType = 'none'; },
