@@ -2,7 +2,8 @@
 // - 로그인 전: 비밀번호 입력 화면
 // - 로그인 후: 실제 홈페이지 화면 + 편집 도구(/cms-editor.js)
 // 콘텐츠는 배포된 파일에서 바로 읽어요 (깃허브를 거치지 않아 빠름). 저장 후에는 편집 도구가 배포 완료를 기다렸다가 새로고침해요.
-const FILES = ['site', 'home', 'reviews'];
+// 편집할 페이지: /edit?page=brand 처럼 지정 (없으면 홈)
+const PAGES = { home: ['/', ['home', 'reviews']], brand: ['/brand', ['brand']], program: ['/program', ['program']], cases: ['/cases', ['cases']], academy: ['/academy', ['academy']], reviews: ['/reviews', ['reviewsPage', 'reviews']], contact: ['/contact', ['contact']] };
 const REPO = 'tambleofficial/ublack';
 
 async function hmac(key, msg) {
@@ -49,16 +50,18 @@ export async function onRequestGet({ request, env }) {
   if (!(await authed(request, env))) return new Response(LOGIN_HTML, { headers });
 
   const branch = branchOf(request, env);
+  const pageKey = PAGES[new URL(request.url).searchParams.get('page')] ? new URL(request.url).searchParams.get('page') : 'home';
+  const [pagePath, pageFiles] = PAGES[pageKey];
   const data = {};
-  await Promise.all(FILES.map(async (name) => {
+  await Promise.all(['site', ...pageFiles].map(async (name) => {
     const r = await env.ASSETS.fetch(new URL('/content/' + name + '.json', request.url));
     if (r.ok) data[name] = await r.json();
   }));
 
-  const page = await env.ASSETS.fetch(new URL('/', request.url));
+  const page = await env.ASSETS.fetch(new URL(pagePath, request.url));
   let html = await page.text();
   const json = JSON.stringify(data).replace(/</g, '\\u003c');
-  html = html.replace(/<head>/i, (m) => m + '<meta name="robots" content="noindex"><script>window.__CMS=' + json + ';window.__CMS_EDIT={branch:' + JSON.stringify(branch) + '};</script>');
-  html = html.replace(/<\/body>/i, '<script src="/cms-editor.js?v=1"></script></body>');
+  html = html.replace(/<head>/i, (m) => m + '<meta name="robots" content="noindex"><script>window.__CMS=' + json + ';window.__CMS_EDIT={branch:' + JSON.stringify(branch) + ',page:' + JSON.stringify(pageKey) + '};</script>');
+  html = html.replace(/<\/body>/i, '<script src="/cms-editor.js?v=2"></script></body>');
   return new Response(html, { headers });
 }

@@ -1,14 +1,16 @@
 // Pages CMS 콘텐츠(content/*.json)를 페이지에 끼워 넣는 클라우드플레어 미들웨어.
 // 방문자 브라우저가 따로 JSON을 받아오지 않도록, HTML을 보내기 전에 서버(엣지)에서 한 번에 넣어줍니다.
-const FILES = ['site', 'home', 'reviews'];
+const PAGE_FILES = { '': ['home', 'reviews'], index: ['home', 'reviews'], brand: ['brand'], program: ['program'], cases: ['cases'], academy: ['academy'], reviews: ['reviewsPage', 'reviews'], contact: ['contact'] };
 
 export async function onRequest(ctx) {
   const res = await ctx.next();
   const url = new URL(ctx.request.url);
   const type = res.headers.get('content-type') || '';
   if (!type.includes('text/html') || url.pathname.endsWith('.dc.html') || url.pathname.startsWith('/edit') || url.pathname.startsWith('/api/')) return res;
+  const key = url.pathname.replace(/^\/+|\/+$/g, '').replace(/\.html$/, '');
+  const files = ['site', ...(PAGE_FILES[key] || [])];
   const data = {};
-  await Promise.all(FILES.map(async (name) => {
+  await Promise.all(files.map(async (name) => {
     try {
       const r = await ctx.env.ASSETS.fetch(new URL('/content/' + name + '.json', url));
       if (r.ok) data[name] = await r.json();
