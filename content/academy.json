@@ -1,0 +1,179 @@
+{
+  "t": {
+    "k01": "ACADEMY",
+    "k02": "U.BLACK\nACADEMY",
+    "k03": "교육 · 아카데미",
+    "k04": "유블랙 · U.BLACK · ULSAN",
+    "k05": "현장에서 쌓아온 디자인 기준을 교육과 세미나, 심사 활동으로 이어갑니다.",
+    "k06": "ACADEMY",
+    "k07": "EDUCATION PHILOSOPHY",
+    "k08": "기술보다 먼저,\n범위를 판단하는 기준을 전합니다.",
+    "k09": "두상과 모발의 흐름을 읽고, 어디까지가 필요한 범위인지 판단하는 상담 기준부터 실습까지 현장에서 사용하는 방식 그대로 교육합니다.",
+    "k10": "CURRICULUM",
+    "k11": "교육 분야",
+    "k12": "SEMINAR / JUDGING",
+    "k13": "대표원장 활동",
+    "k14": "다양한 시술 및 교육 경험을 바탕으로 운영됩니다.",
+    "k15": "GALLERY",
+    "k16": "교육 · 세미나 · 학생 작업",
+    "k17": "ACADEMY INQUIRY",
+    "k18": "수강 상담",
+    "k19": "교육 일정과 과정 구성은 상담을 통해 안내합니다.",
+    "k20": "KAKAO 상담",
+    "k21": "CALL",
+    "img01": "/assets/symbol-white.png"
+  },
+  "fields": [
+    "SMP 기초",
+    "디자인 · 헤어라인",
+    "부위별 적용",
+    "상담 · 사후관리"
+  ],
+  "acts": [
+    {
+      "k": "SUPERVISOR",
+      "t": "2nd World Top Tier Olympics · Supervisor",
+      "year": "2025"
+    },
+    {
+      "k": "AWARD",
+      "t": "2025 KOREA SMP Global Brand Award",
+      "year": "2025"
+    },
+    {
+      "k": "AWARD",
+      "t": "제16회 월드뷰티페스티벌",
+      "year": "2025"
+    },
+    {
+      "k": "CONFERENCE",
+      "t": "3rd IPSN KOREA International Beauty Conference · 호치민",
+      "year": "2025"
+    },
+    {
+      "k": "CONFERENCE",
+      "t": "IPSN KOREA × WELLA Professionals · 베트남",
+      "year": "2025"
+    },
+    {
+      "k": "ACTIVITY",
+      "t": "2025 Asia Model Awards",
+      "year": "2025"
+    },
+    {
+      "k": "AWARD",
+      "t": "2nd IPSN KOREA International Beauty Contest · 하노이",
+      "year": "2024"
+    },
+    {
+      "k": "EDUCATION",
+      "t": "대한두피문신전문가협회 SMP 교육 인증기관",
+      "year": "2023"
+    },
+    {
+      "k": "EDUCATION",
+      "t": "서울대학교 SMP MASTER PROGRAM",
+      "year": ""
+    }
+  ],
+  "gallery": [
+    {
+      "image": "/assets/academy-14.jpg",
+      "k": "ACADEMY",
+      "year": "2026",
+      "t": "제17회 월드뷰티페스티벌 · U BLACK ACADEMY",
+      "pos": "50% 70%"
+    },
+    {
+      "image": "/assets/academy-4.jpg",
+      "k": "AWARD",
+      "year": "2026",
+      "t": "제17회 월드뷰티페스티벌 · 수강생 수상",
+      "pos": "50% 55%"
+    },
+    {
+      "image": "/assets/academy-5.jpg",
+      "k": "AWARD",
+      "year": "2026",
+      "t": "제17회 월드뷰티페스티벌 · 수강생 수상",
+      "pos": "45% 55%"
+    },
+    {
+      "image": "/assets/academy-6.jpg",
+      "k": "AWARD",
+      "year": "2026",
+      "t": "제17회 월드뷰티페스티벌 · 수강생 수상",
+      "pos": "50% 50%"
+    },
+    {
+      "image": "/assets/academy-7.jpg",
+      "k": "CERTIFICATE",
+      "year": "2026",
+      "t": "유블랙 아카데미 SMP 전문가 과정 수료",
+      "pos": "50% 60%"
+    },
+    {
+      "image": "/assets/academy-8.jpg",
+      "k": "CERTIFICATE",
+      "year": "2026",
+      "t": "유블랙 아카데미 SMP 전문가 과정 수료",
+      "pos": "50% 55%"
+    },
+    {
+      "image": "/assets/academy-9.jpg",
+      "k": "CLASS",
+      "year": "",
+      "t": "실습 교육 · 헤어라인 작업",
+      "pos": "50% 50%"
+    },
+    {
+      "image": "/assets/academy-10.jpg",
+      "k": "CLASS",
+      "year": "",
+      "t": "마네킹 실습 · 도트 표현",
+      "pos": "40% 50%"
+    },
+    {
+      "image": "/assets/academy-11.jpg",
+      "k": "CLASS",
+      "year": "",
+      "t": "실습 교육 · 디테일 작업",
+      "pos": "50% 40%"
+    },
+    {
+      "image": "/assets/academy-1.jpg",
+      "k": "COMPETITION",
+      "year": "",
+      "t": "SMP 실기 경기 현장",
+      "pos": "50% 40%"
+    },
+    {
+      "image": "/assets/academy-2.jpg",
+      "k": "COMPETITION",
+      "year": "",
+      "t": "SMP 실기 경기 현장",
+      "pos": "50% 45%"
+    },
+    {
+      "image": "/assets/academy-3.jpg",
+      "k": "COMPETITION",
+      "year": "",
+      "t": "SMP 실기 경기 현장",
+      "pos": "45% 50%"
+    },
+    {
+      "image": "/assets/academy-12.jpg",
+      "k": "EDUCATION",
+      "year": "",
+      "t": "Eterno SMP 교육 과정 이수",
+      "pos": "50% 60%"
+    },
+    {
+      "image": "/assets/academy-13.jpg",
+      "k": "EDUCATION",
+      "year": "",
+      "t": "Eterno SMP 교육 과정 이수",
+      "pos": "50% 55%"
+    }
+  ]
+}

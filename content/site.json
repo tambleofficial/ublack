@@ -14,5 +14,31 @@
   "address_detail": "(신천동, 신천수테라스타운)",
   "booking_note": "예약제 상담",
   "cta_text": "필요한 범위부터\n먼저 이야기해보세요.",
-  "disclaimer": "유블랙의 SMP(두피문신)는 미용 목적의 시각적 보완 작업이며, 결과에는 개인차가 있습니다."
+  "disclaimer": "유블랙의 SMP(두피문신)는 미용 목적의 시각적 보완 작업이며, 결과에는 개인차가 있습니다.",
+  "nav": [
+    {
+      "label": "BRAND",
+      "ko": "브랜드"
+    },
+    {
+      "label": "PROGRAM",
+      "ko": "시술 안내"
+    },
+    {
+      "label": "CASES",
+      "ko": "시술 사례"
+    },
+    {
+      "label": "ACADEMY",
+      "ko": "아카데미"
+    },
+    {
+      "label": "REVIEWS",
+      "ko": "고객 후기"
+    },
+    {
+      "label": "CONTACT",
+      "ko": "상담 · 오시는 길"
+    }
+  ]
 }
