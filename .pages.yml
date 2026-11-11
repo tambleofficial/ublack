@@ -463,8 +463,12 @@ content:
           max: 60
           collapsible:
             collapsed: true
-            summary: "{text}"
+            summary: "{index}. {title}"
         fields:
+          - name: title
+            label: "목록 제목 (관리용)"
+            type: string
+            description: "관리 화면 목록에만 보이는 짧은 이름이에요. 홈페이지에는 안 나와요. 예: 정수리 후기"
           - name: image
             label: "사진"
             type: image
