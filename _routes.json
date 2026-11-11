@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "include": [
+    "/*"
+  ],
+  "exclude": [
+    "/assets/*",
+    "/content/*",
+    "/support.js",
+    "/*.dc.html",
+    "/sitemap.xml",
+    "/robots.txt",
+    "/rss.xml"
+  ]
+}

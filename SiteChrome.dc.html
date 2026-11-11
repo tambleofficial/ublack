@@ -78,8 +78,8 @@ img,iframe,video{max-width:100%}
       </sc-for>
     </nav>
     <div style="margin-top:auto;display:grid;grid-template-columns:1fr 1fr;gap:10px">
-      <a href="http://pf.kakao.com/_nxenxmG" target="_blank" rel="noopener" style="background:#fff;color:#080808;text-align:center;padding:18px 0;font-size:16px;font-weight:600">카카오 상담</a>
-      <a href="tel:01039240143" style="border:1px solid #777;text-align:center;padding:18px 0;font-size:16px;font-weight:600">전화 문의</a>
+      <a href="{{ siteKakao }}" target="_blank" rel="noopener" style="background:#fff;color:#080808;text-align:center;padding:18px 0;font-size:16px;font-weight:600">카카오 상담</a>
+      <a href="{{ siteTel }}" style="border:1px solid #777;text-align:center;padding:18px 0;font-size:16px;font-weight:600">전화 문의</a>
     </div>
   </div>
 </sc-if>
@@ -137,6 +137,8 @@ img,iframe,video{max-width:100%}
 
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;active&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;&quot;,&quot;brand&quot;,&quot;program&quot;,&quot;cases&quot;,&quot;reviews&quot;,&quot;academy&quot;,&quot;contact&quot;],&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;admin&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;}}">
+const SITE = (window.__CMS && window.__CMS.site) || {};
+const SITE_TEL = 'tel:' + String(SITE.phone || '').replace(/[^0-9]/g, '');
 class Component extends DCLogic {
   constructor(p) {
     super(p);
@@ -273,15 +275,15 @@ class Component extends DCLogic {
       .map(([label, k, ko]) => ({ label, ko, href: '/' + k, on: active === k ? 1 : 0 }));
     const fabOpen = this.state.fabOpen;
     const channels = [
-      { label: '카카오톡 상담', sub: '채널 메시지로 문의', href: 'http://pf.kakao.com/_nxenxmG', target: '_blank', icon: "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20fill%3D%22%23080808%22%20d%3D%22M12%203C6.5%203%202%206.6%202%2011c0%202.8%201.9%205.3%204.7%206.7L5.8%2021.5l4.3-2.8c.6.1%201.3.2%201.9.2%205.5%200%2010-3.6%2010-8s-4.5-8-10-8z%22%2F%3E%3C%2Fsvg%3E" },
-      { label: '전화 문의', sub: '010-3924-0143', href: 'tel:01039240143', target: '_self', icon: "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20fill%3D%22%23080808%22%20d%3D%22M6.6%2010.8c1.4%202.8%203.8%205.1%206.6%206.6l2.2-2.2c.3-.3.7-.4%201-.2%201.1.4%202.3.6%203.6.6.6%200%201%20.4%201%201V20c0%20.6-.4%201-1%201C10.6%2021%203%2013.4%203%204c0-.6.4-1%201-1h3.5c.6%200%201%20.4%201%201%200%201.3.2%202.5.6%203.6.1.3%200%20.7-.2%201L6.6%2010.8z%22%2F%3E%3C%2Fsvg%3E" },
-      { label: '네이버 플레이스', sub: '예약 · 오시는 길', href: 'https://naver.me/xoHQXTFw', target: '_blank', icon: "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20fill%3D%22%23080808%22%20d%3D%22M12%202C8.1%202%205%205.1%205%209c0%205.2%207%2013%207%2013s7-7.8%207-13c0-3.9-3.1-7-7-7zm0%209.5a2.5%202.5%200%201%201%200-5%202.5%202.5%200%200%201%200%205z%22%2F%3E%3C%2Fsvg%3E" },
-      { label: '인스타그램', sub: '@u.black_scalp', href: 'https://www.instagram.com/u.black_scalp', target: '_blank', icon: "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cg%20fill%3D%22none%22%20stroke%3D%22%23080808%22%20stroke-width%3D%221.8%22%3E%3Crect%20x%3D%223%22%20y%3D%223%22%20width%3D%2218%22%20height%3D%2218%22%20rx%3D%225%22%2F%3E%3Ccircle%20cx%3D%2212%22%20cy%3D%2212%22%20r%3D%224.2%22%2F%3E%3C%2Fg%3E%3Ccircle%20cx%3D%2217.3%22%20cy%3D%226.7%22%20r%3D%221%22%20fill%3D%22%23080808%22%2F%3E%3C%2Fsvg%3E" },
-      { label: '유튜브', sub: '@u.black_sclap', href: 'https://youtube.com/@u.black_sclap', target: '_blank', icon: "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Crect%20x%3D%222%22%20y%3D%225%22%20width%3D%2220%22%20height%3D%2214%22%20rx%3D%224%22%20fill%3D%22%23080808%22%2F%3E%3Cpath%20d%3D%22M10%209l5%203-5%203z%22%20fill%3D%22%23fff%22%2F%3E%3C%2Fsvg%3E" },
-      { label: '네이버 블로그', sub: '상담 전 읽을거리', href: 'https://m.blog.naver.com/nnn0100', target: '_blank', icon: "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Crect%20x%3D%223%22%20y%3D%223%22%20width%3D%2218%22%20height%3D%2218%22%20rx%3D%224%22%20fill%3D%22%23080808%22%2F%3E%3Cpath%20fill%3D%22%23fff%22%20d%3D%22M9%207h1.6v3.4c.5-.6%201.2-.9%202-.9%201.7%200%202.9%201.3%202.9%203.3S14.3%2016%2012.6%2016c-.8%200-1.5-.3-2-.9v.8H9V7zm3.3%204c-1%200-1.7.8-1.7%201.9s.7%201.9%201.7%201.9%201.6-.8%201.6-1.9-.6-1.9-1.6-1.9z%22%2F%3E%3C%2Fsvg%3E" }
+      { label: '카카오톡 상담', sub: '채널 메시지로 문의', href: SITE.kakao_url, target: '_blank', icon: "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20fill%3D%22%23080808%22%20d%3D%22M12%203C6.5%203%202%206.6%202%2011c0%202.8%201.9%205.3%204.7%206.7L5.8%2021.5l4.3-2.8c.6.1%201.3.2%201.9.2%205.5%200%2010-3.6%2010-8s-4.5-8-10-8z%22%2F%3E%3C%2Fsvg%3E" },
+      { label: '전화 문의', sub: SITE.phone, href: SITE_TEL, target: '_self', icon: "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20fill%3D%22%23080808%22%20d%3D%22M6.6%2010.8c1.4%202.8%203.8%205.1%206.6%206.6l2.2-2.2c.3-.3.7-.4%201-.2%201.1.4%202.3.6%203.6.6.6%200%201%20.4%201%201V20c0%20.6-.4%201-1%201C10.6%2021%203%2013.4%203%204c0-.6.4-1%201-1h3.5c.6%200%201%20.4%201%201%200%201.3.2%202.5.6%203.6.1.3%200%20.7-.2%201L6.6%2010.8z%22%2F%3E%3C%2Fsvg%3E" },
+      { label: '네이버 플레이스', sub: '예약 · 오시는 길', href: SITE.naver_place_url, target: '_blank', icon: "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20fill%3D%22%23080808%22%20d%3D%22M12%202C8.1%202%205%205.1%205%209c0%205.2%207%2013%207%2013s7-7.8%207-13c0-3.9-3.1-7-7-7zm0%209.5a2.5%202.5%200%201%201%200-5%202.5%202.5%200%200%201%200%205z%22%2F%3E%3C%2Fsvg%3E" },
+      { label: '인스타그램', sub: SITE.instagram_id, href: SITE.instagram_url, target: '_blank', icon: "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cg%20fill%3D%22none%22%20stroke%3D%22%23080808%22%20stroke-width%3D%221.8%22%3E%3Crect%20x%3D%223%22%20y%3D%223%22%20width%3D%2218%22%20height%3D%2218%22%20rx%3D%225%22%2F%3E%3Ccircle%20cx%3D%2212%22%20cy%3D%2212%22%20r%3D%224.2%22%2F%3E%3C%2Fg%3E%3Ccircle%20cx%3D%2217.3%22%20cy%3D%226.7%22%20r%3D%221%22%20fill%3D%22%23080808%22%2F%3E%3C%2Fsvg%3E" },
+      { label: '유튜브', sub: SITE.youtube_id, href: SITE.youtube_url, target: '_blank', icon: "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Crect%20x%3D%222%22%20y%3D%225%22%20width%3D%2220%22%20height%3D%2214%22%20rx%3D%224%22%20fill%3D%22%23080808%22%2F%3E%3Cpath%20d%3D%22M10%209l5%203-5%203z%22%20fill%3D%22%23fff%22%2F%3E%3C%2Fsvg%3E" },
+      { label: '네이버 블로그', sub: '상담 전 읽을거리', href: SITE.blog_url, target: '_blank', icon: "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Crect%20x%3D%223%22%20y%3D%223%22%20width%3D%2218%22%20height%3D%2218%22%20rx%3D%224%22%20fill%3D%22%23080808%22%2F%3E%3Cpath%20fill%3D%22%23fff%22%20d%3D%22M9%207h1.6v3.4c.5-.6%201.2-.9%202-.9%201.7%200%202.9%201.3%202.9%203.3S14.3%2016%2012.6%2016c-.8%200-1.5-.3-2-.9v.8H9V7zm3.3%204c-1%200-1.7.8-1.7%201.9s.7%201.9%201.7%201.9%201.6-.8%201.6-1.9-.6-1.9-1.6-1.9z%22%2F%3E%3C%2Fsvg%3E" }
     ];
     return {
-      channels, fabOpen,
+      channels, fabOpen, siteKakao: SITE.kakao_url, siteTel: SITE_TEL, sitePhone: SITE.phone,
       toggleFab: () => this.setState(s => ({ fabOpen: !s.fabOpen })),
       closeFab: () => this.setState({ fabOpen: false }),
       fabBg: fabOpen ? '#E8E8E8' : '#FFFFFF', fabFg: '#080808',

@@ -1,0 +1,483 @@
+# 유블랙 Pages CMS 설정 (탬블 표준 양식 파일럿)
+# 콘텐츠: content/*.json  /  사진: assets/
+
+media:
+  - name: images
+    label: "사진"
+    input: assets
+    output: /assets
+    rename: safe
+    extensions: [jpg, jpeg, png, webp]
+
+content:
+  - name: site
+    label: "기본정보 (연락처·주소)"
+    type: file
+    path: content/site.json
+    format: json
+    fields:
+      - name: name
+        label: "상호"
+        type: string
+      - name: owner
+        label: "대표자"
+        type: string
+      - name: biz_no
+        label: "사업자등록번호"
+        type: string
+      - name: phone
+        label: "전화번호"
+        type: string
+        description: "예: 010-1234-5678 (전화 버튼 링크도 자동으로 바뀌어요)"
+      - name: kakao_url
+        label: "카카오톡 채널 링크"
+        type: string
+      - name: naver_place_url
+        label: "네이버 플레이스 링크"
+        type: string
+      - name: instagram_url
+        label: "인스타그램 링크"
+        type: string
+      - name: instagram_id
+        label: "인스타그램 아이디"
+        type: string
+      - name: youtube_url
+        label: "유튜브 링크"
+        type: string
+      - name: youtube_id
+        label: "유튜브 아이디"
+        type: string
+      - name: blog_url
+        label: "블로그 링크"
+        type: string
+      - name: address
+        label: "주소"
+        type: string
+        description: "지도도 이 주소로 자동으로 바뀌어요"
+      - name: address_detail
+        label: "주소 상세 (건물명 등)"
+        type: string
+      - name: booking_note
+        label: "예약 안내 (주소 옆에 표시)"
+        type: string
+      - name: cta_text
+        label: "하단 상담 문구"
+        type: text
+        description: "줄을 바꾸면 홈페이지에서도 줄이 바뀌어요"
+      - name: disclaimer
+        label: "하단 안내 문구"
+        type: text
+  - name: home
+    label: "홈 (메인 페이지)"
+    type: file
+    path: content/home.json
+    format: json
+    fields:
+      - name: hero
+        label: "01. 메인 첫 화면"
+        type: object
+        fields:
+          - name: label
+            label: "작은 영문 라벨"
+            type: string
+          - name: title
+            label: "큰 문구"
+            type: text
+            description: "엔터로 줄을 바꿀 수 있어요"
+          - name: left
+            label: "하단 왼쪽 문구"
+            type: string
+          - name: text
+            label: "하단 오른쪽 문구"
+            type: text
+      - name: director
+        label: "02. 대표원장"
+        type: object
+        fields:
+          - name: show
+            label: "보이기"
+            type: boolean
+            description: "끄면 이 섹션이 홈페이지에서 숨겨져요"
+          - name: photo
+            label: "프로필 사진"
+            type: image
+            description: "세로 4:5 비율 권장"
+            options:
+              media: images
+          - name: name
+            label: "이름"
+            type: string
+          - name: title
+            label: "제목"
+            type: text
+          - name: paragraphs
+            label: "소개 문단 (문단마다 하나씩)"
+            type: text
+            list:
+              max: 5
+          - name: note_label
+            label: "하단 작은 제목"
+            type: string
+          - name: note_text
+            label: "하단 설명"
+            type: text
+      - name: statement
+        label: "03. 브랜드 메시지"
+        type: object
+        fields:
+          - name: show
+            label: "보이기"
+            type: boolean
+            description: "끄면 이 섹션이 홈페이지에서 숨겨져요"
+          - name: title
+            label: "제목"
+            type: text
+          - name: text
+            label: "설명"
+            type: text
+      - name: cases
+        label: "04. 실제 작업 사례"
+        type: object
+        fields:
+          - name: show
+            label: "보이기"
+            type: boolean
+            description: "끄면 이 섹션이 홈페이지에서 숨겨져요"
+          - name: title
+            label: "제목"
+            type: string
+          - name: desc
+            label: "설명"
+            type: text
+          - name: items
+            label: "사례 사진"
+            type: object
+            list:
+              max: 6
+              collapsible:
+                collapsed: true
+                summary: "{id} {area}"
+            fields:
+              - name: id
+                label: "번호 (예: CASE 014)"
+                type: string
+              - name: area
+                label: "부위"
+                type: string
+              - name: image
+                label: "사진"
+                type: image
+                description: "세로 4:5 비율 권장"
+                options:
+                  media: images
+      - name: why
+        label: "05. 유블랙의 기준"
+        type: object
+        fields:
+          - name: show
+            label: "보이기"
+            type: boolean
+            description: "끄면 이 섹션이 홈페이지에서 숨겨져요"
+          - name: title
+            label: "제목"
+            type: text
+          - name: items
+            label: "항목"
+            type: object
+            list:
+              max: 6
+              collapsible:
+                collapsed: true
+                summary: "{title}"
+            fields:
+              - name: title
+                label: "영문 제목"
+                type: string
+              - name: desc
+                label: "설명"
+                type: text
+      - name: programs
+        label: "06. 프로그램"
+        type: object
+        fields:
+          - name: show
+            label: "보이기"
+            type: boolean
+            description: "끄면 이 섹션이 홈페이지에서 숨겨져요"
+          - name: title
+            label: "제목"
+            type: string
+          - name: items
+            label: "프로그램"
+            type: object
+            list:
+              max: 12
+              collapsible:
+                collapsed: true
+                summary: "{name}"
+            fields:
+              - name: name
+                label: "이름"
+                type: string
+              - name: en
+                label: "영문 이름"
+                type: string
+              - name: link
+                label: "눌렀을 때 이동할 주소"
+                type: string
+              - name: desc
+                label: "설명"
+                type: text
+              - name: image
+                label: "사진"
+                type: image
+                description: "세로 4:5 비율 권장"
+                options:
+                  media: images
+      - name: records
+        label: "07. 작업의 기록"
+        type: object
+        fields:
+          - name: show
+            label: "보이기"
+            type: boolean
+            description: "끄면 이 섹션이 홈페이지에서 숨겨져요"
+          - name: title
+            label: "제목"
+            type: string
+          - name: desc
+            label: "설명"
+            type: text
+          - name: items
+            label: "기록"
+            type: object
+            list:
+              max: 8
+              collapsible:
+                collapsed: true
+                summary: "{label}"
+            fields:
+              - name: label
+                label: "분류 (영문)"
+                type: string
+              - name: text
+                label: "내용"
+                type: text
+              - name: image
+                label: "사진"
+                type: image
+                description: "세로 4:5 비율 권장"
+                options:
+                  media: images
+      - name: process
+        label: "08. 진행 과정"
+        type: object
+        fields:
+          - name: show
+            label: "보이기"
+            type: boolean
+            description: "끄면 이 섹션이 홈페이지에서 숨겨져요"
+          - name: title
+            label: "제목"
+            type: text
+          - name: cost
+            label: "비용 안내 문구"
+            type: text
+          - name: steps
+            label: "단계"
+            type: object
+            list:
+              max: 8
+              collapsible:
+                collapsed: true
+                summary: "{title}"
+            fields:
+              - name: title
+                label: "단계 이름 (영문)"
+                type: string
+              - name: desc
+                label: "설명"
+                type: text
+      - name: studies
+        label: "09. 상담에서 작업까지"
+        type: object
+        fields:
+          - name: show
+            label: "보이기"
+            type: boolean
+            description: "끄면 이 섹션이 홈페이지에서 숨겨져요"
+          - name: title
+            label: "제목"
+            type: string
+          - name: items
+            label: "사례"
+            type: object
+            list:
+              max: 6
+              collapsible:
+                collapsed: true
+                summary: "{title}"
+            fields:
+              - name: title
+                label: "제목"
+                type: string
+              - name: worry
+                label: "고민"
+                type: text
+              - name: direction
+                label: "디자인 방향"
+                type: text
+              - name: image
+                label: "사진"
+                type: image
+                description: "세로 4:5 비율 권장"
+                options:
+                  media: images
+      - name: reviews
+        label: "10. 고객 후기"
+        type: object
+        description: "후기 내용은 [후기] 메뉴에서 고쳐요. \"홈에 보이기\"를 켠 후기만 홈에 나와요."
+        fields:
+          - name: show
+            label: "보이기"
+            type: boolean
+            description: "끄면 이 섹션이 홈페이지에서 숨겨져요"
+          - name: title
+            label: "제목"
+            type: string
+      - name: academy
+        label: "11. 아카데미"
+        type: object
+        fields:
+          - name: show
+            label: "보이기"
+            type: boolean
+            description: "끄면 이 섹션이 홈페이지에서 숨겨져요"
+          - name: title
+            label: "제목"
+            type: text
+          - name: text
+            label: "설명"
+            type: text
+          - name: image1
+            label: "사진 1"
+            type: image
+            description: "세로 4:5 비율 권장"
+            options:
+              media: images
+          - name: image1_label
+            label: "사진 1 라벨"
+            type: string
+          - name: image2
+            label: "사진 2"
+            type: image
+            description: "세로 4:5 비율 권장"
+            options:
+              media: images
+          - name: image2_label
+            label: "사진 2 라벨"
+            type: string
+      - name: journal
+        label: "12. 블로그 글"
+        type: object
+        fields:
+          - name: show
+            label: "보이기"
+            type: boolean
+            description: "끄면 이 섹션이 홈페이지에서 숨겨져요"
+          - name: title
+            label: "제목"
+            type: string
+          - name: desc
+            label: "설명"
+            type: text
+          - name: items
+            label: "글"
+            type: object
+            list:
+              max: 6
+              collapsible:
+                collapsed: true
+                summary: "{title}"
+            fields:
+              - name: label
+                label: "분류 (영문)"
+                type: string
+              - name: title
+                label: "제목"
+                type: string
+              - name: desc
+                label: "설명"
+                type: text
+              - name: link
+                label: "블로그 글 링크"
+                type: string
+      - name: space
+        label: "13. 오시는 길"
+        type: object
+        description: "주소는 [기본정보] 메뉴에서 고쳐요."
+        fields:
+          - name: show
+            label: "보이기"
+            type: boolean
+            description: "끄면 이 섹션이 홈페이지에서 숨겨져요"
+          - name: title
+            label: "제목"
+            type: string
+      - name: faq
+        label: "14. 자주 묻는 질문"
+        type: object
+        fields:
+          - name: show
+            label: "보이기"
+            type: boolean
+            description: "끄면 이 섹션이 홈페이지에서 숨겨져요"
+          - name: title
+            label: "제목"
+            type: string
+          - name: items
+            label: "질문"
+            type: object
+            list:
+              max: 20
+              collapsible:
+                collapsed: true
+                summary: "{q}"
+            fields:
+              - name: q
+                label: "질문"
+                type: string
+              - name: a
+                label: "답변"
+                type: text
+  - name: reviews
+    label: "후기"
+    type: file
+    path: content/reviews.json
+    format: json
+    fields:
+      - name: items
+        label: "후기 목록"
+        type: object
+        list:
+          max: 60
+          collapsible:
+            collapsed: true
+            summary: "{text}"
+        fields:
+          - name: image
+            label: "사진"
+            type: image
+            description: "세로 4:5 비율 권장"
+            options:
+              media: images
+          - name: focus
+            label: "사진 초점 위치 (선택)"
+            type: string
+            description: "사진이 잘릴 때 보일 위치. 예: 50% 40% / 모르면 비워두세요"
+          - name: text
+            label: "후기 내용"
+            type: text
+          - name: home
+            label: "홈에 보이기"
+            type: boolean
