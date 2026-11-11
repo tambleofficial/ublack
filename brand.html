@@ -22,23 +22,23 @@
 <dc-import name="SiteChrome" active="brand" admin="{{ adminNotes }}" hint-size="100%,0px"></dc-import>
 <main>
 <section data-theme="dark" data-screen-label="01 Brand Hero" style="background:#080808;color:#fff;min-height:min(88svh,760px);padding:clamp(112px,16vw,160px) clamp(20px,6vw,96px) clamp(40px,6vw,64px);display:flex;flex-direction:column;justify-content:space-between;gap:64px">
-  <div style="font-size:12px;letter-spacing:.2em;color:#B7B7B7">BRAND</div>
+  <div data-cms="brand.t.k01" style="font-size:12px;letter-spacing:.2em;color:#B7B7B7">{{ CT.k01 }}</div>
   <div style="max-width:1320px;width:100%;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:48px">
-    <div data-reveal=""><h1 style="margin:0;font-size:clamp(44px,7vw,108px);line-height:1.02;font-weight:500;letter-spacing:-.035em">SCALP<br>DESIGN<br>STUDIO</h1><p style="margin:22px 0 0;font-size:clamp(17px,1.6vw,22px);line-height:1.5;font-weight:500;color:#B7B7B7">브랜드 소개</p></div>
-    <img data-reveal="" src="assets/symbol-white.png" alt="" style="width:clamp(90px,10vw,150px);height:auto">
+    <div data-reveal=""><h1 data-cms="brand.t.k02" style="margin:0;font-size:clamp(44px,7vw,108px);line-height:1.02;font-weight:500;letter-spacing:-.035em;white-space:pre-line">{{ CT.k02 }}</h1><p data-cms="brand.t.k03" style="margin:22px 0 0;font-size:clamp(17px,1.6vw,22px);line-height:1.5;font-weight:500;color:#B7B7B7">{{ CT.k03 }}</p></div>
+    <img data-reveal="" src="{{ CT.img01 }}" data-cms-img="brand.t.img01" alt="" style="width:clamp(90px,10vw,150px);height:auto">
   </div>
   <div style="max-width:1320px;width:100%;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-between;gap:24px;font-size:17px;line-height:1.8;color:#B7B7B7;border-top:1px solid #2a2a2a;padding-top:28px">
-    <span>유블랙 · U.BLACK · ULSAN</span><span style="max-width:460px">대표원장이 직접 운영하는 독립적인 SMP 브랜드로, 상담부터 사후관리까지 한 사람의 기준으로 이어갑니다.</span>
+    <span data-cms="brand.t.k04">{{ CT.k04 }}</span><span data-cms="brand.t.k05" style="max-width:460px">{{ CT.k05 }}</span>
   </div>
 </section>
 
 <section data-theme="light" data-screen-label="02 Story" style="background:#F6F6F4;padding:clamp(110px,13vw,200px) clamp(20px,6vw,96px)">
   <div style="max-width:1320px;margin:0 auto;display:flex;flex-wrap:wrap;gap:48px 72px">
-    <div data-reveal="" style="font-size:12px;letter-spacing:.2em;font-weight:500">U.BLACK STORY</div>
+    <div data-cms="brand.t.k06" data-reveal="" style="font-size:12px;letter-spacing:.2em;font-weight:500">{{ CT.k06 }}</div>
     <div style="flex:2 1 460px;min-width:0">
-      <h2 data-reveal="" style="margin:0;font-size:clamp(30px,4vw,58px);line-height:1.35;font-weight:500;letter-spacing:-.03em">보이게 만드는 것보다<br>어우러지게 만드는 것.</h2>
+      <h2 data-cms="brand.t.k07" data-reveal="" style="margin:0;font-size:clamp(30px,4vw,58px);line-height:1.35;font-weight:500;letter-spacing:-.03em;white-space:pre-line">{{ CT.k07 }}</h2>
       <div data-reveal="" style="margin-top:48px;display:flex;flex-direction:column;gap:22px;font-size:clamp(17px,1.3vw,19px);line-height:1.95;color:#333;max-width:620px">
-        <p style="margin:0">유블랙은 개인의 두상과 기존 모발의 방향, 두피가 드러나는 범위를 함께 살펴본 뒤 시각적으로 자연스럽게 어우러질 수 있는 디자인 방향을 상담합니다.</p>
+        <p data-cms="brand.t.k08" style="margin:0">{{ CT.k08 }}</p>
       </div>
     </div>
   </div>
@@ -46,13 +46,13 @@
 
 <section data-theme="dark" data-screen-label="03 Philosophy" style="background:#080808;color:#fff;padding:clamp(110px,12vw,180px) clamp(20px,6vw,96px)">
   <div style="max-width:1320px;margin:0 auto">
-    <div data-reveal="" style="font-size:12px;letter-spacing:.2em;color:#B7B7B7;margin-bottom:56px">PHILOSOPHY</div>
+    <div data-cms="brand.t.k09" data-reveal="" style="font-size:12px;letter-spacing:.2em;color:#B7B7B7;margin-bottom:56px">{{ CT.k09 }}</div>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:0 48px;border-top:1px solid #2a2a2a">
       <sc-for list="{{ phil }}" as="p" hint-placeholder-count="3">
         <div data-reveal="" style="padding:40px 0;border-bottom:1px solid #2a2a2a">
-          <div style="font-family:'IBM Plex Mono',monospace;font-size:13px;color:#777">{{ p.n }}</div>
-          <h3 style="margin:24px 0 18px;font-size:clamp(22px,2vw,28px);font-weight:500;letter-spacing:.04em">{{ p.t }}</h3>
-          <p style="margin:0;font-size:17px;line-height:1.85;color:#B7B7B7">{{ p.d }}</p>
+          <div data-cms="{{ p.p_n }}" style="font-family:'IBM Plex Mono',monospace;font-size:13px;color:#777">{{ p.n }}</div>
+          <h3 data-cms="{{ p.p_t }}" style="margin:24px 0 18px;font-size:clamp(22px,2vw,28px);font-weight:500;letter-spacing:.04em">{{ p.t }}</h3>
+          <p data-cms="{{ p.p_d }}" style="margin:0;font-size:17px;line-height:1.85;color:#B7B7B7">{{ p.d }}</p>
         </div>
       </sc-for>
     </div>
@@ -62,21 +62,21 @@
 <section data-theme="light" data-screen-label="04 Director" style="background:#FFFFFF;padding:clamp(110px,12vw,180px) clamp(20px,6vw,96px)">
   <div style="max-width:1320px;margin:0 auto;display:flex;flex-wrap:wrap;gap:56px clamp(40px,6vw,110px);align-items:flex-start">
     <div data-reveal="" data-sticky="" style="flex:1 1 380px;max-width:580px;position:sticky;top:110px">
-      <div style="aspect-ratio:4/5;overflow:hidden;background:#777"><img src="assets/director.png" alt="유블랙 대표원장 프로필 사진" style="width:100%;height:100%;object-fit:cover;object-position:50% 30%;display:block"></div>
+      <div style="aspect-ratio:4/5;overflow:hidden;background:#777"><img src="{{ CT.img02 }}" data-cms-img="brand.t.img02" alt="유블랙 대표원장 프로필 사진" style="width:100%;height:100%;object-fit:cover;object-position:50% 30%;display:block"></div>
     </div>
     <div style="flex:1 1 420px;min-width:0">
-      <div data-reveal="" style="font-size:12px;letter-spacing:.2em;color:#666">DIRECTOR</div>
-      <div data-reveal="" style="margin-top:14px;font-size:22px;font-weight:500">조영진</div>
-      <h2 data-reveal="" style="margin:48px 0 0;font-size:clamp(30px,3.6vw,54px);line-height:1.38;font-weight:500;letter-spacing:-.03em">시술을 해 준 사람이 아닌,<br>고마운 사람이 되겠습니다.</h2>
+      <div data-cms="brand.t.k10" data-reveal="" style="font-size:12px;letter-spacing:.2em;color:#666">{{ CT.k10 }}</div>
+      <div data-cms="brand.t.k11" data-reveal="" style="margin-top:14px;font-size:22px;font-weight:500">{{ CT.k11 }}</div>
+      <h2 data-cms="brand.t.k12" data-reveal="" style="margin:48px 0 0;font-size:clamp(30px,3.6vw,54px);line-height:1.38;font-weight:500;letter-spacing:-.03em;white-space:pre-line">{{ CT.k12 }}</h2>
       <div data-reveal="" style="margin-top:56px;display:flex;flex-direction:column;gap:22px;font-size:clamp(17px,1.3vw,19px);line-height:1.95;color:#333;max-width:560px">
-        <p style="margin:0">상담에서 가장 먼저 보는 것은 얼마나 넓게 채울 수 있는지가 아니라, 어디까지가 필요한 범위인지입니다.</p>
-        <p style="margin:0">두상과 기존 모발의 흐름, 두피가 드러나는 방향을 살펴 지나치게 채우기보다 현재 모습에 자연스럽게 어우러지는 방향을 함께 고민합니다.</p>
+        <p data-cms="brand.t.k13" style="margin:0">{{ CT.k13 }}</p>
+        <p data-cms="brand.t.k14" style="margin:0">{{ CT.k14 }}</p>
       </div>
       <div style="margin-top:64px;border-top:1px solid #080808">
         <sc-for list="{{ why }}" as="w" hint-placeholder-count="3">
           <div data-reveal="" style="padding:28px 0;border-bottom:1px solid #E8E8E8">
-            <h3 style="margin:0 0 10px;font-size:15px;letter-spacing:.16em;font-weight:600">{{ w.t }}</h3>
-            <p style="margin:0;font-size:17px;line-height:1.8;color:#444">{{ w.d }}</p>
+            <h3 data-cms="{{ w.p_t }}" style="margin:0 0 10px;font-size:15px;letter-spacing:.16em;font-weight:600">{{ w.t }}</h3>
+            <p data-cms="{{ w.p_d }}" style="margin:0;font-size:17px;line-height:1.8;color:#444">{{ w.d }}</p>
           </div>
         </sc-for>
       </div>
@@ -86,25 +86,25 @@
 
 <section data-theme="light" data-screen-label="05 Independent Studio" style="background:#E8E8E8;padding:clamp(100px,11vw,160px) clamp(20px,6vw,96px)">
   <div data-reveal="" style="max-width:1000px;margin:0 auto">
-    <div style="font-size:12px;letter-spacing:.2em;color:#555;margin-bottom:32px">INDEPENDENT STUDIO</div>
-    <p style="margin:0;font-size:clamp(24px,2.8vw,38px);line-height:1.55;font-weight:500;letter-spacing:-.02em">유블랙은 특정 프랜차이즈에 소속되지 않은 독립적인 두피문신 브랜드입니다. 상담부터 디자인, 작업과 사후관리까지 대표원장이 직접 진행합니다.</p>
-    <p style="margin:40px 0 0;font-size:17px;line-height:1.85;color:#333;max-width:620px">브랜드 운영 구조보다 실제 작업과 고객 상담에 집중하는 독립적인 운영 방식을 유지합니다.</p>
+    <div data-cms="brand.t.k15" style="font-size:12px;letter-spacing:.2em;color:#555;margin-bottom:32px">{{ CT.k15 }}</div>
+    <p data-cms="brand.t.k16" style="margin:0;font-size:clamp(24px,2.8vw,38px);line-height:1.55;font-weight:500;letter-spacing:-.02em">{{ CT.k16 }}</p>
+    <p data-cms="brand.t.k17" style="margin:40px 0 0;font-size:17px;line-height:1.85;color:#333;max-width:620px">{{ CT.k17 }}</p>
   </div>
 </section>
 
 <section data-theme="dark" data-screen-label="06 Record" style="background:#121212;color:#fff;padding:clamp(110px,12vw,180px) clamp(20px,6vw,96px)">
   <div style="max-width:1320px;margin:0 auto">
     <div data-reveal="" style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:32px;align-items:flex-end;margin-bottom:56px">
-      <div><div style="font-size:12px;letter-spacing:.2em;color:#B7B7B7;margin-bottom:24px">RECORD</div><h2 style="margin:0;font-size:clamp(30px,3.4vw,50px);font-weight:500;letter-spacing:-.025em">경력 · 활동 아카이브</h2></div>
-      <p style="margin:0;max-width:420px;font-size:17px;line-height:1.8;color:#B7B7B7">다양한 시술 및 교육 경험을 바탕으로 운영됩니다.</p>
+      <div><div data-cms="brand.t.k18" style="font-size:12px;letter-spacing:.2em;color:#B7B7B7;margin-bottom:24px">{{ CT.k18 }}</div><h2 data-cms="brand.t.k19" style="margin:0;font-size:clamp(30px,3.4vw,50px);font-weight:500;letter-spacing:-.025em">{{ CT.k19 }}</h2></div>
+      <p data-cms="brand.t.k20" style="margin:0;max-width:420px;font-size:17px;line-height:1.8;color:#B7B7B7">{{ CT.k20 }}</p>
     </div>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:24px">
       <sc-for list="{{ archive }}" as="a" hint-placeholder-count="6">
         <figure data-reveal="" style="margin:0">
-          <div style="aspect-ratio:4/5;overflow:hidden;position:relative;background:#1B1B1B"><img src="{{ a.src }}" alt="{{ a.alt }}" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:{{ a.pos }};display:block"></div>
+          <div style="aspect-ratio:4/5;overflow:hidden;position:relative;background:#1B1B1B"><img src="{{ a.src }}" data-cms-img="{{ a.p_src }}" alt="{{ a.alt }}" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:{{ a.pos }};display:block"></div>
           <figcaption style="display:flex;flex-direction:column;gap:6px;margin-top:16px">
-            <span style="display:flex;justify-content:space-between;gap:12px;font-size:12px;letter-spacing:.16em;font-weight:600"><span>{{ a.k }}</span><span style="color:#B7B7B7;letter-spacing:.08em;font-weight:500">{{ a.year }}</span></span>
-            <span style="font-size:15.5px;line-height:1.55;color:#E8E8E8">{{ a.t }}</span>
+            <span style="display:flex;justify-content:space-between;gap:12px;font-size:12px;letter-spacing:.16em;font-weight:600"><span data-cms="{{ a.p_k }}">{{ a.k }}</span><span data-cms="{{ a.p_year }}" style="color:#B7B7B7;letter-spacing:.08em;font-weight:500">{{ a.year }}</span></span>
+            <span data-cms="{{ a.p_t }}" style="font-size:15.5px;line-height:1.55;color:#E8E8E8">{{ a.t }}</span>
           </figcaption>
         </figure>
       </sc-for>
@@ -114,11 +114,11 @@
 
 <section data-theme="light" data-screen-label="08 Space" style="background:#FFFFFF;padding:clamp(100px,11vw,160px) clamp(20px,4vw,56px)">
   <div style="max-width:1440px;margin:0 auto">
-    <div data-reveal="" style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:24px;align-items:flex-end;margin-bottom:40px"><div><div style="font-size:12px;letter-spacing:.2em;color:#666;margin-bottom:18px">SPACE</div><h2 style="margin:0;font-size:clamp(30px,3.4vw,50px);font-weight:500;letter-spacing:-.025em">ULSAN STUDIO</h2></div><a href="/contact" style="font-size:13px;letter-spacing:.16em;font-weight:600;border-bottom:1px solid #080808;padding-bottom:6px">LOCATION →</a></div>
+    <div data-reveal="" style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:24px;align-items:flex-end;margin-bottom:40px"><div><div data-cms="brand.t.k21" style="font-size:12px;letter-spacing:.2em;color:#666;margin-bottom:18px">{{ CT.k21 }}</div><h2 data-cms="brand.t.k22" style="margin:0;font-size:clamp(30px,3.4vw,50px);font-weight:500;letter-spacing:-.025em">{{ CT.k22 }}</h2></div><a data-cms="brand.t.k23" href="/contact" style="font-size:13px;letter-spacing:.16em;font-weight:600;border-bottom:1px solid #080808;padding-bottom:6px">{{ CT.k23 }}</a></div>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:16px">
-      <div data-reveal="" style="aspect-ratio:4/5;background:#E8E8E8;position:relative;overflow:hidden"><img src="assets/cases/store-06.jpg" alt="" loading="lazy" draggable="false" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block"></div>
-      <div data-reveal="" data-reveal-delay="100" style="aspect-ratio:4/5;background:#E8E8E8;position:relative;overflow:hidden"><img src="assets/cases/store-01.jpg" alt="" loading="lazy" draggable="false" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block"></div>
-      <div data-reveal="" data-reveal-delay="200" style="aspect-ratio:4/5;background:#E8E8E8;position:relative;overflow:hidden"><img src="assets/cases/store-03.jpg" alt="" loading="lazy" draggable="false" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block"></div>
+      <div data-reveal="" style="aspect-ratio:4/5;background:#E8E8E8;position:relative;overflow:hidden"><img src="{{ CT.img03 }}" data-cms-img="brand.t.img03" alt="" loading="lazy" draggable="false" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block"></div>
+      <div data-reveal="" data-reveal-delay="100" style="aspect-ratio:4/5;background:#E8E8E8;position:relative;overflow:hidden"><img src="{{ CT.img04 }}" data-cms-img="brand.t.img04" alt="" loading="lazy" draggable="false" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block"></div>
+      <div data-reveal="" data-reveal-delay="200" style="aspect-ratio:4/5;background:#E8E8E8;position:relative;overflow:hidden"><img src="{{ CT.img05 }}" data-cms-img="brand.t.img05" alt="" loading="lazy" draggable="false" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block"></div>
     </div>
   </div>
 </section>
@@ -128,29 +128,13 @@
 <script type="text/x-dc" data-dc-script data-props="{&quot;adminNotes&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;}}">
 class Component extends DCLogic {
   renderVals() {
-    return {
+    const __D = (window.__CMS || {})["brand"] || {};
+    const __C = window.__CMS || {}; const CT = (__C["brand"] || {}).t || {}; const CS = Object.assign({}, __C.site || {}, { tel: 'tel:' + String((__C.site || {}).phone || '').replace(/[^0-9]/g, '') });
+    return { CT, CS,
       adminNotes: false,
-      phil: [
-        { n: '01', t: 'FLOW', d: '두피 위의 도트가 아니라 기존 모발의 방향과 흐름을 기준으로 디자인합니다.' },
-        { n: '02', t: 'RANGE', d: '넓게 채우기보다 필요한 범위가 어디까지인지 먼저 확인합니다.' },
-        { n: '03', t: 'CONTINUITY', d: '상담한 사람이 작업하고, 작업한 사람이 이후 상태를 확인합니다.' }
-      ],
-      why: [
-        { t: 'ONE ARTIST', d: '상담부터 디자인, 시술과 사후관리까지 대표원장이 직접 진행합니다.' },
-        { t: 'LIMITED SESSIONS', d: '하루 시술 인원을 제한해 한 고객에게 집중할 수 있는 운영 방식을 유지합니다.' },
-        { t: 'NO EXCESS', d: '필요하지 않은 범위를 무리하게 권하지 않는 상담을 지향합니다.' }
-      ],
-      archive: [
-        { k: 'AWARD', year: '2025', t: '국회의원 표창장 수상', src: 'assets/record-3.jpg', pos: '50% 50%', alt: '국회의원 표창장 수상' },
-        { k: 'SUPERVISOR', year: '2025', t: '2nd World Top Tier Olympics · Supervisor', src: 'assets/record-8.jpg', pos: '50% 30%', alt: 'World Top Tier Olympics 수퍼바이저 무대' },
-        { k: 'SUPERVISOR', year: '2025', t: '2nd World Top Tier Olympics · 수상', src: 'assets/record-9.jpg', pos: '72% 40%', alt: 'World Top Tier Olympics 수상 기념' },
-        { k: 'AWARD', year: '2025', t: '제16회 월드뷰티페스티벌', src: 'assets/record-4.jpg', pos: '50% 40%', alt: '월드뷰티페스티벌 시상' },
-        { k: 'CONFERENCE', year: '2025', t: '3rd IPSN KOREA International Beauty Conference · 호치민', src: 'assets/record-1.jpg', pos: '35% 55%', alt: 'IPSN KOREA 베트남 호치민 컨퍼런스' },
-        { k: 'CONFERENCE', year: '2025', t: 'IPSN KOREA × WELLA Professionals · 베트남', src: 'assets/record-6.jpg', pos: '55% 60%', alt: '웰라 프로페셔널 행사' },
-        { k: 'AWARD', year: '2024', t: '2nd IPSN KOREA International Beauty Contest · 하노이', src: 'assets/record-7.jpg', pos: '45% 60%', alt: 'IPSN KOREA 하노이 대회 수상' },
-        { k: 'ACTIVITY', year: '2025', t: '2025 Asia Model Awards', src: 'assets/record-2.jpg', pos: '50% 55%', alt: '아시아 모델 어워즈 참석' },
-        { k: 'SUPERVISOR', year: '2025', t: 'World Top Tier Olympics · KOREA SMP', src: 'assets/record-5.jpg', pos: '45% 45%', alt: 'World Top Tier Olympics 포토월' }
-      ],
+      phil: (__D.phil || []).map((x, i) => ({ n: String(i + 1).padStart(2, '0'), t: x.t, d: x.d, p_t: 'brand.phil.' + i + '.t', p_d: 'brand.phil.' + i + '.d' })),
+      why: (__D.why || []).map((x, i) => ({ t: x.t, d: x.d, p_t: 'brand.why.' + i + '.t', p_d: 'brand.why.' + i + '.d' })),
+      archive: (__D.archive || []).map((x, i) => { const p = 'brand.archive.' + i; return { k: x.k, year: x.year, t: x.t, src: x.image, pos: x.pos, alt: x.alt, p_k: p + '.k', p_year: p + '.year', p_t: p + '.t', p_src: p + '.image' }; }),
       policy: ['적용 조건', '제외 조건', '횟수', '범위']
     };
   }

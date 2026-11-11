@@ -22,33 +22,33 @@
 <dc-import name="SiteChrome" active="academy" admin="{{ adminNotes }}" hint-size="100%,0px"></dc-import>
 <main>
 <section data-theme="dark" data-screen-label="01 ACADEMY Hero" style="background:#080808;color:#fff;min-height:min(88svh,760px);padding:clamp(112px,16vw,160px) clamp(20px,6vw,96px) clamp(40px,6vw,64px);display:flex;flex-direction:column;justify-content:space-between;gap:64px">
-  <div style="font-size:12px;letter-spacing:.2em;color:#B7B7B7">ACADEMY</div>
+  <div data-cms="academy.t.k01" style="font-size:12px;letter-spacing:.2em;color:#B7B7B7">{{ CT.k01 }}</div>
   <div style="max-width:1320px;width:100%;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:48px">
-    <div data-reveal><h1 style="margin:0;font-size:clamp(44px,7vw,108px);line-height:1.02;font-weight:500;letter-spacing:-.035em">U.BLACK<br>ACADEMY</h1><p style="margin:22px 0 0;font-size:clamp(17px,1.6vw,22px);line-height:1.5;font-weight:500;color:#B7B7B7">교육 · 아카데미</p></div>
-    <img data-reveal src="assets/symbol-white.png" alt="" style="width:clamp(90px,10vw,150px);height:auto">
+    <div data-reveal><h1 data-cms="academy.t.k02" style="margin:0;font-size:clamp(44px,7vw,108px);line-height:1.02;font-weight:500;letter-spacing:-.035em;white-space:pre-line">{{ CT.k02 }}</h1><p data-cms="academy.t.k03" style="margin:22px 0 0;font-size:clamp(17px,1.6vw,22px);line-height:1.5;font-weight:500;color:#B7B7B7">{{ CT.k03 }}</p></div>
+    <img data-reveal src="{{ CT.img01 }}" data-cms-img="academy.t.img01" alt="" style="width:clamp(90px,10vw,150px);height:auto">
   </div>
   <div style="max-width:1320px;width:100%;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-between;gap:24px;font-size:17px;line-height:1.8;color:#B7B7B7;border-top:1px solid #2a2a2a;padding-top:28px">
-    <span>유블랙 · U.BLACK · ULSAN</span><span style="max-width:460px">현장에서 쌓아온 디자인 기준을 교육과 세미나, 심사 활동으로 이어갑니다.</span>
+    <span data-cms="academy.t.k04">{{ CT.k04 }}</span><span data-cms="academy.t.k05" style="max-width:460px">{{ CT.k05 }}</span>
   </div>
 </section>
 <section data-theme="light" data-screen-label="02 Education Philosophy" style="background:#F6F6F4;padding:clamp(110px,12vw,180px) clamp(20px,6vw,96px)">
   <div style="max-width:1320px;margin:0 auto;display:flex;flex-wrap:wrap;gap:48px 72px">
-    <div data-reveal style="flex:1 1 240px;font-size:12px;letter-spacing:.2em;font-weight:500;line-height:1.9">ACADEMY<br><span style="color:#666">EDUCATION PHILOSOPHY</span></div>
+    <div data-reveal style="flex:1 1 240px;font-size:12px;letter-spacing:.2em;font-weight:500;line-height:1.9"><span data-cms="academy.t.k06">{{ CT.k06 }}</span><br><span data-cms="academy.t.k07" style="color:#666">{{ CT.k07 }}</span></div>
     <div style="flex:2 1 460px;min-width:0">
-      <h2 data-reveal style="margin:0;font-size:clamp(28px,3.4vw,50px);line-height:1.4;font-weight:500;letter-spacing:-.025em">기술보다 먼저,<br>범위를 판단하는 기준을 전합니다.</h2>
-      <p data-reveal style="margin:40px 0 0;max-width:600px;font-size:18px;line-height:1.9;color:#333">두상과 모발의 흐름을 읽고, 어디까지가 필요한 범위인지 판단하는 상담 기준부터 실습까지 현장에서 사용하는 방식 그대로 교육합니다.</p>
+      <h2 data-cms="academy.t.k08" data-reveal style="margin:0;font-size:clamp(28px,3.4vw,50px);line-height:1.4;font-weight:500;letter-spacing:-.025em;white-space:pre-line">{{ CT.k08 }}</h2>
+      <p data-cms="academy.t.k09" data-reveal style="margin:40px 0 0;max-width:600px;font-size:18px;line-height:1.9;color:#333">{{ CT.k09 }}</p>
     </div>
   </div>
 </section>
 
 <section data-theme="light" data-screen-label="03 Curriculum" style="background:#FFFFFF;padding:clamp(100px,11vw,160px) clamp(20px,6vw,96px)">
   <div style="max-width:1320px;margin:0 auto;display:flex;flex-wrap:wrap;gap:48px 96px">
-    <div data-reveal style="flex:1 1 300px"><div style="font-size:12px;letter-spacing:.2em;color:#666;margin-bottom:24px">CURRICULUM</div><h2 style="margin:0;font-size:clamp(30px,3.4vw,50px);font-weight:500;letter-spacing:-.025em">교육 분야</h2></div>
+    <div data-reveal style="flex:1 1 300px"><div data-cms="academy.t.k10" style="font-size:12px;letter-spacing:.2em;color:#666;margin-bottom:24px">{{ CT.k10 }}</div><h2 data-cms="academy.t.k11" style="margin:0;font-size:clamp(30px,3.4vw,50px);font-weight:500;letter-spacing:-.025em">{{ CT.k11 }}</h2></div>
     <ol style="flex:1.6 1 460px;list-style:none;margin:0;padding:0;border-top:1px solid #080808">
       <sc-for list="{{ fields }}" as="f" hint-placeholder-count="4">
         <li data-reveal style="display:grid;grid-template-columns:64px minmax(0,1fr);gap:16px;align-items:baseline;padding:26px 0;border-bottom:1px solid #E8E8E8">
-          <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#666">{{ f.n }}</span>
-          <span style="font-size:clamp(19px,1.6vw,22px);font-weight:500">{{ f.t }}</span>
+          <span data-cms="{{ f.p_n }}" style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#666">{{ f.n }}</span>
+          <span data-cms="{{ f.p_t }}" style="font-size:clamp(19px,1.6vw,22px);font-weight:500">{{ f.t }}</span>
         </li>
       </sc-for>
     </ol>
@@ -58,15 +58,15 @@
 <section data-theme="dark" data-screen-label="04 Seminar Judging" style="background:#121212;color:#fff;padding:clamp(110px,12vw,180px) clamp(20px,4vw,56px)">
   <div style="max-width:1440px;margin:0 auto">
     <div data-reveal style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:24px;align-items:flex-end;margin-bottom:48px">
-      <div><div style="font-size:12px;letter-spacing:.2em;color:#B7B7B7;margin-bottom:18px">SEMINAR / JUDGING</div><h2 style="margin:0;font-size:clamp(30px,3.4vw,50px);font-weight:500;letter-spacing:-.025em">대표원장 활동</h2></div>
-      <p style="margin:0;max-width:420px;font-size:17px;line-height:1.8;color:#B7B7B7">다양한 시술 및 교육 경험을 바탕으로 운영됩니다.</p>
+      <div><div data-cms="academy.t.k12" style="font-size:12px;letter-spacing:.2em;color:#B7B7B7;margin-bottom:18px">{{ CT.k12 }}</div><h2 data-cms="academy.t.k13" style="margin:0;font-size:clamp(30px,3.4vw,50px);font-weight:500;letter-spacing:-.025em">{{ CT.k13 }}</h2></div>
+      <p data-cms="academy.t.k14" style="margin:0;max-width:420px;font-size:17px;line-height:1.8;color:#B7B7B7">{{ CT.k14 }}</p>
     </div>
     <div style="border-top:1px solid #2a2a2a">
       <sc-for list="{{ acts }}" as="a" hint-placeholder-count="4">
         <div data-reveal style="display:flex;flex-wrap:wrap;gap:12px 48px;padding:28px 0;border-bottom:1px solid #2a2a2a;align-items:center">
-          <span style="flex:0 1 200px;font-size:13px;letter-spacing:.2em">{{ a.k }}</span>
-          <span style="flex:1 1 300px;font-size:17px;line-height:1.7;color:#E8E8E8">{{ a.t }}</span>
-          <span style="flex:0 1 120px;font-family:'IBM Plex Mono',monospace;font-size:12px;color:#B7B7B7">{{ a.year }}</span>
+          <span data-cms="{{ a.p_k }}" style="flex:0 1 200px;font-size:13px;letter-spacing:.2em">{{ a.k }}</span>
+          <span data-cms="{{ a.p_t }}" style="flex:1 1 300px;font-size:17px;line-height:1.7;color:#E8E8E8">{{ a.t }}</span>
+          <span data-cms="{{ a.p_year }}" style="flex:0 1 120px;font-family:'IBM Plex Mono',monospace;font-size:12px;color:#B7B7B7">{{ a.year }}</span>
         </div>
       </sc-for>
     </div>
@@ -75,15 +75,15 @@
 
 <section data-theme="light" data-screen-label="05 Gallery" style="background:#FFFFFF;padding:clamp(100px,11vw,160px) clamp(20px,4vw,56px)">
   <div style="max-width:1440px;margin:0 auto">
-    <div data-reveal style="font-size:12px;letter-spacing:.2em;color:#666;margin-bottom:18px">GALLERY</div>
-    <h2 data-reveal style="margin:0 0 48px;font-size:clamp(30px,3.4vw,50px);font-weight:500;letter-spacing:-.025em">교육 · 세미나 · 학생 작업</h2>
+    <div data-cms="academy.t.k15" data-reveal style="font-size:12px;letter-spacing:.2em;color:#666;margin-bottom:18px">{{ CT.k15 }}</div>
+    <h2 data-cms="academy.t.k16" data-reveal style="margin:0 0 48px;font-size:clamp(30px,3.4vw,50px);font-weight:500;letter-spacing:-.025em">{{ CT.k16 }}</h2>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:16px">
       <sc-for list="{{ gallery }}" as="g" hint-placeholder-count="6">
         <figure data-reveal style="margin:0;min-width:0">
-          <div style="aspect-ratio:4/5;overflow:hidden;position:relative;background:#E8E8E8"><img src="{{ g.src }}" alt="{{ g.t }}" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:{{ g.pos }};display:block"></div>
+          <div style="aspect-ratio:4/5;overflow:hidden;position:relative;background:#E8E8E8"><img src="{{ g.src }}" data-cms-img="{{ g.p_src }}" alt="{{ g.t }}" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:{{ g.pos }};display:block"></div>
           <figcaption style="display:flex;flex-direction:column;gap:6px;margin-top:14px">
-            <span style="display:flex;justify-content:space-between;gap:12px;font-size:12px;letter-spacing:.16em;font-weight:600"><span>{{ g.k }}</span><span style="color:#666;letter-spacing:.08em;font-weight:500">{{ g.year }}</span></span>
-            <span style="font-size:15.5px;line-height:1.55;color:#333">{{ g.t }}</span>
+            <span style="display:flex;justify-content:space-between;gap:12px;font-size:12px;letter-spacing:.16em;font-weight:600"><span data-cms="{{ g.p_k }}">{{ g.k }}</span><span data-cms="{{ g.p_year }}" style="color:#666;letter-spacing:.08em;font-weight:500">{{ g.year }}</span></span>
+            <span data-cms="{{ g.p_t }}" style="font-size:15.5px;line-height:1.55;color:#333">{{ g.t }}</span>
           </figcaption>
         </figure>
       </sc-for>
@@ -93,10 +93,10 @@
 
 <section id="consultation" data-theme="dark" data-screen-label="06 Academy Inquiry" style="scroll-margin-top:76px;background:#080808;color:#fff;padding:clamp(100px,11vw,160px) clamp(20px,6vw,96px)">
   <div data-reveal style="max-width:1320px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:40px">
-    <div><div style="font-size:12px;letter-spacing:.2em;color:#B7B7B7;margin-bottom:24px">ACADEMY INQUIRY</div><h2 style="margin:0;font-size:clamp(30px,3.6vw,54px);line-height:1.3;font-weight:500;letter-spacing:-.025em">수강 상담</h2><p style="margin:24px 0 0;font-size:17px;line-height:1.8;color:#B7B7B7;max-width:460px">교육 일정과 과정 구성은 상담을 통해 안내합니다.</p></div>
+    <div><div data-cms="academy.t.k17" style="font-size:12px;letter-spacing:.2em;color:#B7B7B7;margin-bottom:24px">{{ CT.k17 }}</div><h2 data-cms="academy.t.k18" style="margin:0;font-size:clamp(30px,3.6vw,54px);line-height:1.3;font-weight:500;letter-spacing:-.025em">{{ CT.k18 }}</h2><p data-cms="academy.t.k19" style="margin:24px 0 0;font-size:17px;line-height:1.8;color:#B7B7B7;max-width:460px">{{ CT.k19 }}</p></div>
     <div style="display:flex;flex-wrap:wrap;gap:12px">
-      <a href="http://pf.kakao.com/_nxenxmG" target="_blank" rel="noopener" data-cursor="TALK" style="padding:18px 26px;background:#fff;color:#080808;font-size:14px;letter-spacing:.14em;font-weight:600">KAKAO 상담</a>
-      <a href="tel:01039240143" style="padding:18px 26px;border:1px solid #777;font-size:14px;letter-spacing:.14em;font-weight:600">CALL</a>
+      <a data-cms="academy.t.k20" href="{{ CS.kakao_url }}" target="_blank" rel="noopener" data-cursor="TALK" style="padding:18px 26px;background:#fff;color:#080808;font-size:14px;letter-spacing:.14em;font-weight:600">{{ CT.k20 }}</a>
+      <a data-cms="academy.t.k21" href="{{ CS.tel }}" style="padding:18px 26px;border:1px solid #777;font-size:14px;letter-spacing:.14em;font-weight:600">{{ CT.k21 }}</a>
     </div>
   </div>
 </section>
@@ -106,36 +106,13 @@
 <script type="text/x-dc" data-dc-script data-props="{&quot;adminNotes&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;}}">
 class Component extends DCLogic {
   renderVals() {
-    return {
+    const __D = (window.__CMS || {})["academy"] || {};
+    const __C = window.__CMS || {}; const CT = (__C["academy"] || {}).t || {}; const CS = Object.assign({}, __C.site || {}, { tel: 'tel:' + String((__C.site || {}).phone || '').replace(/[^0-9]/g, '') });
+    return { CT, CS,
       adminNotes: false,
-      fields: ['SMP 기초', '디자인 · 헤어라인', '부위별 적용', '상담 · 사후관리'].map((t, i) => ({ n: String(i + 1).padStart(2, '0'), t })),
-      acts: [
-        ['SUPERVISOR', '2nd World Top Tier Olympics · Supervisor', '2025'],
-        ['AWARD', '2025 KOREA SMP Global Brand Award', '2025'],
-        ['AWARD', '제16회 월드뷰티페스티벌', '2025'],
-        ['CONFERENCE', '3rd IPSN KOREA International Beauty Conference · 호치민', '2025'],
-        ['CONFERENCE', 'IPSN KOREA × WELLA Professionals · 베트남', '2025'],
-        ['ACTIVITY', '2025 Asia Model Awards', '2025'],
-        ['AWARD', '2nd IPSN KOREA International Beauty Contest · 하노이', '2024'],
-        ['EDUCATION', '대한두피문신전문가협회 SMP 교육 인증기관', '2023'],
-        ['EDUCATION', '서울대학교 SMP MASTER PROGRAM', '']
-      ].map(([k, t, year]) => ({ k, t, year })),
-      gallery: [
-        [14, 'ACADEMY', '2026', '제17회 월드뷰티페스티벌 · U BLACK ACADEMY', '50% 70%'],
-        [4, 'AWARD', '2026', '제17회 월드뷰티페스티벌 · 수강생 수상', '50% 55%'],
-        [5, 'AWARD', '2026', '제17회 월드뷰티페스티벌 · 수강생 수상', '45% 55%'],
-        [6, 'AWARD', '2026', '제17회 월드뷰티페스티벌 · 수강생 수상', '50% 50%'],
-        [7, 'CERTIFICATE', '2026', '유블랙 아카데미 SMP 전문가 과정 수료', '50% 60%'],
-        [8, 'CERTIFICATE', '2026', '유블랙 아카데미 SMP 전문가 과정 수료', '50% 55%'],
-        [9, 'CLASS', '', '실습 교육 · 헤어라인 작업', '50% 50%'],
-        [10, 'CLASS', '', '마네킹 실습 · 도트 표현', '40% 50%'],
-        [11, 'CLASS', '', '실습 교육 · 디테일 작업', '50% 40%'],
-        [1, 'COMPETITION', '', 'SMP 실기 경기 현장', '50% 40%'],
-        [2, 'COMPETITION', '', 'SMP 실기 경기 현장', '50% 45%'],
-        [3, 'COMPETITION', '', 'SMP 실기 경기 현장', '45% 50%'],
-        [12, 'EDUCATION', '', 'Eterno SMP 교육 과정 이수', '50% 60%'],
-        [13, 'EDUCATION', '', 'Eterno SMP 교육 과정 이수', '50% 55%']
-      ].map(([n, k, year, t, pos]) => ({ src: 'assets/academy-' + n + '.jpg', k, year, t, pos }))
+      fields: (__D.fields || []).map((t, i) => ({ n: String(i + 1).padStart(2, '0'), t, p_t: 'academy.fields.' + i })),
+      acts: (__D.acts || []).map((a, i) => { const p = 'academy.acts.' + i; return { k: a.k, t: a.t, year: a.year, p_k: p + '.k', p_t: p + '.t', p_year: p + '.year' }; }),
+      gallery: (__D.gallery || []).map((g, i) => { const p = 'academy.gallery.' + i; return { src: g.image, k: g.k, year: g.year, t: g.t, pos: g.pos, p_src: p + '.image', p_k: p + '.k', p_year: p + '.year', p_t: p + '.t' }; })
     };
   }
 }

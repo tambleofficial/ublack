@@ -22,13 +22,13 @@
 <dc-import name="SiteChrome" active="cases" admin="{{ adminNotes }}" hint-size="100%,0px"></dc-import>
 <main>
 <section data-theme="dark" data-screen-label="01 CASES Hero" style="background:#080808;color:#fff;min-height:min(88svh,760px);padding:clamp(112px,16vw,160px) clamp(20px,6vw,96px) clamp(40px,6vw,64px);display:flex;flex-direction:column;justify-content:space-between;gap:64px">
-  <div style="font-size:12px;letter-spacing:.2em;color:#B7B7B7">CASES</div>
+  <div data-cms="cases.t.k01" style="font-size:12px;letter-spacing:.2em;color:#B7B7B7">{{ CT.k01 }}</div>
   <div style="max-width:1320px;width:100%;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:48px">
-    <div data-reveal><h1 style="margin:0;font-size:clamp(44px,7vw,108px);line-height:1.02;font-weight:500;letter-spacing:-.035em">REAL<br>CASES.</h1><p style="margin:22px 0 0;font-size:clamp(17px,1.6vw,22px);line-height:1.5;font-weight:500;color:#B7B7B7">시술 사례</p></div>
-    <img data-reveal src="assets/symbol-white.png" alt="" style="width:clamp(90px,10vw,150px);height:auto">
+    <div data-reveal><h1 data-cms="cases.t.k02" style="margin:0;font-size:clamp(44px,7vw,108px);line-height:1.02;font-weight:500;letter-spacing:-.035em;white-space:pre-line">{{ CT.k02 }}</h1><p data-cms="cases.t.k03" style="margin:22px 0 0;font-size:clamp(17px,1.6vw,22px);line-height:1.5;font-weight:500;color:#B7B7B7">{{ CT.k03 }}</p></div>
+    <img data-reveal src="{{ CT.img01 }}" data-cms-img="cases.t.img01" alt="" style="width:clamp(90px,10vw,150px);height:auto">
   </div>
   <div style="max-width:1320px;width:100%;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-between;gap:24px;font-size:17px;line-height:1.8;color:#B7B7B7;border-top:1px solid #2a2a2a;padding-top:28px">
-    <span>유블랙 · U.BLACK · ULSAN</span><span style="max-width:460px">같은 고객, 같은 각도, 비슷한 조명에서 촬영한 실제 사진만 게시하며 효과를 강조하는 보정을 하지 않습니다.</span>
+    <span data-cms="cases.t.k04">{{ CT.k04 }}</span><span data-cms="cases.t.k05" style="max-width:460px">{{ CT.k05 }}</span>
   </div>
 </section>
 
@@ -39,10 +39,10 @@
     <sc-for list="{{ shown }}" as="c" hint-placeholder-count="9">
       <button onClick="{{ c.open }}" data-cursor="VIEW CASE" aria-label="{{ c.id }} {{ c.area }} 사례 보기" style="all:unset;cursor:pointer;display:block;width:100%">
         <div style="position:relative;overflow:hidden;aspect-ratio:4/5">
-          <img src="{{ c.src }}" alt="{{ c.ko }} 작업 사례" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;background:#E8E8E8;transition:transform .8s cubic-bezier(.2,.7,.2,1),filter .6s ease" style-hover="transform:scale(1.02);filter:brightness(.9)">
+          <img src="{{ c.src }}" data-cms-img="{{ c.p_src }}" alt="{{ c.ko }} 작업 사례" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;background:#E8E8E8;transition:transform .8s cubic-bezier(.2,.7,.2,1),filter .6s ease" style-hover="transform:scale(1.02);filter:brightness(.9)">
         </div>
-        <div style="display:flex;justify-content:space-between;gap:12px;margin-top:14px;font-size:12px;letter-spacing:.16em;font-weight:500;color:#080808"><span>{{ c.id }}</span><span style="color:#666">{{ c.area }}</span></div>
-        <div style="margin-top:6px;font-size:13px;letter-spacing:.14em;color:#080808">VIEW CASE →</div>
+        <div style="display:flex;justify-content:space-between;gap:12px;margin-top:14px;font-size:12px;letter-spacing:.16em;font-weight:500;color:#080808"><span data-cms="{{ c.p_id }}">{{ c.id }}</span><span data-cms="{{ c.p_area }}" style="color:#666">{{ c.area }}</span></div>
+        <div data-cms="cases.t.k06" style="margin-top:6px;font-size:13px;letter-spacing:.14em;color:#080808">{{ CT.k06 }}</div>
       </button>
     </sc-for>
   </div>
@@ -54,32 +54,32 @@
   <div role="dialog" aria-modal="true" aria-label="{{ cur.id }} 사례 상세" style="position:fixed;inset:0;z-index:980;background:#080808;color:#fff;overflow-y:auto">
     <div style="position:sticky;top:0;z-index:2;display:flex;justify-content:space-between;align-items:center;height:76px;padding:0 clamp(20px,4vw,56px);background:rgba(8,8,8,.92);border-bottom:1px solid #1B1B1B">
       <span style="font-size:12px;letter-spacing:.2em">{{ cur.id }} · {{ cur.area }}</span>
-      <button onClick="{{ close }}" ref="{{ closeRef }}" style="background:none;border:0;color:#fff;font:inherit;font-size:13px;letter-spacing:.16em;font-weight:600;min-height:44px;cursor:pointer">CLOSE (ESC)</button>
+      <button data-cms="cases.t.k07" onClick="{{ close }}" ref="{{ closeRef }}" style="background:none;border:0;color:#fff;font:inherit;font-size:13px;letter-spacing:.16em;font-weight:600;min-height:44px;cursor:pointer">{{ CT.k07 }}</button>
     </div>
     <div style="max-width:1440px;margin:0 auto;padding:40px clamp(20px,4vw,56px) 80px;display:flex;flex-wrap:wrap;gap:40px 64px">
       <div style="flex:1 1 420px;min-width:0;max-width:600px">
-        <div style="position:relative;aspect-ratio:4/5;overflow:hidden;background:#131313"><img src="{{ cur.src }}" alt="{{ cur.ko }} 작업 사례" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block"></div>
-        <p style="margin:14px 0 0;font-size:14px;line-height:1.7;color:#B7B7B7">큰 사진: 작업 후 · 작은 사진: 작업 전</p>
+        <div style="position:relative;aspect-ratio:4/5;overflow:hidden;background:#131313"><img src="{{ cur.src }}" data-cms-img="{{ cur.p_src }}" alt="{{ cur.ko }} 작업 사례" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block"></div>
+        <p data-cms="cases.t.k08" style="margin:14px 0 0;font-size:14px;line-height:1.7;color:#B7B7B7">{{ CT.k08 }}</p>
         <div style="display:flex;justify-content:space-between;gap:16px;margin-top:24px">
-          <button onClick="{{ prev }}" style="background:none;border:1px solid #333;color:#fff;font:inherit;font-size:13px;letter-spacing:.14em;padding:0 20px;min-height:48px;cursor:pointer">← PREV</button>
-          <button onClick="{{ next }}" style="background:none;border:1px solid #333;color:#fff;font:inherit;font-size:13px;letter-spacing:.14em;padding:0 20px;min-height:48px;cursor:pointer">NEXT →</button>
+          <button data-cms="cases.t.k09" onClick="{{ prev }}" style="background:none;border:1px solid #333;color:#fff;font:inherit;font-size:13px;letter-spacing:.14em;padding:0 20px;min-height:48px;cursor:pointer">{{ CT.k09 }}</button>
+          <button data-cms="cases.t.k10" onClick="{{ next }}" style="background:none;border:1px solid #333;color:#fff;font:inherit;font-size:13px;letter-spacing:.14em;padding:0 20px;min-height:48px;cursor:pointer">{{ CT.k10 }}</button>
         </div>
       </div>
       <div style="flex:1 1 360px;min-width:0">
-        <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#B7B7B7">{{ cur.id }}</div>
-        <h2 style="margin:10px 0 40px;font-size:clamp(30px,3.4vw,48px);font-weight:500;letter-spacing:-.01em">{{ cur.area }}</h2>
+        <div data-cms="{{ cur.p_id }}" style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#B7B7B7">{{ cur.id }}</div>
+        <h2 data-cms="{{ cur.p_area }}" style="margin:10px 0 40px;font-size:clamp(30px,3.4vw,48px);font-weight:500;letter-spacing:-.01em">{{ cur.area }}</h2>
         <dl style="margin:0;border-top:1px solid #2a2a2a">
-          <div style="padding:20px 0;border-bottom:1px solid #2a2a2a"><dt style="font-size:12px;letter-spacing:.16em;color:#B7B7B7;margin-bottom:8px">고객 고민 (익명)</dt><dd style="margin:0;font-size:17px;line-height:1.8">{{ cur.worry }}</dd></div>
-          <div style="padding:20px 0;border-bottom:1px solid #2a2a2a"><dt style="font-size:12px;letter-spacing:.16em;color:#B7B7B7;margin-bottom:8px">작업 부위</dt><dd style="margin:0;font-size:17px;line-height:1.8">{{ cur.ko }}</dd></div>
-          <div style="padding:20px 0;border-bottom:1px solid #2a2a2a"><dt style="font-size:12px;letter-spacing:.16em;color:#B7B7B7;margin-bottom:8px">디자인 방향</dt><dd style="margin:0;font-size:17px;line-height:1.8">{{ cur.dir }}</dd></div>
+          <div style="padding:20px 0;border-bottom:1px solid #2a2a2a"><dt data-cms="cases.t.k11" style="font-size:12px;letter-spacing:.16em;color:#B7B7B7;margin-bottom:8px">{{ CT.k11 }}</dt><dd data-cms="{{ cur.p_worry }}" style="margin:0;font-size:17px;line-height:1.8">{{ cur.worry }}</dd></div>
+          <div style="padding:20px 0;border-bottom:1px solid #2a2a2a"><dt data-cms="cases.t.k12" style="font-size:12px;letter-spacing:.16em;color:#B7B7B7;margin-bottom:8px">{{ CT.k12 }}</dt><dd data-cms="{{ cur.p_ko }}" style="margin:0;font-size:17px;line-height:1.8">{{ cur.ko }}</dd></div>
+          <div style="padding:20px 0;border-bottom:1px solid #2a2a2a"><dt data-cms="cases.t.k13" style="font-size:12px;letter-spacing:.16em;color:#B7B7B7;margin-bottom:8px">{{ CT.k13 }}</dt><dd data-cms="{{ cur.p_dir }}" style="margin:0;font-size:17px;line-height:1.8">{{ cur.dir }}</dd></div>
         </dl>
-        <p style="margin:24px 0 0;font-size:14px;line-height:1.7;color:#B7B7B7">결과에는 두피 상태와 모발 특성에 따른 개인차가 있습니다.</p>
-        <div style="margin-top:48px;font-size:12px;letter-spacing:.2em;color:#B7B7B7;margin-bottom:16px">OTHER CASES</div>
+        <p data-cms="cases.t.k14" style="margin:24px 0 0;font-size:14px;line-height:1.7;color:#B7B7B7">{{ CT.k14 }}</p>
+        <div data-cms="cases.t.k15" style="margin-top:48px;font-size:12px;letter-spacing:.2em;color:#B7B7B7;margin-bottom:16px">{{ CT.k15 }}</div>
         <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px">
           <sc-for list="{{ others }}" as="o" hint-placeholder-count="3">
             <button onClick="{{ o.open }}" style="all:unset;cursor:pointer;display:block">
-              <div style="position:relative;aspect-ratio:4/5;overflow:hidden;background:#131313"><img src="{{ o.src }}" alt="" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block"></div>
-              <div style="margin-top:8px;font-size:11px;letter-spacing:.12em">{{ o.id }}</div>
+              <div style="position:relative;aspect-ratio:4/5;overflow:hidden;background:#131313"><img src="{{ o.src }}" data-cms-img="{{ o.p_src }}" alt="" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block"></div>
+              <div data-cms="{{ o.p_id }}" style="margin-top:8px;font-size:11px;letter-spacing:.12em">{{ o.id }}</div>
             </button>
           </sc-for>
         </div>
@@ -111,39 +111,28 @@ class Component extends DCLogic {
   step(d) { const l = this.list(); const i = l.findIndex(c => c.i === this.state.open); const n = l[(i + d + l.length) % l.length]; this.setState({ open: n.i, ba: 50 }); }
   setBa(e) { const r = this.baRef.current.getBoundingClientRect(); this.setState({ ba: Math.max(0, Math.min(100, ((e.clientX - r.left) / r.width) * 100)) }); }
   cases() {
-    if (this._c) return this._c;
-    const D = {
-      HAIRLINE: ['맨즈 헤어라인', '남성 헤어라인', '이마 라인이 넓어 보이는 점.', '얼굴 비율에 맞는 라인 높이와 가장자리 농도를 조율.'],
-      'M-LINE': ['M자 헤어라인', 'M자 부위', '앞쪽 두피 노출.', '기존 헤어라인과 모발 방향을 함께 살펴 시각적 연결감을 고려.'],
-      CROWN: ['정수리', '정수리', '정수리 부위 두피 노출.', '가마 방향과 주변 모발 톤을 기준으로 도트 밀도를 조율.'],
-      PART: ['가르마', '가르마', '가르마 폭이 넓어 보이는 점.', '가르마 경계가 선처럼 보이지 않도록 단계적으로 조절.'],
-      SCAR: ['흉터 커버', '흉터 부위', '짧은 머리에서 흉터 라인이 드러남.', '흉터 주변 피부 톤을 확인하고 주변 모발과 어우러지는 범위로 한정.'],
-      COVER: ['두피문신 보완', '기존 두피문신 보완', '기존 두피문신의 톤·형태가 어색해 보이는 점.', '현재 상태를 확인한 뒤 톤과 경계를 주변과 맞추는 방향으로 상담.']
-    };
-    D.WOMEN = ['우먼 헤어라인', '여성 헤어라인', '이마 라인과 가르마 주변이 넓어 보이는 점.', '이마 형태와 잔머리 흐름을 고려해 부드러운 가장자리로 조율.'];
-    D.SHAVED = ['삭발 디자인', '삭발 디자인', '짧은 머리에서 두피 톤이 고르지 않아 보이는 점.', '두상 전체의 톤과 헤어라인 형태를 함께 디자인.'];
-    const G = {
-      HAIRLINE: ['assets/cases-sm/hair/z07.jpg','assets/cases-sm/hair/z12.jpg','assets/cases-sm/hair/z13.jpg','assets/cases-sm/hair/z14.jpg'],
-      WOMEN: ['assets/cases-sm/hair/z00.png','assets/cases-sm/hair/z01.jpg','assets/cases-sm/hair/z06.jpg','assets/cases-sm/hair/z08.jpg','assets/cases-sm/hair/z09.jpg','assets/cases-sm/hair/z10.jpg','assets/cases-sm/hair/z11.jpg','assets/cases-sm/hair/z15.jpg','assets/cases-sm/hair/z16.jpg','assets/cases-sm/hair/z17.jpg'],
-      CROWN: ['assets/cases-sm/crown/1773198338218.jpg', 'assets/cases-sm/crown/1790228230416.jpg', 'assets/cases-sm/crown/1790228231159.jpg', 'assets/cases-sm/crown/z01.jpg','assets/cases-sm/crown/z02.jpg','assets/cases-sm/crown/z03.jpg','assets/cases-sm/crown/z04.jpg','assets/cases-sm/crown/z05.jpg','assets/cases-sm/crown/z06.jpg','assets/cases-sm/crown/z07.jpg','assets/cases-sm/crown/z08.jpg','assets/cases-sm/crown/z10.jpg','assets/cases-sm/crown/z11.jpg','assets/cases-sm/crown/z12.jpg','assets/cases-sm/crown/z13.jpg','assets/cases-sm/crown/z14.jpg','assets/cases-sm/crown/z15.jpg'],
-      PART: ['assets/cases/part-01.jpg','assets/cases/part-02.jpg','assets/cases/part-03.jpg','assets/cases/part-04.jpg','assets/cases/part-05.jpg','assets/cases/part-06.jpg','assets/cases/part-07.jpg','assets/cases/part-08.jpg','assets/cases/part-09.jpg','assets/cases/part-10.jpg','assets/cases/part-11.jpg','assets/cases/part-12.jpg','assets/cases/part-13.jpg','assets/cases/part-14.jpg','assets/cases/part-15.jpg','assets/cases/part-16.jpg','assets/cases/part-17.jpg'],
-      SHAVED: ['assets/cases-sm/shaved/MEITU_20251122_165103368.jpg','assets/cases-sm/shaved/1790228230564.jpg','assets/cases-sm/shaved/1790228230707.jpg','assets/cases-sm/shaved/1790228230760.jpg','assets/cases-sm/shaved/1790228230835.jpg','assets/cases-sm/shaved/1790228230890.jpg','assets/cases-sm/shaved/1790228230931.jpg','assets/cases-sm/shaved/1790228230986.jpg'],
-      SCAR: ['assets/cases-sm/scar/z01.jpg','assets/cases-sm/scar/z02.jpg','assets/cases-sm/scar/z03.jpg','assets/cases-sm/scar/z04.jpg','assets/cases-sm/scar/z05.jpg','assets/cases-sm/scar/z06.jpg','assets/cases-sm/scar/z07.jpg', 'assets/cases-sm/scar/1793515877749.jpg', 'assets/cases-sm/scar/1793515877840.jpg']
-    };
+    if (this._c && !window.__CMS_EDIT) return this._c;
+    const __D = (window.__CMS || {}).cases || {};
+    const CATS = __D.cats || [];
+    const G = {}, D = {}, CI = {};
+    CATS.forEach((c, ci) => { G[c.key] = c.images || []; D[c.key] = c; CI[c.key] = ci; });
     const keys = Object.keys(G), total = keys.reduce((s, k) => s + G[k].length, 0), seq = [];
-    for (let r = 0; seq.length < total; r++) keys.forEach(k => { if (G[k][r]) seq.push([k, G[k][r]]); });
-    this._c = seq.map(([cat, src], i) => ({ i, cat, src, id: 'CASE ' + String(i + 1).padStart(3, '0'), area: D[cat][0], ko: D[cat][1], worry: D[cat][2], dir: D[cat][3] }));
+    for (let r = 0; seq.length < total; r++) keys.forEach(k => { if (G[k][r]) seq.push([k, G[k][r], r]); });
+    this._c = seq.map(([cat, src, r], i) => { const b = 'cases.cats.' + CI[cat]; return { i, cat, src, id: 'CASE ' + String(i + 1).padStart(3, '0'), area: D[cat].area, ko: D[cat].ko, worry: D[cat].worry, dir: D[cat].dir,
+      p_src: b + '.images.' + r, p_area: b + '.area', p_ko: b + '.ko', p_worry: b + '.worry', p_dir: b + '.dir' }; });
     return this._c;
   }
   renderVals() {
+    const __C = window.__CMS || {}; const CT = (__C["cases"] || {}).t || {}; const CS = Object.assign({}, __C.site || {}, { tel: 'tel:' + String((__C.site || {}).phone || '').replace(/[^0-9]/g, '') });
     const { filter, open, ba } = this.state;
     const all = this.cases();
     const cats = ['ALL', 'HAIRLINE', 'WOMEN', 'CROWN', 'PART', 'SCAR', 'SHAVED'];
-    const catKo = { ALL: '전체', HAIRLINE: '맨즈 헤어라인', WOMEN: '우먼 헤어라인', CROWN: '정수리', PART: '가르마', SCAR: '흉터 커버', SHAVED: '삭발 디자인' };
+    const __D = (window.__CMS || {}).cases || {};
+    const catKo = { ALL: __D.allLabel || '전체' }; (__D.cats || []).forEach(c => { catKo[c.key] = c.label; });
     const shown = this.list().map(c => ({ ...c, open: () => this.setState({ open: c.i, ba: 50 }) }));
     const cur = open >= 0 ? all[open] : all[0];
-    const others = all.filter(c => c.cat === cur.cat && c.i !== cur.i).concat(all.filter(c => c.cat !== cur.cat)).slice(0, 3).map(c => ({ id: c.id, src: c.src, open: () => this.setState({ open: c.i, ba: 50 }) }));
-    return {
+    const others = all.filter(c => c.cat === cur.cat && c.i !== cur.i).concat(all.filter(c => c.cat !== cur.cat)).slice(0, 3).map(c => ({ id: c.id, src: c.src, p_src: c.p_src, open: () => this.setState({ open: c.i, ba: 50 }) }));
+    return { CT, CS,
       adminNotes: false,
       fields: ['SMP 기초', '디자인 · 헤어라인', '부위별 적용', '상담 · 사후관리'].map((t, i) => ({ n: String(i + 1).padStart(2, '0'), t })),
       acts: ['SEMINAR', 'JUDGING', 'COMPETITION', 'EDUCATION'].map(k => ({ k })),

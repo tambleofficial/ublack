@@ -22,49 +22,49 @@
 <dc-import name="SiteChrome" active="contact" admin="{{ adminNotes }}" hint-size="100%,0px"></dc-import>
 <main>
 <section data-theme="dark" data-screen-label="01 Contact Hero" style="background:#080808;color:#fff;min-height:min(88svh,760px);padding:clamp(112px,16vw,160px) clamp(20px,6vw,96px) clamp(40px,6vw,64px);display:flex;flex-direction:column;justify-content:space-between;gap:64px">
-  <div style="font-size:12px;letter-spacing:.2em;color:#B7B7B7">CONTACT</div>
+  <div data-cms="contact.t.k01" style="font-size:12px;letter-spacing:.2em;color:#B7B7B7">{{ CT.k01 }}</div>
   <div style="max-width:1320px;width:100%;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:48px">
-    <div data-reveal><h1 style="margin:0;font-size:clamp(44px,7vw,108px);line-height:1.02;font-weight:500;letter-spacing:-.035em">GET IN<br>TOUCH.</h1><p style="margin:22px 0 0;font-size:clamp(17px,1.6vw,22px);line-height:1.5;font-weight:500;color:#B7B7B7">상담 및 오시는 길</p></div>
-    <img data-reveal src="assets/symbol-white.png" alt="" style="width:clamp(90px,10vw,150px);height:auto">
+    <div data-reveal><h1 data-cms="contact.t.k02" style="margin:0;font-size:clamp(44px,7vw,108px);line-height:1.02;font-weight:500;letter-spacing:-.035em;white-space:pre-line">{{ CT.k02 }}</h1><p data-cms="contact.t.k03" style="margin:22px 0 0;font-size:clamp(17px,1.6vw,22px);line-height:1.5;font-weight:500;color:#B7B7B7">{{ CT.k03 }}</p></div>
+    <img data-reveal src="{{ CT.img01 }}" data-cms-img="contact.t.img01" alt="" style="width:clamp(90px,10vw,150px);height:auto">
   </div>
   <div style="max-width:1320px;width:100%;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-between;gap:24px;font-size:17px;line-height:1.8;color:#B7B7B7;border-top:1px solid #2a2a2a;padding-top:28px">
-    <span>유블랙 · U.BLACK · ULSAN</span><span style="max-width:460px">필요한 범위부터 먼저 이야기해보세요. 카카오톡 채널 또는 전화로 상담 일정을 잡으실 수 있습니다.</span>
+    <span data-cms="contact.t.k04">{{ CT.k04 }}</span><span data-cms="contact.t.k05" style="max-width:460px">{{ CT.k05 }}</span>
   </div>
 </section>
 
 <section id="consultation" data-theme="light" data-screen-label="02 Channels" style="scroll-margin-top:76px;background:#FFFFFF;padding:clamp(96px,11vw,160px) clamp(20px,5vw,80px)">
   <div style="max-width:1320px;margin:0 auto">
-    <div data-reveal style="margin-bottom:48px"><div style="font-size:12px;letter-spacing:.2em;color:#666;margin-bottom:18px">CHANNELS</div><h2 style="margin:0;font-size:clamp(30px,3.4vw,50px);font-weight:500;letter-spacing:-.025em">상담 · 채널</h2></div>
+    <div data-reveal style="margin-bottom:48px"><div data-cms="contact.t.k06" style="font-size:12px;letter-spacing:.2em;color:#666;margin-bottom:18px">{{ CT.k06 }}</div><h2 data-cms="contact.t.k07" style="margin:0;font-size:clamp(30px,3.4vw,50px);font-weight:500;letter-spacing:-.025em">{{ CT.k07 }}</h2></div>
     <div data-reveal style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,140px),1fr));gap:1px;background:#FFFFFF;border-top:1px solid #E8E8E8;border-bottom:1px solid #E8E8E8">
-      <a href="http://pf.kakao.com/_nxenxmG" target="_blank" rel="noopener" aria-label="카카오톡 채널 상담" data-cursor="TALK" style="background:#fff;display:flex;flex-direction:column;align-items:center;gap:18px;padding:48px 16px;text-align:center;transition:background .4s cubic-bezier(.2,.7,.2,1)" style-hover="background:#F6F6F4;opacity:1">
+      <a href="{{ CS.kakao_url }}" target="_blank" rel="noopener" aria-label="카카오톡 채널 상담" data-cursor="TALK" style="background:#fff;display:flex;flex-direction:column;align-items:center;gap:18px;padding:48px 16px;text-align:center;transition:background .4s cubic-bezier(.2,.7,.2,1)" style-hover="background:#F6F6F4;opacity:1">
         <svg width="44" height="44" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 3C6.5 3 2 6.6 2 11c0 2.8 1.9 5.3 4.7 6.7L5.8 21.5l4.3-2.8c.6.1 1.3.2 1.9.2 5.5 0 10-3.6 10-8s-4.5-8-10-8z"></path></svg>
-        <span style="font-size:13px;letter-spacing:.16em;font-weight:600">KAKAO</span>
-        <span style="font-size:14px;color:#555">카카오 상담</span>
+        <span data-cms="contact.t.k08" style="font-size:13px;letter-spacing:.16em;font-weight:600">{{ CT.k08 }}</span>
+        <span data-cms="contact.t.k09" style="font-size:14px;color:#555">{{ CT.k09 }}</span>
       </a>
-      <a href="tel:01039240143" aria-label="전화 010-3924-0143" data-cursor="TALK" style="background:#fff;display:flex;flex-direction:column;align-items:center;gap:18px;padding:48px 16px;text-align:center;transition:background .4s cubic-bezier(.2,.7,.2,1)" style-hover="background:#F6F6F4;opacity:1">
+      <a href="{{ CS.tel }}" aria-label="전화 010-3924-0143" data-cursor="TALK" style="background:#fff;display:flex;flex-direction:column;align-items:center;gap:18px;padding:48px 16px;text-align:center;transition:background .4s cubic-bezier(.2,.7,.2,1)" style-hover="background:#F6F6F4;opacity:1">
         <svg width="44" height="44" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"></path></svg>
-        <span style="font-size:13px;letter-spacing:.16em;font-weight:600">CALL</span>
+        <span data-cms="contact.t.k10" style="font-size:13px;letter-spacing:.16em;font-weight:600">{{ CT.k10 }}</span>
         <span style="font-size:14px;color:#555">010-3924-0143</span>
       </a>
-      <a href="https://naver.me/xoHQXTFw" target="_blank" rel="noopener" aria-label="네이버 플레이스" style="background:#fff;display:flex;flex-direction:column;align-items:center;gap:18px;padding:48px 16px;text-align:center;transition:background .4s cubic-bezier(.2,.7,.2,1)" style-hover="background:#F6F6F4;opacity:1">
+      <a href="{{ CS.naver_place_url }}" target="_blank" rel="noopener" aria-label="네이버 플레이스" style="background:#fff;display:flex;flex-direction:column;align-items:center;gap:18px;padding:48px 16px;text-align:center;transition:background .4s cubic-bezier(.2,.7,.2,1)" style-hover="background:#F6F6F4;opacity:1">
         <svg width="44" height="44" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2C8.1 2 5 5.1 5 9c0 5.2 7 13 7 13s7-7.8 7-13c0-3.9-3.1-7-7-7zm0 9.5a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5z"></path></svg>
-        <span style="font-size:13px;letter-spacing:.16em;font-weight:600">NAVER PLACE</span>
-        <span style="font-size:14px;color:#555">예약 · 후기</span>
+        <span data-cms="contact.t.k11" style="font-size:13px;letter-spacing:.16em;font-weight:600">{{ CT.k11 }}</span>
+        <span data-cms="contact.t.k12" style="font-size:14px;color:#555">{{ CT.k12 }}</span>
       </a>
-      <a href="https://m.blog.naver.com/nnn0100" target="_blank" rel="noopener" aria-label="네이버 블로그" style="background:#fff;display:flex;flex-direction:column;align-items:center;gap:18px;padding:48px 16px;text-align:center;transition:background .4s cubic-bezier(.2,.7,.2,1)" style-hover="background:#F6F6F4;opacity:1">
+      <a href="{{ CS.blog_url }}" target="_blank" rel="noopener" aria-label="네이버 블로그" style="background:#fff;display:flex;flex-direction:column;align-items:center;gap:18px;padding:48px 16px;text-align:center;transition:background .4s cubic-bezier(.2,.7,.2,1)" style-hover="background:#F6F6F4;opacity:1">
         <svg width="44" height="44" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="4" fill="currentColor"></rect><text x="12" y="16.5" text-anchor="middle" font-family="Pretendard, Helvetica, sans-serif" font-size="12" font-weight="700" fill="#fff">b</text></svg>
-        <span style="font-size:13px;letter-spacing:.16em;font-weight:600">BLOG</span>
-        <span style="font-size:14px;color:#555">네이버 블로그</span>
+        <span data-cms="contact.t.k13" style="font-size:13px;letter-spacing:.16em;font-weight:600">{{ CT.k13 }}</span>
+        <span data-cms="contact.t.k14" style="font-size:14px;color:#555">{{ CT.k14 }}</span>
       </a>
-      <a href="https://www.instagram.com/u.black_scalp" target="_blank" rel="noopener" aria-label="인스타그램" style="background:#fff;display:flex;flex-direction:column;align-items:center;gap:18px;padding:48px 16px;text-align:center;transition:background .4s cubic-bezier(.2,.7,.2,1)" style-hover="background:#F6F6F4;opacity:1">
+      <a href="{{ CS.instagram_url }}" target="_blank" rel="noopener" aria-label="인스타그램" style="background:#fff;display:flex;flex-direction:column;align-items:center;gap:18px;padding:48px 16px;text-align:center;transition:background .4s cubic-bezier(.2,.7,.2,1)" style-hover="background:#F6F6F4;opacity:1">
         <svg width="44" height="44" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4.2"></circle><circle cx="17.3" cy="6.7" r="1" fill="currentColor" stroke="none"></circle></svg>
-        <span style="font-size:13px;letter-spacing:.16em;font-weight:600">INSTAGRAM</span>
-        <span style="font-size:14px;color:#555">@u.black_scalp</span>
+        <span data-cms="contact.t.k15" style="font-size:13px;letter-spacing:.16em;font-weight:600">{{ CT.k15 }}</span>
+        <span data-cms="contact.t.k16" style="font-size:14px;color:#555">{{ CT.k16 }}</span>
       </a>
-      <a href="https://youtube.com/@u.black_sclap" target="_blank" rel="noopener" aria-label="유튜브" style="background:#fff;display:flex;flex-direction:column;align-items:center;gap:18px;padding:48px 16px;text-align:center;transition:background .4s cubic-bezier(.2,.7,.2,1)" style-hover="background:#F6F6F4;opacity:1">
+      <a href="{{ CS.youtube_url }}" target="_blank" rel="noopener" aria-label="유튜브" style="background:#fff;display:flex;flex-direction:column;align-items:center;gap:18px;padding:48px 16px;text-align:center;transition:background .4s cubic-bezier(.2,.7,.2,1)" style-hover="background:#F6F6F4;opacity:1">
         <svg width="44" height="44" viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="4" fill="currentColor"></rect><path d="M10 9l5 3-5 3z" fill="#fff"></path></svg>
-        <span style="font-size:13px;letter-spacing:.16em;font-weight:600">YOUTUBE</span>
-        <span style="font-size:14px;color:#555">@u.black_sclap</span>
+        <span data-cms="contact.t.k17" style="font-size:13px;letter-spacing:.16em;font-weight:600">{{ CT.k17 }}</span>
+        <span data-cms="contact.t.k18" style="font-size:14px;color:#555">{{ CT.k18 }}</span>
       </a>
     </div>
   </div>
@@ -76,14 +76,14 @@
       <div style="position:relative;aspect-ratio:4/3;overflow:hidden;background:#DDDDDB">
         <iframe title="유블랙 위치 — 울산광역시 북구 신천로 55-22" src="https://maps.google.com/maps?q=%EC%9A%B8%EC%82%B0%EA%B4%91%EC%97%AD%EC%8B%9C%20%EB%B6%81%EA%B5%AC%20%EC%8B%A0%EC%B2%9C%EB%A1%9C%2055-22&amp;hl=ko&amp;z=17&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen="" style="position:absolute;inset:0;width:100%;height:100%;border:0"></iframe>
       </div>
-      <a href="https://www.google.com/maps/search/?api=1&amp;query=%EC%9A%B8%EC%82%B0%EA%B4%91%EC%97%AD%EC%8B%9C%20%EB%B6%81%EA%B5%AC%20%EC%8B%A0%EC%B2%9C%EB%A1%9C%2055-22" target="_blank" rel="noopener" style="display:inline-flex;margin-top:20px;padding:16px 24px;background:#080808;color:#fff;font-size:13px;letter-spacing:.14em;font-weight:600">GOOGLE MAPS →</a>
+      <a data-cms="contact.t.k19" href="https://www.google.com/maps/search/?api=1&amp;query=%EC%9A%B8%EC%82%B0%EA%B4%91%EC%97%AD%EC%8B%9C%20%EB%B6%81%EA%B5%AC%20%EC%8B%A0%EC%B2%9C%EB%A1%9C%2055-22" target="_blank" rel="noopener" style="display:inline-flex;margin-top:20px;padding:16px 24px;background:#080808;color:#fff;font-size:13px;letter-spacing:.14em;font-weight:600">{{ CT.k19 }}</a>
     </div>
     <div data-reveal style="flex:1 1 320px;min-width:0">
-      <div style="font-size:12px;letter-spacing:.2em;color:#555;margin-bottom:24px">LOCATION</div>
-      <h2 style="margin:0;font-size:clamp(28px,3vw,44px);font-weight:500;letter-spacing:-.02em">ULSAN STUDIO</h2>
+      <div data-cms="contact.t.k20" style="font-size:12px;letter-spacing:.2em;color:#555;margin-bottom:24px">{{ CT.k20 }}</div>
+      <h2 data-cms="contact.t.k21" style="margin:0;font-size:clamp(28px,3vw,44px);font-weight:500;letter-spacing:-.02em">{{ CT.k21 }}</h2>
       <dl style="margin:40px 0 0;border-top:1px solid #080808">
-        <div style="display:grid;grid-template-columns:96px minmax(0,1fr);gap:16px;padding:20px 0;border-bottom:1px solid #C9C9C7;font-size:17px;line-height:1.7"><dt style="font-weight:600">주소</dt><dd style="margin:0;color:#333">울산광역시 북구 신천로 55-22, 404호<br>(신천동, 신천수테라스타운)</dd></div>
-        <div style="display:grid;grid-template-columns:96px minmax(0,1fr);gap:16px;padding:20px 0;border-bottom:1px solid #C9C9C7;font-size:17px;line-height:1.7"><dt style="font-weight:600">문의</dt><dd style="margin:0"><a href="tel:01039240143" style="color:#080808">010-3924-0143</a></dd></div>
+        <div style="display:grid;grid-template-columns:96px minmax(0,1fr);gap:16px;padding:20px 0;border-bottom:1px solid #C9C9C7;font-size:17px;line-height:1.7"><dt data-cms="contact.t.k22" style="font-weight:600">{{ CT.k22 }}</dt><dd data-cms="contact.t.k23" style="margin:0;color:#333;white-space:pre-line">{{ CT.k23 }}</dd></div>
+        <div style="display:grid;grid-template-columns:96px minmax(0,1fr);gap:16px;padding:20px 0;border-bottom:1px solid #C9C9C7;font-size:17px;line-height:1.7"><dt data-cms="contact.t.k24" style="font-weight:600">{{ CT.k24 }}</dt><dd style="margin:0"><a href="{{ CS.tel }}" style="color:#080808">010-3924-0143</a></dd></div>
       </dl>
     </div>
   </div>
@@ -93,7 +93,8 @@
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;adminNotes&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;}}">
 class Component extends DCLogic {
-  renderVals() { return { adminNotes: false }; }
+  renderVals() {
+    const __C = window.__CMS || {}; const CT = (__C["contact"] || {}).t || {}; const CS = Object.assign({}, __C.site || {}, { tel: 'tel:' + String((__C.site || {}).phone || '').replace(/[^0-9]/g, '') }); return { CT, CS, adminNotes: false }; }
 }
 </script>
 </body>

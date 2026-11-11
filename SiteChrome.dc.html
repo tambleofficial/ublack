@@ -52,8 +52,8 @@ img,iframe,video{max-width:100%}
     <nav aria-label="주 메뉴" style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);display:flex;align-items:center;gap:clamp(20px,2.6vw,40px)">
       <sc-for list="{{ nav }}" as="item" hint-placeholder-count="6">
         <a href="{{ item.href }}" style="position:relative;display:flex;flex-direction:column;align-items:center;gap:3px;padding:8px 0">
-          <span style="font-size:12.5px;font-weight:500;letter-spacing:.14em">{{ item.label }}</span>
-          <span style="font-size:10.5px;font-weight:400;opacity:.62">{{ item.ko }}</span>
+          <span data-cms="{{ item.p_label }}" style="font-size:12.5px;font-weight:500;letter-spacing:.14em">{{ item.label }}</span>
+          <span data-cms="{{ item.p_ko }}" style="font-size:10.5px;font-weight:400;opacity:.62">{{ item.ko }}</span>
           <span style="position:absolute;left:0;right:0;bottom:0;height:1px;background:currentColor;opacity:{{ item.on }}"></span>
         </a>
       </sc-for>
@@ -272,7 +272,7 @@ class Component extends DCLogic {
     const active = this.props.active || '';
     const light = theme === 'light';
     const nav = [['BRAND', 'brand', '브랜드'], ['PROGRAM', 'program', '시술 안내'], ['CASES', 'cases', '시술 사례'], ['ACADEMY', 'academy', '아카데미'], ['REVIEWS', 'reviews', '고객 후기'], ['CONTACT', 'contact', '상담 · 오시는 길']]
-      .map(([label, k, ko]) => ({ label, ko, href: '/' + k, on: active === k ? 1 : 0 }));
+      .map(([label, k, ko], i) => { const o = (SITE.nav || [])[i] || {}; return { label: o.label || label, ko: o.ko || ko, href: '/' + k, on: active === k ? 1 : 0, p_label: 'site.nav.' + i + '.label', p_ko: 'site.nav.' + i + '.ko' }; });
     const fabOpen = this.state.fabOpen;
     const channels = [
       { label: '카카오톡 상담', sub: '채널 메시지로 문의', href: SITE.kakao_url, target: '_blank', icon: "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20fill%3D%22%23080808%22%20d%3D%22M12%203C6.5%203%202%206.6%202%2011c0%202.8%201.9%205.3%204.7%206.7L5.8%2021.5l4.3-2.8c.6.1%201.3.2%201.9.2%205.5%200%2010-3.6%2010-8s-4.5-8-10-8z%22%2F%3E%3C%2Fsvg%3E" },

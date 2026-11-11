@@ -22,13 +22,13 @@
 <dc-import name="SiteChrome" active="program" admin="{{ adminNotes }}" hint-size="100%,0px"></dc-import>
 <main>
 <section data-theme="dark" data-screen-label="01 PROGRAM Hero" style="background:#080808;color:#fff;min-height:min(88svh,760px);padding:clamp(112px,16vw,160px) clamp(20px,6vw,96px) clamp(40px,6vw,64px);display:flex;flex-direction:column;justify-content:space-between;gap:64px">
-  <div style="font-size:12px;letter-spacing:.2em;color:#B7B7B7">PROGRAM</div>
+  <div data-cms="program.t.k01" style="font-size:12px;letter-spacing:.2em;color:#B7B7B7">{{ CT.k01 }}</div>
   <div style="max-width:1320px;width:100%;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:48px">
-    <div data-reveal><h1 style="margin:0;font-size:clamp(44px,7vw,108px);line-height:1.02;font-weight:500;letter-spacing:-.035em">SMP<br>PROGRAM</h1><p style="margin:22px 0 0;font-size:clamp(17px,1.6vw,22px);line-height:1.5;font-weight:500;color:#B7B7B7">시술 안내</p></div>
-    <img data-reveal src="assets/symbol-white.png" alt="" style="width:clamp(90px,10vw,150px);height:auto">
+    <div data-reveal><h1 data-cms="program.t.k02" style="margin:0;font-size:clamp(44px,7vw,108px);line-height:1.02;font-weight:500;letter-spacing:-.035em;white-space:pre-line">{{ CT.k02 }}</h1><p data-cms="program.t.k03" style="margin:22px 0 0;font-size:clamp(17px,1.6vw,22px);line-height:1.5;font-weight:500;color:#B7B7B7">{{ CT.k03 }}</p></div>
+    <img data-reveal src="{{ CT.img01 }}" data-cms-img="program.t.img01" alt="" style="width:clamp(90px,10vw,150px);height:auto">
   </div>
   <div style="max-width:1320px;width:100%;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-between;gap:24px;font-size:17px;line-height:1.8;color:#B7B7B7;border-top:1px solid #2a2a2a;padding-top:28px">
-    <span>유블랙 · U.BLACK · ULSAN</span><span style="max-width:460px">모든 프로그램은 두피 노출을 시각적으로 보완하는 미용 목적의 SMP(두피문신) 작업이며, 결과에는 개인차가 있습니다.</span>
+    <span data-cms="program.t.k04">{{ CT.k04 }}</span><span data-cms="program.t.k05" style="max-width:460px">{{ CT.k05 }}</span>
   </div>
 </section>
 
@@ -40,22 +40,22 @@
       <div style="max-width:1320px;margin:0 auto">
         <div data-reveal style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:16px 48px;margin-bottom:48px">
           <div>
-            <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#666">{{ p.n }}</div>
-            <h2 style="margin:12px 0 0;font-size:clamp(34px,4.4vw,64px);line-height:1;font-weight:500;letter-spacing:-.03em">{{ p.en }}</h2>
-            <div style="margin-top:14px;font-size:20px;color:#333">{{ p.ko }}</div>
+            <div data-cms="{{ p.p_n }}" style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#666">{{ p.n }}</div>
+            <h2 data-cms="{{ p.p_en }}" style="margin:12px 0 0;font-size:clamp(34px,4.4vw,64px);line-height:1;font-weight:500;letter-spacing:-.03em">{{ p.en }}</h2>
+            <div data-cms="{{ p.p_ko }}" style="margin-top:14px;font-size:20px;color:#333">{{ p.ko }}</div>
           </div>
-          <a href="/cases" style="font-size:13px;letter-spacing:.16em;font-weight:600;border-bottom:1px solid #080808;padding-bottom:6px">RELATED CASES →</a>
+          <a data-cms="program.t.k06" href="/cases" style="font-size:13px;letter-spacing:.16em;font-weight:600;border-bottom:1px solid #080808;padding-bottom:6px">{{ CT.k06 }}</a>
         </div>
         <div style="display:flex;flex-direction:column;gap:40px">
           <dl data-reveal style="max-width:820px;margin:0;border-top:1px solid #080808">
-            <div style="padding:26px 0;border-bottom:1px solid #E8E8E8"><dt style="font-size:12px;letter-spacing:.18em;font-weight:600;margin-bottom:10px">WHAT IT IS</dt><dd style="margin:0;font-size:17px;line-height:1.85;color:#333">{{ p.what }}</dd></div>
-            <div style="padding:26px 0;border-bottom:1px solid #E8E8E8"><dt style="font-size:12px;letter-spacing:.18em;font-weight:600;margin-bottom:10px">CONSULTATION POINT</dt><dd style="margin:0;font-size:17px;line-height:1.85;color:#333">{{ p.consult }}</dd></div>
-            <div style="padding:26px 0"><dt style="font-size:12px;letter-spacing:.18em;font-weight:600;margin-bottom:10px">DESIGN CONSIDERATION</dt><dd style="margin:0;font-size:17px;line-height:1.85;color:#333">{{ p.design }}</dd></div>
+            <div style="padding:26px 0;border-bottom:1px solid #E8E8E8"><dt data-cms="program.t.k07" style="font-size:12px;letter-spacing:.18em;font-weight:600;margin-bottom:10px">{{ CT.k07 }}</dt><dd data-cms="{{ p.p_what }}" style="margin:0;font-size:17px;line-height:1.85;color:#333">{{ p.what }}</dd></div>
+            <div style="padding:26px 0;border-bottom:1px solid #E8E8E8"><dt data-cms="program.t.k08" style="font-size:12px;letter-spacing:.18em;font-weight:600;margin-bottom:10px">{{ CT.k08 }}</dt><dd data-cms="{{ p.p_consult }}" style="margin:0;font-size:17px;line-height:1.85;color:#333">{{ p.consult }}</dd></div>
+            <div style="padding:26px 0"><dt data-cms="program.t.k09" style="font-size:12px;letter-spacing:.18em;font-weight:600;margin-bottom:10px">{{ CT.k09 }}</dt><dd data-cms="{{ p.p_design }}" style="margin:0;font-size:17px;line-height:1.85;color:#333">{{ p.design }}</dd></div>
             </dl>
           <sc-if value="{{ p.hasG }}" hint-placeholder-val="{{ true }}"><div data-reveal style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(8px,1.4vw,16px)">
-            <a href="/cases" data-cursor="VIEW CASE" style="display:block;min-width:0"><div data-reveal-img style="position:relative;aspect-ratio:4/5;overflow:hidden"><img src="{{ p.g0 }}" alt="{{ p.ko }} 작업 사례" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;background:#E8E8E8;transition:transform .5s cubic-bezier(.2,.7,.2,1),filter .5s cubic-bezier(.2,.7,.2,1)" style-hover="transform:scale(1.02);filter:brightness(.9)"></div></a>
-            <a href="/cases" data-cursor="VIEW CASE" style="display:block;min-width:0"><div data-reveal-img style="position:relative;aspect-ratio:4/5;overflow:hidden"><img src="{{ p.g1 }}" alt="{{ p.ko }} 작업 사례" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;background:#E8E8E8;transition:transform .5s cubic-bezier(.2,.7,.2,1),filter .5s cubic-bezier(.2,.7,.2,1)" style-hover="transform:scale(1.02);filter:brightness(.9)"></div></a>
-            <a href="/cases" data-cursor="VIEW CASE" style="display:block;min-width:0"><div data-reveal-img style="position:relative;aspect-ratio:4/5;overflow:hidden"><img src="{{ p.g2 }}" alt="{{ p.ko }} 작업 사례" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;background:#E8E8E8;transition:transform .5s cubic-bezier(.2,.7,.2,1),filter .5s cubic-bezier(.2,.7,.2,1)" style-hover="transform:scale(1.02);filter:brightness(.9)"></div></a>
+            <a href="/cases" data-cursor="VIEW CASE" style="display:block;min-width:0"><div data-reveal-img style="position:relative;aspect-ratio:4/5;overflow:hidden"><img src="{{ p.g0 }}" data-cms-img="{{ p.p_g0 }}" alt="{{ p.ko }} 작업 사례" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;background:#E8E8E8;transition:transform .5s cubic-bezier(.2,.7,.2,1),filter .5s cubic-bezier(.2,.7,.2,1)" style-hover="transform:scale(1.02);filter:brightness(.9)"></div></a>
+            <a href="/cases" data-cursor="VIEW CASE" style="display:block;min-width:0"><div data-reveal-img style="position:relative;aspect-ratio:4/5;overflow:hidden"><img src="{{ p.g1 }}" data-cms-img="{{ p.p_g1 }}" alt="{{ p.ko }} 작업 사례" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;background:#E8E8E8;transition:transform .5s cubic-bezier(.2,.7,.2,1),filter .5s cubic-bezier(.2,.7,.2,1)" style-hover="transform:scale(1.02);filter:brightness(.9)"></div></a>
+            <a href="/cases" data-cursor="VIEW CASE" style="display:block;min-width:0"><div data-reveal-img style="position:relative;aspect-ratio:4/5;overflow:hidden"><img src="{{ p.g2 }}" data-cms-img="{{ p.p_g2 }}" alt="{{ p.ko }} 작업 사례" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;background:#E8E8E8;transition:transform .5s cubic-bezier(.2,.7,.2,1),filter .5s cubic-bezier(.2,.7,.2,1)" style-hover="transform:scale(1.02);filter:brightness(.9)"></div></a>
           </div></sc-if>
         </div>
       </div>
@@ -68,29 +68,17 @@
 <script type="text/x-dc" data-dc-script data-props="{&quot;adminNotes&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;}}">
 class Component extends DCLogic {
   renderVals() {
-    const P = [
-      ['hairline', 'HAIRLINE', '남성 헤어라인', '얼굴형에 어울리는 헤어라인을 도트로 표현해 이마 라인을 시각적으로 정돈하는 작업입니다.', '원하는 헤어라인 높이와 현재 모발 경계를 함께 확인합니다.', '나이대와 얼굴 비율에 맞는 라인 높이, 잔머리처럼 보이는 가장자리 처리를 고려합니다.'],
-      ['m-line', 'M-LINE', 'M자 디자인', '앞머리 양옆으로 두피가 드러나는 부위를 주변 모발과 이어지도록 시각적으로 보완합니다.', '앞쪽 두피 노출 범위와 평소 헤어스타일을 확인합니다.', '기존 헤어라인과 모발 방향을 함께 살펴 시각적 연결감을 우선합니다.'],
-      ['crown', 'CROWN', '정수리', '정수리 부위의 두피 노출을 모발 사이 도트로 채워 시각적인 밀도감을 더하는 작업입니다.', '가마 위치와 두피가 드러나는 범위, 모발 길이를 확인합니다.', '가마 방향과 주변 모발 톤에 맞춰 도트 크기와 간격을 조율합니다.'],
-      ['part', 'PART', '가르마', '가르마 라인이 넓어 보이는 부분을 기존 모발과 어우러지도록 시각적으로 보완합니다.', '주로 사용하는 가르마 방향과 노출되는 폭을 확인합니다.', '가르마 경계가 선처럼 보이지 않도록 가장자리 밀도를 단계적으로 조절합니다.'],
-      ['shaved', 'SHAVED DESIGN', '삭발 디자인', '짧은 삭발 스타일에서 두상 전체의 톤과 헤어라인 형태를 함께 디자인하는 작업입니다.', '원하는 삭발 길이감과 헤어라인 형태를 확인합니다.', '두상 전체의 톤이 고르게 보이도록 영역별 도트 밀도를 조율합니다.'],
-      ['scar', 'SCAR COVER', '흉터 커버', '흉터 부위가 주변 모발 사이에서 덜 두드러져 보이도록 시각적으로 보완하는 작업입니다.', '흉터의 위치, 크기, 피부 질감과 톤을 먼저 확인합니다.', '흉터 주변 피부 상태에 따라 가능한 범위를 한정하고 주변과의 연결감을 고려합니다.'],
-      ['cover', 'VISUAL COVER', '탈모 커버', '두피 노출이 신경 쓰이는 범위를 주변 모발과 자연스럽게 어우러져 보이도록 시각적으로 보완하는 작업입니다.', '두피가 드러나는 범위와 모발 상태를 확인하고, 필요한 범위부터 상담합니다.', '과하게 넓히지 않고 현재 모습과 어우러지는 범위를 기준으로 디자인합니다.'],
-      ['women', "WOMEN'S HAIRLINE", '여성 헤어라인', '이마 라인과 가르마 주변을 부드럽게 정돈해 보이도록 하는 작업입니다.', '이마 형태와 잔머리의 흐름, 평소 스타일링을 확인합니다.', '또렷한 선보다 부드러운 가장자리를 우선해 톤과 농도를 조율합니다.'],
-      ['spot', 'SPOT COVER', '원형탈모 부위 커버', '두피 노출이 두드러지는 부위를 주변 모발과의 연결감을 고려해 시각적으로 커버하는 작업입니다.', '부위의 크기와 현재 상태를 확인하고, 상담이 가능한 시기인지 함께 살핍니다.', '주변 모발 밀도와 톤에 맞춰 경계가 드러나지 않도록 조율합니다.']
-    ];
-    const PG = {
-      hairline: ['assets/cases-sm/hair/z07.jpg','assets/cases-sm/hair/z14.jpg','assets/cases-sm/hair/z13.jpg'], 'm-line': ['assets/cases-sm/hair/z12.jpg','assets/cases-sm/hair/z13.jpg','assets/cases-sm/hair/z14.jpg'], crown: ['assets/cases-sm/crown/z01.jpg','assets/cases-sm/crown/z02.jpg','assets/cases-sm/crown/z04.jpg'], part: ['assets/cases/part-01.jpg','assets/cases/part-02.jpg','assets/cases/part-03.jpg'],
-      shaved: ['assets/cases-sm/shaved/1790228230564.jpg','assets/cases-sm/shaved/1790228230707.jpg','assets/cases-sm/shaved/1790228230835.jpg'],
-      scar: ['assets/cases-sm/scar/z01.jpg','assets/cases-sm/scar/z02.jpg','assets/cases-sm/scar/z04.jpg'], cover: ['assets/cases-sm/crown/z05.jpg', 'assets/cases/part-05.jpg', 'assets/cases-sm/crown/z06.jpg'], women: ['assets/cases-sm/hair/z00.png', 'assets/cases-sm/hair/z15.jpg', 'assets/cases-sm/hair/z16.jpg'], spot: ['assets/cases-sm/scar/z03.jpg','assets/cases-sm/scar/z05.jpg','assets/cases-sm/scar/z06.jpg']
-    };
-    return {
+    const __D = (window.__CMS || {})["program"] || {};
+    const __C = window.__CMS || {}; const CT = (__C["program"] || {}).t || {}; const CS = Object.assign({}, __C.site || {}, { tel: 'tel:' + String((__C.site || {}).phone || '').replace(/[^0-9]/g, '') });
+    const P = (__D.programs || []);
+    return { CT, CS,
       adminNotes: false,
-      programs: P.map((p, i) => ({
-        slug: p[0], hasG: !!PG[p[0]], g0: (PG[p[0]] || [])[0], g1: (PG[p[0]] || [])[1], g2: (PG[p[0]] || [])[2], en: p[1], ko: p[2], what: p[3], consult: p[4], design: p[5],
+      programs: P.map((p, i) => { const b = 'program.programs.' + i; const g = p.images || []; return {
+        slug: p.slug, hasG: g.length > 0, g0: g[0], g1: g[1], g2: g[2], en: p.en, ko: p.ko, what: p.what, consult: p.consult, design: p.design,
+        p_en: b + '.en', p_ko: b + '.ko', p_what: b + '.what', p_consult: b + '.consult', p_design: b + '.design', p_g0: b + '.images.0', p_g1: b + '.images.1', p_g2: b + '.images.2',
         n: String(i + 1).padStart(2, '0'), bg: i % 2 ? '#F6F6F4' : '#FFFFFF',
-        jump: e => { const el = document.getElementById(p[0]); if (el) { e.preventDefault(); window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 140, behavior: 'smooth' }); } }
-      }))
+        jump: e => { const el = document.getElementById(p.slug); if (el) { e.preventDefault(); window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 140, behavior: 'smooth' }); } }
+      }; })
     };
   }
 }

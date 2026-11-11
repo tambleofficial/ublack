@@ -22,10 +22,13 @@
   // ---------- 스타일 ----------
   const st = document.createElement('style');
   st.textContent = `
-  [data-cms]{outline:1.5px dashed rgba(240,90,36,.6)!important;outline-offset:4px;cursor:text!important;border-radius:2px;min-width:20px;min-height:1em}
-  [data-cms]:hover{outline:2px solid #F05A24!important;background:rgba(240,90,36,.07)}
-  [data-cms]:focus{outline:2px solid #F05A24!important;background:rgba(240,90,36,.1)}
-  [data-cms].cms-changed{outline-color:#1a8f4e!important}
+  [data-cms]{cursor:text!important;outline-offset:4px}
+  html.cms-show [data-cms]{outline:1.5px dashed rgba(240,90,36,.6)}
+  [data-cms]:hover,[data-cms]:focus{outline:2px solid #F05A24!important}
+  [data-cms].cms-changed{outline:2px solid #1a8f4e!important}
+  [data-cms=""],[data-cms="undefined"]{outline:none!important;cursor:auto!important}
+  #cms-bar select{all:unset;cursor:pointer;background:#2a2a2a;color:#fff;padding:9px 30px 9px 14px;border-radius:999px;font-size:14px;font-weight:600;background-image:linear-gradient(45deg,transparent 50%,#bbb 50%),linear-gradient(135deg,#bbb 50%,transparent 50%);background-position:calc(100% - 16px) 52%,calc(100% - 11px) 52%;background-size:5px 5px;background-repeat:no-repeat}
+  #cms-bar label{display:flex;align-items:center;gap:6px;color:#bbb;font-size:13px;cursor:pointer}
   #cms-imgbadge{position:fixed;z-index:2147483646;pointer-events:none;display:none;align-items:center;justify-content:center;border:3px solid #F05A24;background:rgba(240,90,36,.12);border-radius:4px;box-sizing:border-box}
   #cms-imgbadge span{background:#F05A24;color:#fff;font:600 14px/1 Pretendard,-apple-system,sans-serif;padding:10px 14px;border-radius:999px;box-shadow:0 4px 14px rgba(0,0,0,.25)}
   #cms-bar{position:fixed;left:50%;bottom:18px;transform:translateX(-50%);z-index:2147483647;display:flex;align-items:center;gap:10px;flex-wrap:wrap;justify-content:center;
@@ -41,7 +44,10 @@
   // ---------- 하단 도구 막대 ----------
   const bar = document.createElement('div');
   bar.id = 'cms-bar';
-  bar.innerHTML = '<span><b>편집 모드</b> <span id="cms-help">· 글자는 눌러서 고치고, 사진은 눌러서 바꾸세요</span></span><span id="cms-count"></span>' +
+  const PAGES = [['home', '홈'], ['brand', '브랜드'], ['program', '시술 안내'], ['cases', '시술 사례'], ['academy', '아카데미'], ['reviews', '고객 후기'], ['contact', '상담 · 오시는 길']];
+  const cur = (window.__CMS_EDIT && window.__CMS_EDIT.page) || 'home';
+  bar.innerHTML = '<span><b>편집 모드</b></span><select id="cms-page" title="편집할 페이지">' + PAGES.map(([k, l]) => '<option value="' + k + '"' + (k === cur ? ' selected' : '') + '>' + l + '</option>').join('') + '</select>' +
+    '<span id="cms-help">글자는 눌러서 고치고, 사진은 눌러서 바꾸세요</span><label><input type="checkbox" id="cms-show"> 편집 가능한 곳 보기</label><span id="cms-count"></span>' +
     '<button class="g" id="cms-undo">되돌리기</button><button class="s" id="cms-save" disabled>저장하기</button><button class="g" id="cms-exit">나가기</button>';
   document.body.appendChild(bar);
   const $ = (id) => document.getElementById(id);
@@ -50,14 +56,19 @@
     $('cms-count').textContent = msg || (n ? `· 바뀐 곳 있음` : '');
     $('cms-save').disabled = saving || !n;
   }
+  function goPage(k) { if (dirty.size && !confirm('저장하지 않은 수정 내용이 있어요. 그래도 이동할까요?')) { $('cms-page').value = cur; return; } dirty.clear(); location.href = '/edit' + (k === 'home' ? '' : '?page=' + k); }
+  $('cms-page').onchange = (e) => goPage(e.target.value);
+  $('cms-show').onchange = (e) => document.documentElement.classList.toggle('cms-show', e.target.checked);
   $('cms-undo').onclick = () => { if (!dirty.size || confirm('저장하지 않은 수정 내용을 모두 되돌릴까요?')) { dirty.clear(); location.reload(); } };
   $('cms-exit').onclick = () => { if (!dirty.size || confirm('저장하지 않은 수정 내용이 있어요. 그래도 나갈까요?')) { dirty.clear(); location.href = '/'; } };
   window.addEventListener('beforeunload', (e) => { if (dirty.size && !saving) { e.preventDefault(); e.returnValue = ''; } });
 
   // ---------- 글자 편집 (누른 글자만 그때 편집 가능하게 → 페이지가 가벼움) ----------
+  const validPath = (p) => !!p && p.includes('.') && !p.includes('undefined');
   function prep(el) {
     if (el.__cms) return;
     el.__cms = 1;
+    if (!validPath(el.getAttribute('data-cms'))) return;
     el.setAttribute('contenteditable', 'plaintext-only');
     el.setAttribute('spellcheck', 'false');
     el.addEventListener('focus', () => { el.__orig = el.innerText; });
@@ -79,7 +90,11 @@
   document.addEventListener('click', (e) => {
     if (e.target.closest('#cms-bar')) return;
     const a = e.target.closest('a[href]');
-    if (a) e.preventDefault();
+    if (!a) return;
+    e.preventDefault();
+    if (e.target.closest('[data-cms]')) return;
+    const m = (a.getAttribute('href') || '').match(/^\/(brand|program|cases|academy|reviews|contact)?\/?(#.*)?$/);
+    if (m) goPage(m[1] || 'home');
   }, true);
 
   // ---------- 사진 편집 ----------
@@ -91,11 +106,12 @@
   function imgFrom(target) {
     if (!target || !target.closest) return null;
     if (target.closest('#cms-bar') || target.closest('[data-cms]')) return null;
-    if (target.tagName === 'IMG' && target.hasAttribute('data-cms-img')) return target;
+    const ok = (im) => { const p = im.getAttribute('data-cms-img'); return p && p.includes('.') && !p.includes('undefined'); };
+    if (target.tagName === 'IMG' && target.hasAttribute('data-cms-img')) return ok(target) ? target : null;
     const box = target.closest('[data-reveal-img]') || target.parentElement;
     if (!box) return null;
     const imgs = box.querySelectorAll('img[data-cms-img]');
-    for (let i = imgs.length - 1; i >= 0; i--) { const p = imgs[i].parentElement; if (!p || p.style.opacity !== '0') return imgs[i]; }
+    for (let i = imgs.length - 1; i >= 0; i--) { const p = imgs[i].parentElement; if ((!p || p.style.opacity !== '0') && ok(imgs[i])) return imgs[i]; }
     return null;
   }
   let hoverImg = null, mmTarget = null, mmQueued = false;
