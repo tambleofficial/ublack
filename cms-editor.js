@@ -54,7 +54,7 @@
   $('cms-exit').onclick = () => { if (!dirty.size || confirm('저장하지 않은 수정 내용이 있어요. 그래도 나갈까요?')) { dirty.clear(); location.href = '/'; } };
   window.addEventListener('beforeunload', (e) => { if (dirty.size && !saving) { e.preventDefault(); e.returnValue = ''; } });
 
-  // ---------- 글자 편집 ----------
+  // ---------- 글자 편집 (누른 글자만 그때 편집 가능하게 → 페이지가 가벼움) ----------
   function prep(el) {
     if (el.__cms) return;
     el.__cms = 1;
@@ -69,9 +69,11 @@
       if (v !== (getAt(p) ?? '')) { setAt(p, v); el.classList.add('cms-changed'); }
     });
   }
-  const scan = () => document.querySelectorAll('[data-cms]').forEach(prep);
-  new MutationObserver(() => { clearTimeout(scan.t); scan.t = setTimeout(scan, 80); }).observe(document.body, { childList: true, subtree: true });
-  setTimeout(scan, 300);
+  document.addEventListener('mousedown', (e) => {
+    const el = e.target.closest && e.target.closest('[data-cms]');
+    if (el && !el.__cms) prep(el);
+  }, true);
+  document.addEventListener('focusin', (e) => { const el = e.target.closest && e.target.closest('[data-cms]'); if (el && !el.__cms) prep(el); });
 
   // 편집 중에는 링크 이동 막기 (수정 내용이 사라지지 않게)
   document.addEventListener('click', (e) => {
@@ -85,26 +87,33 @@
   badge.id = 'cms-imgbadge';
   badge.innerHTML = '<span>📷 사진 바꾸기</span>';
   document.body.appendChild(badge);
-  const visible = (el) => { for (let n = el; n && n !== document.body; n = n.parentElement) { const cs = getComputedStyle(n); if (cs.opacity === '0' || cs.visibility === 'hidden' || cs.display === 'none') return false; } return true; };
-  function imgAt(x, y) {
-    return document.elementsFromPoint(x, y).find((el) => el.tagName === 'IMG' && el.hasAttribute('data-cms-img') && visible(el)) || null;
+  // 마우스 아래 사진 찾기: 무거운 화면 전체 검사 대신, 마우스가 올라간 요소에서 바로 찾음
+  function imgFrom(target) {
+    if (!target || !target.closest) return null;
+    if (target.closest('#cms-bar') || target.closest('[data-cms]')) return null;
+    if (target.tagName === 'IMG' && target.hasAttribute('data-cms-img')) return target;
+    const box = target.closest('[data-reveal-img]') || target.parentElement;
+    if (!box) return null;
+    const imgs = box.querySelectorAll('img[data-cms-img]');
+    for (let i = imgs.length - 1; i >= 0; i--) { const p = imgs[i].parentElement; if (!p || p.style.opacity !== '0') return imgs[i]; }
+    return null;
   }
-  let hoverImg = null;
-  document.addEventListener('mousemove', (e) => {
-    if (e.target.closest && (e.target.closest('#cms-bar') || e.target.closest('[data-cms]'))) { hoverImg = null; badge.style.display = 'none'; return; }
-    const img = imgAt(e.clientX, e.clientY);
+  let hoverImg = null, mmTarget = null, mmQueued = false;
+  function showBadge() {
+    mmQueued = false;
+    const img = imgFrom(mmTarget);
+    if (img === hoverImg) return;
     hoverImg = img;
     if (!img) { badge.style.display = 'none'; return; }
-    const r = img.parentElement.getBoundingClientRect();
-    const b = img.getBoundingClientRect();
-    const L = Math.max(r.left, b.left), T = Math.max(r.top, b.top), R = Math.min(r.right, b.right), B = Math.min(r.bottom, b.bottom);
-    Object.assign(badge.style, { display: 'flex', left: L + 'px', top: T + 'px', width: Math.max(0, R - L) + 'px', height: Math.max(0, B - T) + 'px' });
-  }, { passive: true });
-  window.addEventListener('scroll', () => { badge.style.display = 'none'; }, { passive: true });
+    const b = (img.parentElement || img).getBoundingClientRect();
+    Object.assign(badge.style, { display: 'flex', left: b.left + 'px', top: b.top + 'px', width: b.width + 'px', height: b.height + 'px' });
+  }
+  document.addEventListener('mouseover', (e) => { mmTarget = e.target; if (!mmQueued) { mmQueued = true; requestAnimationFrame(showBadge); } }, { passive: true });
+  window.addEventListener('scroll', () => { if (hoverImg) { hoverImg = null; badge.style.display = 'none'; } }, { passive: true });
 
   document.addEventListener('click', (e) => {
     if (e.target.closest('#cms-bar') || e.target.closest('[data-cms]')) return;
-    const img = imgAt(e.clientX, e.clientY);
+    const img = imgFrom(e.target);
     if (!img) return;
     e.preventDefault(); e.stopPropagation();
     pickImage(img);
