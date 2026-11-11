@@ -92,7 +92,7 @@
     const a = e.target.closest('a[href]');
     if (!a) return;
     e.preventDefault();
-    if (e.target.closest('[data-cms]')) return;
+    if (e.target.closest('[data-cms]') || imgFrom(e.target)) return; // 글자 편집·사진 교체가 링크 이동보다 우선
     const m = (a.getAttribute('href') || '').match(/^\/(brand|program|cases|academy|reviews|contact)?\/?(#.*)?$/);
     if (m) goPage(m[1] || 'home');
   }, true);
