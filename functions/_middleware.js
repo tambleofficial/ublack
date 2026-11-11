@@ -6,7 +6,7 @@ export async function onRequest(ctx) {
   const res = await ctx.next();
   const url = new URL(ctx.request.url);
   const type = res.headers.get('content-type') || '';
-  if (!type.includes('text/html') || url.pathname.endsWith('.dc.html')) return res;
+  if (!type.includes('text/html') || url.pathname.endsWith('.dc.html') || url.pathname.startsWith('/edit') || url.pathname.startsWith('/api/')) return res;
   const data = {};
   await Promise.all(FILES.map(async (name) => {
     try {
