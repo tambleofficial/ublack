@@ -3,6 +3,7 @@
 // - 로그인 후: 실제 홈페이지 화면 + 편집 도구(/cms-editor.js)
 // 콘텐츠는 배포된 파일에서 바로 읽어요 (깃허브를 거치지 않아 빠름). 저장 후에는 편집 도구가 배포 완료를 기다렸다가 새로고침해요.
 // 편집할 페이지: /edit?page=brand 처럼 지정 (없으면 홈)
+import { fill } from './_middleware.js';
 const PAGES = { home: ['/', ['home', 'reviews']], brand: ['/brand', ['brand']], program: ['/program', ['program']], cases: ['/cases', ['cases']], academy: ['/academy', ['academy']], reviews: ['/reviews', ['reviewsPage', 'reviews']], contact: ['/contact', ['contact']] };
 const REPO = 'tambleofficial/ublack';
 
@@ -60,6 +61,7 @@ export async function onRequestGet({ request, env }) {
 
   const page = await env.ASSETS.fetch(new URL(pagePath, request.url));
   let html = await page.text();
+  html = fill(html, pageKey === 'home' ? '' : pagePath.slice(1), data); // 자리표시를 실제 값으로 미리 채움 (사진을 바로 불러와 부드럽게)
   const json = JSON.stringify(data).replace(/</g, '\\u003c');
   html = html.replace(/<head>/i, (m) => m + '<meta name="robots" content="noindex"><script>window.__CMS=' + json + ';window.__CMS_EDIT={branch:' + JSON.stringify(branch) + ',page:' + JSON.stringify(pageKey) + '};</script>');
   html = html.replace(/<\/body>/i, '<script src="/cms-editor.js?v=4"></script></body>');
