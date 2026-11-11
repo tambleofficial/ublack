@@ -10,6 +10,7 @@
     "/*.dc.html",
     "/sitemap.xml",
     "/robots.txt",
-    "/rss.xml"
+    "/rss.xml",
+    "/cms-editor.js"
   ]
 }

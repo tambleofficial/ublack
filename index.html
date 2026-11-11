@@ -24,15 +24,15 @@
 
 <!-- 01 HERO -->
 <section data-theme="dark" data-screen-label="01 Hero" style="background:#080808;color:#fff;min-height:100svh;padding:clamp(112px,16vw,160px) clamp(20px,6vw,96px) clamp(40px,6vw,64px);display:flex;flex-direction:column;justify-content:space-between;gap:64px">
-  <div data-h="" style="font-size:12px;letter-spacing:.2em;color:#B7B7B7">{{ hero.label }}</div>
+  <div data-cms="home.hero.label" data-h="" style="font-size:12px;letter-spacing:.2em;color:#B7B7B7">{{ hero.label }}</div>
   <div style="max-width:1320px;width:100%;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:48px">
     <div data-h="">
-      <h1 style="margin:0;font-size:clamp(38px,5.6vw,88px);line-height:1.22;font-weight:500;letter-spacing:-.035em;white-space:pre-line">{{ hero.title }}</h1>
+      <h1 data-cms="home.hero.title" style="margin:0;font-size:clamp(38px,5.6vw,88px);line-height:1.22;font-weight:500;letter-spacing:-.035em;white-space:pre-line">{{ hero.title }}</h1>
     </div>
     <img data-h="" src="assets/symbol-white.png" alt="U.BLACK" style="width:clamp(90px,10vw,150px);height:auto">
   </div>
   <div data-h="" style="max-width:1320px;width:100%;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-between;gap:24px;font-size:17px;line-height:1.8;color:#B7B7B7;border-top:1px solid #2a2a2a;padding-top:28px">
-    <span>{{ hero.left }}</span><span style="max-width:460px">{{ hero.text }}</span>
+    <span data-cms="home.hero.left">{{ hero.left }}</span><span data-cms="home.hero.text" style="max-width:460px">{{ hero.text }}</span>
   </div>
 </section>
 
@@ -41,18 +41,18 @@
 <section data-theme="light" data-screen-label="07 Director" style="background:#F6F6F4;padding:clamp(96px,11vw,160px) clamp(20px,5vw,80px)">
   <div style="max-width:1320px;margin:0 auto;display:flex;flex-wrap:wrap;gap:56px clamp(40px,6vw,110px);align-items:flex-start">
     <div data-reveal="" data-sticky="" style="flex:1 1 380px;max-width:540px;position:sticky;top:110px">
-      <div data-reveal-img="" style="aspect-ratio:4/5;overflow:hidden;background:#777"><img src="{{ director.photo }}" alt="유블랙 대표원장 프로필 사진" style="width:100%;height:100%;object-fit:cover;object-position:50% 30%;display:block"></div>
-      <div style="display:flex;justify-content:space-between;margin-top:16px;font-size:12px;letter-spacing:.18em;font-weight:500"><span>DIRECTOR</span><span style="color:#666">{{ director.name }}</span></div>
+      <div data-reveal-img="" style="aspect-ratio:4/5;overflow:hidden;background:#777"><img src="{{ director.photo }}" data-cms-img="home.director.photo" alt="유블랙 대표원장 프로필 사진" style="width:100%;height:100%;object-fit:cover;object-position:50% 30%;display:block"></div>
+      <div style="display:flex;justify-content:space-between;margin-top:16px;font-size:12px;letter-spacing:.18em;font-weight:500"><span>DIRECTOR</span><span data-cms="home.director.name" style="color:#666">{{ director.name }}</span></div>
     </div>
     <div style="flex:1 1 420px;min-width:0">
       <div data-reveal="" style="font-size:12px;letter-spacing:.2em;color:#666;margin-bottom:28px">DIRECTOR</div>
-      <h2 data-reveal="" style="margin:0;font-size:clamp(30px,3.6vw,54px);line-height:1.38;font-weight:500;letter-spacing:-.03em;white-space:pre-line">{{ director.title }}</h2>
+      <h2 data-cms="home.director.title" data-reveal="" style="margin:0;font-size:clamp(30px,3.6vw,54px);line-height:1.38;font-weight:500;letter-spacing:-.03em;white-space:pre-line">{{ director.title }}</h2>
       <div style="margin-top:56px;display:flex;flex-direction:column;gap:24px;font-size:clamp(17px,1.3vw,19px);line-height:1.9;color:#333;max-width:520px">
-        <sc-for list="{{ dirParas }}" as="d" hint-placeholder-count="3"><p data-reveal="" style="margin:0;white-space:pre-line">{{ d.t }}</p></sc-for>
+        <sc-for list="{{ dirParas }}" as="d" hint-placeholder-count="3"><p data-cms="{{ d.p_t }}" data-reveal="" style="margin:0;white-space:pre-line">{{ d.t }}</p></sc-for>
       </div>
       <div data-reveal="" style="margin-top:64px;padding-top:36px;border-top:1px solid #B7B7B7;max-width:520px">
-        <div style="font-size:12px;letter-spacing:.2em;font-weight:600;margin-bottom:16px">{{ director.note_label }}</div>
-        <p style="margin:0;font-size:17px;line-height:1.85;color:#333">{{ director.note_text }}</p>
+        <div data-cms="home.director.note_label" style="font-size:12px;letter-spacing:.2em;font-weight:600;margin-bottom:16px">{{ director.note_label }}</div>
+        <p data-cms="home.director.note_text" style="margin:0;font-size:17px;line-height:1.85;color:#333">{{ director.note_text }}</p>
       </div>
       <a data-reveal="" href="/brand" style="display:inline-flex;margin-top:44px;font-size:13px;letter-spacing:.16em;font-weight:600;border-bottom:1px solid currentColor;padding-bottom:6px">MORE →</a>
     </div>
@@ -66,8 +66,8 @@
   <div style="max-width:1320px;margin:0 auto;display:flex;flex-wrap:wrap;gap:40px 72px">
     <div data-reveal="" style="flex:1 1 240px;font-size:12px;letter-spacing:.2em;font-weight:500;line-height:1.9">U.BLACK<br><span style="color:#666">SCALP DESIGN PHILOSOPHY</span></div>
     <div style="flex:2 1 460px;min-width:0">
-      <h2 data-reveal="" style="margin:0;font-size:clamp(32px,4.4vw,64px);line-height:1.32;font-weight:500;letter-spacing:-.03em;white-space:pre-line">{{ statement.title }}</h2>
-      <p data-reveal="" style="margin:44px 0 0;max-width:560px;font-size:clamp(17px,1.35vw,19px);line-height:1.9;color:#333">{{ statement.text }}</p>
+      <h2 data-cms="home.statement.title" data-reveal="" style="margin:0;font-size:clamp(32px,4.4vw,64px);line-height:1.32;font-weight:500;letter-spacing:-.03em;white-space:pre-line">{{ statement.title }}</h2>
+      <p data-cms="home.statement.text" data-reveal="" style="margin:44px 0 0;max-width:560px;font-size:clamp(17px,1.35vw,19px);line-height:1.9;color:#333">{{ statement.text }}</p>
       <a data-reveal="" href="/brand" style="display:inline-flex;margin-top:40px;font-size:13px;letter-spacing:.16em;font-weight:600;border-bottom:1px solid currentColor;padding-bottom:6px">MORE →</a>
     </div>
   </div>
@@ -81,8 +81,8 @@
     <div data-reveal="" style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:24px;margin-bottom:56px">
       <div>
         <div style="font-size:12px;letter-spacing:.2em;color:#666;margin-bottom:18px">SELECTED CASES</div>
-        <h2 style="margin:0;font-size:clamp(30px,3.4vw,50px);font-weight:500;letter-spacing:-.025em">{{ casesSec.title }}</h2>
-        <p style="margin:18px 0 0;max-width:520px;font-size:17px;line-height:1.8;color:#444">{{ casesSec.desc }}</p>
+        <h2 data-cms="home.cases.title" style="margin:0;font-size:clamp(30px,3.4vw,50px);font-weight:500;letter-spacing:-.025em">{{ casesSec.title }}</h2>
+        <p data-cms="home.cases.desc" style="margin:18px 0 0;max-width:520px;font-size:17px;line-height:1.8;color:#444">{{ casesSec.desc }}</p>
       </div>
       <a href="/cases" style="padding:16px 24px;border:1px solid #080808;font-size:13px;letter-spacing:.14em;font-weight:600">VIEW CASES →</a>
     </div>
@@ -90,9 +90,9 @@
       <sc-for list="{{ selected }}" as="c" hint-placeholder-count="3">
         <a href="/cases" data-reveal="" data-cursor="VIEW CASE" style="display:block;min-width:0">
           <div data-reveal-img="" style="position:relative;overflow:hidden;aspect-ratio:4/5">
-            <img src="{{ c.src }}" alt="{{ c.area }} 작업 사례" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;background:#E8E8E8;transition:transform .5s cubic-bezier(.2,.7,.2,1),filter .5s cubic-bezier(.2,.7,.2,1)" style-hover="transform:scale(1.02);filter:brightness(.9)">
+            <img src="{{ c.src }}" data-cms-img="{{ c.p_src }}" alt="{{ c.area }} 작업 사례" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;background:#E8E8E8;transition:transform .5s cubic-bezier(.2,.7,.2,1),filter .5s cubic-bezier(.2,.7,.2,1)" style-hover="transform:scale(1.02);filter:brightness(.9)">
           </div>
-          <div style="display:flex;justify-content:space-between;gap:16px;margin-top:16px;font-size:12px;letter-spacing:.16em;font-weight:500"><span>{{ c.id }}</span><span style="color:#666">{{ c.area }}</span></div>
+          <div style="display:flex;justify-content:space-between;gap:16px;margin-top:16px;font-size:12px;letter-spacing:.16em;font-weight:500"><span data-cms="{{ c.p_id }}">{{ c.id }}</span><span data-cms="{{ c.p_area }}" style="color:#666">{{ c.area }}</span></div>
         </a>
       </sc-for>
     </div>
@@ -106,15 +106,15 @@
   <div style="max-width:1320px;margin:0 auto;display:flex;flex-wrap:wrap;gap:56px 72px">
     <div data-reveal="" data-sticky="" style="flex:1 1 300px;align-self:flex-start;position:sticky;top:120px">
       <div style="font-size:12px;letter-spacing:.2em;color:#B7B7B7;margin-bottom:24px">WHY U.BLACK</div>
-      <h2 style="margin:0;font-size:clamp(30px,3.4vw,50px);line-height:1.35;font-weight:500;letter-spacing:-.025em;white-space:pre-line">{{ whySec.title }}</h2>
+      <h2 data-cms="home.why.title" style="margin:0;font-size:clamp(30px,3.4vw,50px);line-height:1.35;font-weight:500;letter-spacing:-.025em;white-space:pre-line">{{ whySec.title }}</h2>
     </div>
     <div style="flex:2 1 460px;min-width:0;border-top:1px solid #2a2a2a">
       <sc-for list="{{ why }}" as="w" hint-placeholder-count="4">
         <div data-reveal="" style="display:grid;grid-template-columns:64px minmax(0,1fr);gap:8px 24px;padding:40px 0;border-bottom:1px solid #2a2a2a">
           <span style="font-family:'IBM Plex Mono',monospace;font-size:13px;color:#777;padding-top:6px">{{ w.n }}</span>
           <div style="display:flex;flex-wrap:wrap;gap:16px 48px;align-items:baseline">
-            <h3 style="margin:0;flex:1 1 220px;font-size:clamp(22px,2.2vw,30px);font-weight:500;letter-spacing:.04em">{{ w.t }}</h3>
-            <p style="margin:0;flex:1 1 300px;font-size:17px;line-height:1.85;color:#B7B7B7">{{ w.d }}</p>
+            <h3 data-cms="{{ w.p_t }}" style="margin:0;flex:1 1 220px;font-size:clamp(22px,2.2vw,30px);font-weight:500;letter-spacing:.04em">{{ w.t }}</h3>
+            <p data-cms="{{ w.p_d }}" style="margin:0;flex:1 1 300px;font-size:17px;line-height:1.85;color:#B7B7B7">{{ w.d }}</p>
           </div>
         </div>
       </sc-for>
@@ -128,7 +128,7 @@
 <section data-theme="light" data-screen-label="05 Program Index" style="background:#FFFFFF;padding:clamp(96px,11vw,160px) clamp(20px,5vw,80px)">
   <div style="max-width:1320px;margin:0 auto">
     <div data-reveal="" style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:24px;margin-bottom:56px">
-      <div><div style="font-size:12px;letter-spacing:.2em;color:#666;margin-bottom:18px">PROGRAM INDEX</div><h2 style="margin:0;font-size:clamp(30px,3.4vw,50px);font-weight:500;letter-spacing:-.025em">{{ progSec.title }}</h2></div>
+      <div><div style="font-size:12px;letter-spacing:.2em;color:#666;margin-bottom:18px">PROGRAM INDEX</div><h2 data-cms="home.programs.title" style="margin:0;font-size:clamp(30px,3.4vw,50px);font-weight:500;letter-spacing:-.025em">{{ progSec.title }}</h2></div>
       <a href="/program" style="font-size:13px;letter-spacing:.16em;font-weight:600;border-bottom:1px solid currentColor;padding-bottom:6px">MORE →</a>
     </div>
     <div style="display:flex;flex-wrap:wrap;gap:48px 72px;align-items:flex-start">
@@ -136,8 +136,8 @@
         <sc-for list="{{ programs }}" as="p" hint-placeholder-count="11">
           <li style="border-bottom:1px solid #E8E8E8">
             <a href="{{ p.href }}" onMouseEnter="{{ p.enter }}" onFocus="{{ p.enter }}" style="display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:16px;padding:18px 0;color:{{ p.color }};transition:color .4s cubic-bezier(.2,.7,.2,1)">
-              <span style="font-size:clamp(18px,1.6vw,22px);font-weight:500">{{ p.ko }}</span>
-              <span style="font-size:11px;letter-spacing:.14em;text-align:right">{{ p.en }}</span>
+              <span data-cms="{{ p.p_ko }}" style="font-size:clamp(18px,1.6vw,22px);font-weight:500">{{ p.ko }}</span>
+              <span data-cms="{{ p.p_en }}" style="font-size:11px;letter-spacing:.14em;text-align:right">{{ p.en }}</span>
             </a>
           </li>
         </sc-for>
@@ -145,12 +145,12 @@
       <div data-sticky="" style="flex:1 1 420px;position:sticky;top:110px;min-width:0">
         <div data-reveal-img="" style="position:relative;aspect-ratio:4/5;overflow:hidden;background:#E8E8E8">
           <sc-for list="{{ programs }}" as="p" hint-placeholder-count="1">
-            <div style="position:absolute;inset:0;opacity:{{ p.imgOp }};transition:opacity .5s cubic-bezier(.2,.7,.2,1);background:#E8E8E8">
-              <img src="{{ p.src }}" alt="{{ p.ko }}" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block">
+            <div style="position:absolute;inset:0;opacity:{{ p.imgOp }};pointer-events:{{ p.pe }};transition:opacity .5s cubic-bezier(.2,.7,.2,1);background:#E8E8E8">
+              <img src="{{ p.src }}" data-cms-img="{{ p.p_src }}" alt="{{ p.ko }}" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block">
             </div>
           </sc-for>
         </div>
-        <p style="margin:18px 0 0;font-size:16px;line-height:1.75;color:#444">{{ progDesc }}</p>
+        <p style="margin:18px 0 0;font-size:16px;line-height:1.75;color:#444" data-cms="{{ progDescPath }}">{{ progDesc }}</p>
       </div>
     </div>
   </div>
@@ -163,15 +163,15 @@
   <div style="max-width:1320px;margin:0 auto">
     <div data-reveal="" style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:32px;align-items:flex-end;margin-bottom:56px">
       <div><div style="font-size:12px;letter-spacing:.2em;color:#B7B7B7;margin-bottom:18px">RECORD / EXPERIENCE</div>
-      <h2 style="margin:0;font-size:clamp(30px,3.4vw,50px);font-weight:500;letter-spacing:-.025em">{{ recSec.title }}</h2></div>
-      <p style="margin:0;max-width:420px;font-size:17px;line-height:1.8;color:#B7B7B7">{{ recSec.desc }}</p>
+      <h2 data-cms="home.records.title" style="margin:0;font-size:clamp(30px,3.4vw,50px);font-weight:500;letter-spacing:-.025em">{{ recSec.title }}</h2></div>
+      <p data-cms="home.records.desc" style="margin:0;max-width:420px;font-size:17px;line-height:1.8;color:#B7B7B7">{{ recSec.desc }}</p>
     </div>
         <div style="border-top:1px solid #2a2a2a">
       <sc-for list="{{ records }}" as="r" hint-placeholder-count="5">
         <div data-reveal="" style="display:flex;flex-wrap:wrap;gap:16px 48px;padding:28px 0;border-bottom:1px solid #2a2a2a;align-items:center">
-          <div style="flex:0 1 220px;font-size:14px;letter-spacing:.2em;font-weight:500">{{ r.k }}</div>
-          <div style="flex:1 1 240px;font-size:17px;line-height:1.8;color:#B7B7B7">{{ r.v }}</div>
-          <div style="flex:0 0 80px;aspect-ratio:4/5;position:relative;overflow:hidden;background:#1B1B1B"><img src="{{ r.src }}" alt="" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block"></div>
+          <div data-cms="{{ r.p_k }}" style="flex:0 1 220px;font-size:14px;letter-spacing:.2em;font-weight:500">{{ r.k }}</div>
+          <div data-cms="{{ r.p_v }}" style="flex:1 1 240px;font-size:17px;line-height:1.8;color:#B7B7B7">{{ r.v }}</div>
+          <div style="flex:0 0 80px;aspect-ratio:4/5;position:relative;overflow:hidden;background:#1B1B1B"><img src="{{ r.src }}" data-cms-img="{{ r.p_src }}" alt="" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block"></div>
         </div>
       </sc-for>
     </div>
@@ -185,17 +185,17 @@
   <div style="max-width:1320px;margin:0 auto;display:flex;flex-wrap:wrap;gap:56px 96px;align-items:flex-start">
     <div data-reveal="" data-sticky="" style="flex:1 1 320px;position:sticky;top:120px">
       <div style="font-size:12px;letter-spacing:.2em;color:#666;margin-bottom:24px">PROCESS</div>
-      <h2 style="margin:0;font-size:clamp(30px,3.4vw,50px);line-height:1.35;font-weight:500;letter-spacing:-.025em;white-space:pre-line">{{ procSec.title }}</h2>
+      <h2 data-cms="home.process.title" style="margin:0;font-size:clamp(30px,3.4vw,50px);line-height:1.35;font-weight:500;letter-spacing:-.025em;white-space:pre-line">{{ procSec.title }}</h2>
       <div style="margin-top:48px;padding:28px;background:#F6F6F4">
         <div style="font-size:12px;letter-spacing:.2em;font-weight:600;margin-bottom:12px">COST</div>
-        <p style="margin:0;font-size:16px;line-height:1.85;color:#333">{{ procSec.cost }}</p>
+        <p data-cms="home.process.cost" style="margin:0;font-size:16px;line-height:1.85;color:#333">{{ procSec.cost }}</p>
       </div>
     </div>
     <ol style="flex:1.4 1 420px;list-style:none;margin:0;padding:0">
       <sc-for list="{{ process }}" as="s" hint-placeholder-count="6">
         <li data-step="" data-reveal="" style="display:grid;grid-template-columns:72px minmax(0,1fr);gap:24px;padding:36px 0;border-top:1px solid {{ s.line }};transition:border-color .5s cubic-bezier(.2,.7,.2,1)">
           <span style="font-family:'IBM Plex Mono',monospace;font-size:13px;color:{{ s.numColor }};padding-top:6px;transition:color .5s cubic-bezier(.2,.7,.2,1)">{{ s.n }}</span>
-          <div><h3 style="margin:0 0 12px;font-size:clamp(20px,1.8vw,26px);font-weight:500;letter-spacing:.06em;color:{{ s.titleColor }};transition:color .5s cubic-bezier(.2,.7,.2,1)">{{ s.t }}</h3><p style="margin:0;font-size:17px;line-height:1.85;color:#444">{{ s.d }}</p></div>
+          <div><h3 data-cms="{{ s.p_t }}" style="margin:0 0 12px;font-size:clamp(20px,1.8vw,26px);font-weight:500;letter-spacing:.06em;color:{{ s.titleColor }};transition:color .5s cubic-bezier(.2,.7,.2,1)">{{ s.t }}</h3><p data-cms="{{ s.p_d }}" style="margin:0;font-size:17px;line-height:1.85;color:#444">{{ s.d }}</p></div>
         </li>
       </sc-for>
     </ol>
@@ -208,7 +208,7 @@
 <section data-theme="light" data-screen-label="10 Case Study" style="background:#E8E8E8;padding:clamp(96px,11vw,160px) clamp(20px,5vw,80px)">
   <div style="max-width:1320px;margin:0 auto">
     <div data-reveal="" style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:24px;margin-bottom:64px">
-      <div><div style="font-size:12px;letter-spacing:.2em;color:#555;margin-bottom:18px">CASE STUDY</div><h2 style="margin:0;font-size:clamp(30px,3.4vw,50px);font-weight:500;letter-spacing:-.025em">{{ studySec.title }}</h2></div>
+      <div><div style="font-size:12px;letter-spacing:.2em;color:#555;margin-bottom:18px">CASE STUDY</div><h2 data-cms="home.studies.title" style="margin:0;font-size:clamp(30px,3.4vw,50px);font-weight:500;letter-spacing:-.025em">{{ studySec.title }}</h2></div>
       <a href="/cases" style="padding:16px 24px;border:1px solid #080808;font-size:13px;letter-spacing:.14em;font-weight:600">VIEW CASES →</a>
     </div>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:48px 24px">
@@ -216,15 +216,15 @@
         <article data-reveal="" style="display:flex;flex-direction:column;gap:28px;min-width:0">
           <a href="/cases" style="display:block">
             <div data-reveal-img="" style="position:relative;aspect-ratio:4/5;overflow:hidden">
-              <img src="{{ c.src }}" alt="{{ c.t }} 작업 사례" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;background:#DDDDDB;transition:transform .5s cubic-bezier(.2,.7,.2,1),filter .5s cubic-bezier(.2,.7,.2,1)" style-hover="transform:scale(1.02);filter:brightness(.9)">
+              <img src="{{ c.src }}" data-cms-img="{{ c.p_src }}" alt="{{ c.t }} 작업 사례" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;background:#DDDDDB;transition:transform .5s cubic-bezier(.2,.7,.2,1),filter .5s cubic-bezier(.2,.7,.2,1)" style-hover="transform:scale(1.02);filter:brightness(.9)">
             </div>
           </a>
           <div style="min-width:0;border-top:1px solid #080808;padding-top:20px">
             <div style="font-size:12px;letter-spacing:.16em;color:#555">{{ c.n }}</div>
-            <h3 style="margin:8px 0 24px;font-size:clamp(28px,3vw,42px);font-weight:500;letter-spacing:.02em">{{ c.t }}</h3>
+            <h3 data-cms="{{ c.p_t }}" style="margin:8px 0 24px;font-size:clamp(28px,3vw,42px);font-weight:500;letter-spacing:.02em">{{ c.t }}</h3>
             <dl style="margin:0;display:grid;grid-template-columns:88px minmax(0,1fr);gap:14px 12px;font-size:16.5px;line-height:1.75">
-              <dt style="font-size:13px;color:#555;padding-top:2px">고민</dt><dd style="margin:0">{{ c.worry }}</dd>
-              <dt style="font-size:13px;color:#555;padding-top:2px">디자인 방향</dt><dd style="margin:0">{{ c.dirTxt }}</dd>
+              <dt style="font-size:13px;color:#555;padding-top:2px">고민</dt><dd data-cms="{{ c.p_worry }}" style="margin:0">{{ c.worry }}</dd>
+              <dt style="font-size:13px;color:#555;padding-top:2px">디자인 방향</dt><dd data-cms="{{ c.p_dirTxt }}" style="margin:0">{{ c.dirTxt }}</dd>
             </dl>
           </div>
         </article>
@@ -240,7 +240,7 @@
   <div data-reveal="" style="max-width:1440px;margin:0 auto 48px;padding:0 clamp(20px,5vw,80px);display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:24px">
     <div>
       <div style="font-size:12px;letter-spacing:.2em;color:#666;margin-bottom:18px">CUSTOMER REVIEW</div>
-      <h2 style="margin:0;font-size:clamp(30px,3.4vw,50px);font-weight:500;letter-spacing:-.025em">{{ revSec.title }}</h2>
+      <h2 data-cms="home.reviews.title" style="margin:0;font-size:clamp(30px,3.4vw,50px);font-weight:500;letter-spacing:-.025em">{{ revSec.title }}</h2>
     </div>
     <a href="/reviews" style="font-size:13px;letter-spacing:.16em;font-weight:600;border-bottom:1px solid currentColor;padding-bottom:6px">MORE →</a>
   </div>
@@ -249,13 +249,13 @@
     <sc-for list="{{ reviews }}" as="r" hint-placeholder-count="4">
       <article style="flex:0 0 min(84vw,360px);scroll-snap-align:start;display:flex;flex-direction:column;user-select:none">
         <div style="position:relative;aspect-ratio:4/5;overflow:hidden;background:repeating-linear-gradient(135deg,#E8E8E8 0 10px,#E1E1DF 10px 20px)">
-          <img src="{{ r.img }}" alt="{{ r.alt }}" loading="lazy" draggable="false" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:{{ r.pos }};display:block">
+          <img src="{{ r.img }}" data-cms-img="{{ r.p_img }}" alt="{{ r.alt }}" loading="lazy" draggable="false" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:{{ r.pos }};display:block">
           <sc-if value="{{ r.video }}" hint-placeholder-val="{{ false }}">
             <span style="position:absolute;left:50%;top:50%;width:56px;height:56px;margin:-28px 0 0 -28px;border-radius:999px;background:#080808;color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px">▶</span>
           </sc-if>
         </div>
         <div style="display:flex;justify-content:space-between;align-items:center;margin-top:20px;font-size:12px;letter-spacing:.14em;color:#444"><span style="letter-spacing:.3em;color:#080808">★★★★★</span></div>
-        <p style="margin:14px 0 0;font-size:16.5px;line-height:1.75;color:#333;white-space:pre-line;display:-webkit-box;-webkit-line-clamp:7;-webkit-box-orient:vertical;overflow:hidden">{{ r.text }}</p>
+        <p data-cms="{{ r.p_text }}" style="margin:14px 0 0;font-size:16.5px;line-height:1.75;color:#333;white-space:pre-line;display:-webkit-box;-webkit-line-clamp:7;-webkit-box-orient:vertical;overflow:hidden">{{ r.text }}</p>
       </article>
     </sc-for>
     </div>
@@ -269,13 +269,13 @@
   <div style="max-width:1320px;margin:0 auto;display:flex;flex-wrap:wrap;gap:56px 96px;align-items:center">
     <div data-reveal="" style="flex:1 1 360px">
       <div style="font-size:12px;letter-spacing:.2em;color:#B7B7B7;margin-bottom:24px">ACADEMY</div>
-      <h2 style="margin:0;font-size:clamp(30px,3.4vw,50px);line-height:1.35;font-weight:500;letter-spacing:-.025em;white-space:pre-line">{{ academy.title }}</h2>
-      <p style="margin:28px 0 0;font-size:17px;line-height:1.85;color:#B7B7B7;max-width:420px">{{ academy.text }}</p>
+      <h2 data-cms="home.academy.title" style="margin:0;font-size:clamp(30px,3.4vw,50px);line-height:1.35;font-weight:500;letter-spacing:-.025em;white-space:pre-line">{{ academy.title }}</h2>
+      <p data-cms="home.academy.text" style="margin:28px 0 0;font-size:17px;line-height:1.85;color:#B7B7B7;max-width:420px">{{ academy.text }}</p>
       <a href="/academy" style="display:inline-flex;margin-top:40px;font-size:13px;letter-spacing:.16em;font-weight:600;border-bottom:1px solid currentColor;padding-bottom:6px">MORE →</a>
     </div>
     <div style="flex:1.2 1 420px;min-width:0;display:grid;grid-template-columns:1fr 1fr;gap:16px">
-      <div data-reveal-img="" style="aspect-ratio:4/5;overflow:hidden;position:relative;background:repeating-linear-gradient(135deg,#131313 0 12px,#1a1a1a 12px 24px)"><span style="position:absolute;left:12px;top:12px;font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:#8a8a8a">{{ academy.image1_label }}</span><img src="{{ academy.image1 }}" alt="{{ academy.image1_label }}" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;display:block;object-fit:cover"></div>
-      <div data-reveal-img="" style="aspect-ratio:4/5;overflow:hidden;position:relative;background:repeating-linear-gradient(135deg,#131313 0 12px,#1a1a1a 12px 24px)"><span style="position:absolute;left:12px;top:12px;font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:#8a8a8a">{{ academy.image2_label }}</span><img src="{{ academy.image2 }}" alt="{{ academy.image2_label }}" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;display:block;object-fit:cover"></div>
+      <div data-reveal-img="" style="aspect-ratio:4/5;overflow:hidden;position:relative;background:repeating-linear-gradient(135deg,#131313 0 12px,#1a1a1a 12px 24px)"><span data-cms="home.academy.image1_label" style="position:absolute;left:12px;top:12px;font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:#8a8a8a">{{ academy.image1_label }}</span><img src="{{ academy.image1 }}" data-cms-img="home.academy.image1" alt="{{ academy.image1_label }}" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;display:block;object-fit:cover"></div>
+      <div data-reveal-img="" style="aspect-ratio:4/5;overflow:hidden;position:relative;background:repeating-linear-gradient(135deg,#131313 0 12px,#1a1a1a 12px 24px)"><span data-cms="home.academy.image2_label" style="position:absolute;left:12px;top:12px;font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:#8a8a8a">{{ academy.image2_label }}</span><img src="{{ academy.image2 }}" data-cms-img="home.academy.image2" alt="{{ academy.image2_label }}" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;display:block;object-fit:cover"></div>
     </div>
   </div>
 </section>
@@ -288,17 +288,17 @@
     <div data-reveal="" style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:24px;margin-bottom:48px">
       <div>
         <div style="font-size:12px;letter-spacing:.2em;color:#666;margin-bottom:18px">JOURNAL</div>
-        <h2 style="margin:0;font-size:clamp(30px,3.4vw,50px);font-weight:500;letter-spacing:-.025em">{{ journalSec.title }}</h2>
-        <p style="margin:18px 0 0;font-size:17px;line-height:1.8;color:#444">{{ journalSec.desc }}</p>
+        <h2 data-cms="home.journal.title" style="margin:0;font-size:clamp(30px,3.4vw,50px);font-weight:500;letter-spacing:-.025em">{{ journalSec.title }}</h2>
+        <p data-cms="home.journal.desc" style="margin:18px 0 0;font-size:17px;line-height:1.8;color:#444">{{ journalSec.desc }}</p>
       </div>
       <a href="{{ blogUrl }}" target="_blank" rel="noopener" style="padding:16px 24px;border:1px solid #080808;font-size:13px;letter-spacing:.14em;font-weight:600">BLOG →</a>
     </div>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:16px">
       <sc-for list="{{ journal }}" as="j" hint-placeholder-count="3">
         <a data-reveal="" href="{{ j.link }}" target="_blank" rel="noopener" style="background:#FFFFFF;color:#080808;padding:clamp(28px,3vw,40px);display:flex;flex-direction:column;gap:18px;min-height:300px;transition:background .4s cubic-bezier(.2,.7,.2,1),color .4s cubic-bezier(.2,.7,.2,1)" style-hover="background:#080808;color:#FFFFFF;opacity:1">
-          <span style="display:flex;justify-content:space-between;font-size:12px;letter-spacing:.16em;font-weight:600"><span>{{ j.k }}</span><span style="opacity:.6">{{ j.n }}</span></span>
-          <span style="font-size:clamp(21px,1.8vw,25px);line-height:1.45;font-weight:600">{{ j.t }}</span>
-          <span style="font-size:16px;line-height:1.75;opacity:.72">{{ j.d }}</span>
+          <span style="display:flex;justify-content:space-between;font-size:12px;letter-spacing:.16em;font-weight:600"><span data-cms="{{ j.p_k }}">{{ j.k }}</span><span style="opacity:.6">{{ j.n }}</span></span>
+          <span data-cms="{{ j.p_t }}" style="font-size:clamp(21px,1.8vw,25px);line-height:1.45;font-weight:600">{{ j.t }}</span>
+          <span data-cms="{{ j.p_d }}" style="font-size:16px;line-height:1.75;opacity:.72">{{ j.d }}</span>
           <span style="margin-top:auto;display:flex;justify-content:space-between;border-top:1px solid currentColor;padding-top:18px;font-size:14px;font-weight:600"><span>블로그에서 읽기</span><span>→</span></span>
         </a>
       </sc-for>
@@ -314,7 +314,7 @@
     <div data-reveal="" style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:24px;margin-bottom:48px">
       <div>
         <div style="font-size:12px;letter-spacing:.2em;color:#555;margin-bottom:18px">SPACE / LOCATION</div>
-        <h2 style="margin:0;font-size:clamp(30px,3.4vw,50px);font-weight:500;letter-spacing:-.025em">{{ spaceSec.title }}</h2>
+        <h2 data-cms="home.space.title" style="margin:0;font-size:clamp(30px,3.4vw,50px);font-weight:500;letter-spacing:-.025em">{{ spaceSec.title }}</h2>
         <p style="margin:18px 0 0;font-size:17px;line-height:1.8;color:#333">{{ spaceLine }}</p>
       </div>
       <a href="/contact" style="font-size:13px;letter-spacing:.16em;font-weight:600;border-bottom:1px solid currentColor;padding-bottom:6px">MORE →</a>
@@ -330,15 +330,15 @@
 <sc-if value="{{ show.faq }}" hint-placeholder-val="{{ true }}">
 <section data-theme="light" data-screen-label="16 FAQ" style="background:#FFFFFF;padding:clamp(96px,11vw,160px) clamp(20px,5vw,80px)">
   <div style="max-width:1320px;margin:0 auto;display:flex;flex-wrap:wrap;gap:48px 96px;align-items:flex-start">
-    <div data-reveal="" data-sticky="" style="flex:1 1 280px;position:sticky;top:120px"><div style="font-size:12px;letter-spacing:.2em;color:#666;margin-bottom:24px">FAQ</div><h2 style="margin:0;font-size:clamp(30px,3.4vw,50px);font-weight:500;letter-spacing:-.025em">{{ faqSec.title }}</h2></div>
+    <div data-reveal="" data-sticky="" style="flex:1 1 280px;position:sticky;top:120px"><div style="font-size:12px;letter-spacing:.2em;color:#666;margin-bottom:24px">FAQ</div><h2 data-cms="home.faq.title" style="margin:0;font-size:clamp(30px,3.4vw,50px);font-weight:500;letter-spacing:-.025em">{{ faqSec.title }}</h2></div>
     <div style="flex:2 1 460px;min-width:0;border-top:1px solid #080808">
       <sc-for list="{{ faqs }}" as="f" hint-placeholder-count="7">
         <div style="border-bottom:1px solid #E8E8E8">
           <button onClick="{{ f.toggle }}" aria-expanded="{{ f.open }}" style="all:unset;box-sizing:border-box;cursor:pointer;width:100%;display:flex;justify-content:space-between;align-items:center;gap:24px;padding:26px 0;min-height:44px;font-size:clamp(18px,1.5vw,21px);font-weight:500">
-            <span>{{ f.q }}</span><span style="font-size:22px;font-weight:300;flex:0 0 auto">{{ f.sign }}</span>
+            <span data-cms="{{ f.p_q }}">{{ f.q }}</span><span style="font-size:22px;font-weight:300;flex:0 0 auto">{{ f.sign }}</span>
           </button>
           <sc-if value="{{ f.open }}" hint-placeholder-val="{{ false }}">
-            <p style="margin:0;padding:0 48px 28px 0;font-size:17px;line-height:1.85;color:#444">{{ f.a }}</p>
+            <p data-cms="{{ f.p_a }}" style="margin:0;padding:0 48px 28px 0;font-size:17px;line-height:1.85;color:#444">{{ f.a }}</p>
           </sc-if>
         </div>
       </sc-for>
@@ -394,7 +394,7 @@ class Component extends DCLogic {
       hero: sec('hero'), director: sec('director'), statement: sec('statement'),
       casesSec: sec('cases'), whySec: sec('why'), progSec: sec('programs'), recSec: sec('records'), procSec: sec('process'),
       studySec: sec('studies'), revSec: sec('reviews'), academy: sec('academy'), journalSec: sec('journal'), spaceSec: sec('space'), faqSec: sec('faq'),
-      dirParas: (sec('director').paragraphs || []).map(t => ({ t })),
+      dirParas: (sec('director').paragraphs || []).map((t, i) => ({ t, p_t: 'home.director.paragraphs.' + i })),
       blogUrl: SITE.blog_url || '#',
       spaceLine: [SITE.address, SITE.booking_note].filter(Boolean).join(' · '),
       mapTitle: '유블랙 위치 — ' + (SITE.address || ''),
@@ -404,22 +404,22 @@ class Component extends DCLogic {
       baMove: e => { if (this.baDrag) this.setBa(e); },
       baUp: () => { this.baDrag = false; },
       baInput: e => this.setState({ ba: +e.target.value }),
-      selected: (sec('cases').items || []).map(c => ({ id: c.id, area: c.area, src: c.image })),
-      why: (sec('why').items || []).map((w, i) => ({ n: pad(i), t: w.title, d: w.desc })),
-      programs: P.map((p, i) => ({ src: p.image, n: pad(i), ko: p.name, en: p.en, href: p.link || '/program', color: i === prog ? '#080808' : '#8f8f8f', imgOp: i === prog ? 1 : 0, enter: () => this.setState({ prog: i }) })),
-      progDesc: p0.desc || '',
-      records: (sec('records').items || []).map(r => ({ k: r.label, v: r.text, src: r.image })),
-      process: S.map((s, i) => { const on = i === step; return { n: pad(i), t: s.title, d: s.desc, numColor: on ? '#080808' : '#999', titleColor: on ? '#080808' : '#777', line: on ? '#080808' : '#E8E8E8' }; }),
-      studies: (sec('studies').items || []).map((c, i) => ({ n: 'CASE ' + pad(i), src: c.image, t: c.title, worry: c.worry, dirTxt: c.direction })),
+      selected: (sec('cases').items || []).map((c, i) => { const b = 'home.cases.items.' + i; return { id: c.id, area: c.area, src: c.image, p_id: b + '.id', p_area: b + '.area', p_src: b + '.image' }; }),
+      why: (sec('why').items || []).map((w, i) => ({ n: pad(i), t: w.title, d: w.desc, p_t: 'home.why.items.' + i + '.title', p_d: 'home.why.items.' + i + '.desc' })),
+      programs: P.map((p, i) => { const b = 'home.programs.items.' + i; return { src: p.image, n: pad(i), ko: p.name, en: p.en, href: p.link || '/program', color: i === prog ? '#080808' : '#8f8f8f', imgOp: i === prog ? 1 : 0, pe: i === prog ? 'auto' : 'none', p_ko: b + '.name', p_en: b + '.en', p_src: b + '.image', enter: () => this.setState({ prog: i }) }; }),
+      progDesc: p0.desc || '', progDescPath: 'home.programs.items.' + (P[prog] ? prog : 0) + '.desc',
+      records: (sec('records').items || []).map((r, i) => { const b = 'home.records.items.' + i; return { k: r.label, v: r.text, src: r.image, p_k: b + '.label', p_v: b + '.text', p_src: b + '.image' }; }),
+      process: S.map((s, i) => { const on = i === step; return { n: pad(i), t: s.title, d: s.desc, p_t: 'home.process.steps.' + i + '.title', p_d: 'home.process.steps.' + i + '.desc', numColor: on ? '#080808' : '#999', titleColor: on ? '#080808' : '#777', line: on ? '#080808' : '#E8E8E8' }; }),
+      studies: (sec('studies').items || []).map((c, i) => { const b = 'home.studies.items.' + i; return { n: 'CASE ' + pad(i), src: c.image, t: c.title, worry: c.worry, dirTxt: c.direction, p_src: b + '.image', p_t: b + '.title', p_worry: b + '.worry', p_dirTxt: b + '.direction' }; }),
       trackRef: this.trackRef,
       dragDown: e => { if (e.pointerType !== 'mouse') return; this.drag = { x: e.clientX, s: this.trackRef.current.scrollLeft }; this.trackRef.current.style.scrollSnapType = 'none'; },
       dragMove: e => { if (this.drag) this.trackRef.current.scrollLeft = this.drag.s - (e.clientX - this.drag.x); },
       dragUp: () => { if (this.drag) { this.drag = null; this.trackRef.current.style.scrollSnapType = 'x mandatory'; } },
-      reviews: REVIEWS.filter(r => r.home).map(r => ({ img: r.image, pos: r.focus || '50% 50%', text: r.text, alt: '작업 후 고객과 대표원장 기념 사진', video: false })),
+      reviews: REVIEWS.map((r, i) => ({ r, i })).filter(x => x.r.home).map(({ r, i }) => ({ img: r.image, pos: r.focus || '50% 50%', text: r.text, alt: '작업 후 고객과 대표원장 기념 사진', video: false, p_img: 'reviews.items.' + i + '.image', p_text: 'reviews.items.' + i + '.text' })),
       policy: ['적용 조건', '제외 조건', '횟수', '범위'],
-      journal: (sec('journal').items || []).map((j, i) => ({ n: pad(i), k: j.label, t: j.title, d: j.desc, link: j.link || SITE.blog_url || '#' })),
+      journal: (sec('journal').items || []).map((j, i) => { const b = 'home.journal.items.' + i; return { n: pad(i), k: j.label, t: j.title, d: j.desc, link: j.link || SITE.blog_url || '#', p_k: b + '.label', p_t: b + '.title', p_d: b + '.desc' }; }),
       space: ['ENTRANCE', 'STUDIO', 'CONSULT ROOM'],
-      faqs: F.map((f, i) => ({ q: f.q, a: f.a, open: faq === i, sign: faq === i ? '−' : '+', toggle: () => this.setState({ faq: faq === i ? -1 : i }) }))
+      faqs: F.map((f, i) => ({ q: f.q, a: f.a, p_q: 'home.faq.items.' + i + '.q', p_a: 'home.faq.items.' + i + '.a', open: faq === i, sign: faq === i ? '−' : '+', toggle: () => this.setState({ faq: faq === i ? -1 : i }) }))
     };
   }
 }
