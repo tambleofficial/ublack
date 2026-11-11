@@ -1,7 +1,7 @@
 // 편집 모드 페이지 (/edit)
 // - 로그인 전: 비밀번호 입력 화면
 // - 로그인 후: 실제 홈페이지 화면 + 편집 도구(/cms-editor.js)
-// 콘텐츠는 배포본이 아니라 깃허브 최신본에서 읽어서, 방금 저장한 내용도 바로 보이게 합니다.
+// 콘텐츠는 배포된 파일에서 바로 읽어요 (깃허브를 거치지 않아 빠름). 저장 후에는 편집 도구가 배포 완료를 기다렸다가 새로고침해요.
 const FILES = ['site', 'home', 'reviews'];
 const REPO = 'tambleofficial/ublack';
 
@@ -51,10 +51,8 @@ export async function onRequestGet({ request, env }) {
   const branch = branchOf(request, env);
   const data = {};
   await Promise.all(FILES.map(async (name) => {
-    const r = await fetch(`https://api.github.com/repos/${REPO}/contents/content/${name}.json?ref=${branch}`, {
-      headers: { Authorization: 'Bearer ' + env.GITHUB_TOKEN, Accept: 'application/vnd.github+json', 'User-Agent': 'tamble-cms' },
-    });
-    if (r.ok) data[name] = JSON.parse(b64ToUtf8((await r.json()).content));
+    const r = await env.ASSETS.fetch(new URL('/content/' + name + '.json', request.url));
+    if (r.ok) data[name] = await r.json();
   }));
 
   const page = await env.ASSETS.fetch(new URL('/', request.url));
