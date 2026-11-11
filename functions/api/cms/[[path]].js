@@ -3,7 +3,7 @@
 // POST /api/cms/logout                        → 로그아웃
 // POST /api/cms/save    {file, data}         → content/{file}.json 을 깃허브에 저장
 // POST /api/cms/upload  {type, data(base64)} → assets/uploads/ 에 사진 저장 후 경로 반환
-const FILES = { site: '기본정보', home: '홈', reviews: '후기' };
+const FILES = { site: '기본정보', home: '홈', reviews: '후기', brand: '브랜드', program: '시술 안내', cases: '시술 사례', academy: '아카데미', reviewsPage: '후기 페이지', contact: '오시는 길' };
 const REPO = 'tambleofficial/ublack';
 const WEEK = 7 * 24 * 3600 * 1000;
 
