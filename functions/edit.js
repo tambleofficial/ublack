@@ -62,6 +62,6 @@ export async function onRequestGet({ request, env }) {
   let html = await page.text();
   const json = JSON.stringify(data).replace(/</g, '\\u003c');
   html = html.replace(/<head>/i, (m) => m + '<meta name="robots" content="noindex"><script>window.__CMS=' + json + ';window.__CMS_EDIT={branch:' + JSON.stringify(branch) + ',page:' + JSON.stringify(pageKey) + '};</script>');
-  html = html.replace(/<\/body>/i, '<script src="/cms-editor.js?v=2"></script></body>');
+  html = html.replace(/<\/body>/i, '<script src="/cms-editor.js?v=3"></script></body>');
   return new Response(html, { headers });
 }

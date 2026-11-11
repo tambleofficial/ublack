@@ -3,6 +3,7 @@
 // POST /api/cms/logout                        → 로그아웃
 // POST /api/cms/save    {file, data}         → content/{file}.json 을 깃허브에 저장
 // POST /api/cms/upload  {type, data(base64)} → assets/uploads/ 에 사진 저장 후 경로 반환
+// POST /api/cms/commit  {files:{이름:데이터}, images:[{id, type, data}]} → 바뀐 파일·사진을 커밋 1개로 한 번에 저장 (배포 순서 꼬임 방지)
 const FILES = { site: '기본정보', home: '홈', reviews: '후기', brand: '브랜드', program: '시술 안내', cases: '시술 사례', academy: '아카데미', reviewsPage: '후기 페이지', contact: '오시는 길' };
 const REPO = 'tambleofficial/ublack';
 const WEEK = 7 * 24 * 3600 * 1000;
@@ -50,6 +51,27 @@ async function putFile(env, branch, filePath, b64, message) {
   return (await r.json()).commit.sha;
 }
 
+async function commitMany(env, branch, entries, message) {
+  const ref = await gh(env, `git/ref/heads/${branch}`);
+  if (!ref.ok) throw new Error('ref ' + ref.status);
+  const head = (await ref.json()).object.sha;
+  const base = (await (await gh(env, `git/commits/${head}`)).json()).tree.sha;
+  const tree = [];
+  for (const e of entries) {
+    const b = await gh(env, 'git/blobs', { method: 'POST', body: JSON.stringify({ content: e.content, encoding: e.encoding }) });
+    if (!b.ok) throw new Error('blob ' + b.status);
+    tree.push({ path: e.path, mode: '100644', type: 'blob', sha: (await b.json()).sha });
+  }
+  const t = await gh(env, 'git/trees', { method: 'POST', body: JSON.stringify({ base_tree: base, tree }) });
+  if (!t.ok) throw new Error('tree ' + t.status);
+  const c = await gh(env, 'git/commits', { method: 'POST', body: JSON.stringify({ message, tree: (await t.json()).sha, parents: [head] }) });
+  if (!c.ok) throw new Error('commit ' + c.status);
+  const sha = (await c.json()).sha;
+  const u = await gh(env, `git/refs/heads/${branch}`, { method: 'PATCH', body: JSON.stringify({ sha }) });
+  if (!u.ok) throw new Error('update ' + u.status);
+  return sha;
+}
+
 export async function onRequestPost({ request, env, params }) {
   const action = (params.path || [])[0];
   let body = {};
@@ -78,6 +100,29 @@ export async function onRequestPost({ request, env, params }) {
       if (text.length > 300000 || text.includes('data:image')) return json({ ok: false, error: '저장할 수 없는 내용이 있어요' }, 400);
       const commit = await putFile(env, branch, `content/${body.file}.json`, utf8ToB64(text), `편집 모드에서 ${FILES[body.file]} 수정`);
       return json({ ok: true, commit });
+    }
+    if (action === 'commit') {
+      const files = body.files || {}, images = Array.isArray(body.images) ? body.images : [];
+      const names = Object.keys(files);
+      if (!names.length || names.some((f) => !FILES[f] || typeof files[f] !== 'object')) return json({ ok: false, error: '잘못된 요청' }, 400);
+      const entries = [], map = {};
+      const d = new Date(Date.now() + 9 * 3600 * 1000).toISOString().replace(/[-:T]/g, '').slice(0, 14);
+      for (const im of images) {
+        const ext = { 'image/jpeg': 'jpg', 'image/png': 'png', 'image/webp': 'webp' }[im.type];
+        if (!ext || typeof im.data !== 'string' || im.data.length > 2_800_000 || !/^__UP\d+__$/.test(im.id)) return json({ ok: false, error: '사진 형식이 맞지 않아요' }, 400);
+        const name = `${d}-${Math.random().toString(36).slice(2, 7)}.${ext}`;
+        map[im.id] = '/assets/uploads/' + name;
+        entries.push({ path: 'assets/uploads/' + name, content: im.data, encoding: 'base64' });
+      }
+      for (const f of names) {
+        let text = JSON.stringify(files[f], null, 2) + '\n';
+        text = text.replace(/__UP\d+__/g, (m) => map[m] || m);
+        if (text.length > 300000 || text.includes('data:image') || /__UP\d+__/.test(text)) return json({ ok: false, error: '저장할 수 없는 내용이 있어요' }, 400);
+        entries.push({ path: `content/${f}.json`, content: text, encoding: 'utf-8' });
+      }
+      const label = names.map((f) => FILES[f]).join('·');
+      const commit = await commitMany(env, branch, entries, `편집 모드에서 ${label} 수정` + (images.length ? ` (사진 ${images.length}장)` : ''));
+      return json({ ok: true, commit, map });
     }
     if (action === 'upload') {
       const ext = { 'image/jpeg': 'jpg', 'image/png': 'png', 'image/webp': 'webp' }[body.type];

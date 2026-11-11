@@ -179,15 +179,19 @@
     document.activeElement && document.activeElement.blur && document.activeElement.blur();
     saving = true; updateBar('· 저장 중…');
     try {
-      const out = JSON.parse(JSON.stringify(data, (k, v) => v));
-      let i = 0;
+      const out = JSON.parse(JSON.stringify(data));
+      const images = []; let n = 0;
       for (const [p, url] of pendingImg) {
-        updateBar(`· 사진 올리는 중 (${++i}/${pendingImg.size})`);
-        const r = await api('upload', { type: 'image/jpeg', data: url.split(',')[1] });
-        const ks = p.split('.'); let o = out; for (let k = 0; k < ks.length - 1; k++) o = o[ks[k]]; o[ks[ks.length - 1]] = r.path;
+        const id = '__UP' + (++n) + '__';
+        images.push({ id, type: 'image/jpeg', data: url.split(',')[1] });
+        const ks = p.split('.'); let o = out; for (let k = 0; k < ks.length - 1; k++) o = o[ks[k]]; o[ks[ks.length - 1]] = id;
       }
       const files = [...dirty];
-      for (const f of files) { updateBar('· 저장 중…'); await api('save', { file: f, data: out[f] }); }
+      const payload = {}; files.forEach((f) => { payload[f] = out[f]; });
+      updateBar(images.length ? '· 사진과 함께 저장 중…' : '· 저장 중…');
+      const r = await api('commit', { files: payload, images });
+      const fix = (o) => { for (const k in o) { if (typeof o[k] === 'string' && r.map[o[k]]) o[k] = r.map[o[k]]; else if (o[k] && typeof o[k] === 'object') fix(o[k]); } };
+      fix(out);
       dirty.clear(); pendingImg.clear();
       updateBar('· 저장 완료! 홈페이지에 반영 중이에요 (보통 20초)');
       await waitDeploy(files, out);
