@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://ublack.pages.dev/sitemap.xml
+Sitemap: https://ublack.kr/sitemap.xml
