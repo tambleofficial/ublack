@@ -1,0 +1,302 @@
+{
+  "hero": {
+    "label": "SCALP DESIGN STUDIO",
+    "title": "흔적보다,\n자연스러운 흐름을\n봅니다.",
+    "left": "유블랙 · U.BLACK · ULSAN",
+    "text": "두상과 기존 모발의 방향을 먼저 살피고, 필요한 범위만큼 디자인합니다."
+  },
+  "director": {
+    "show": true,
+    "photo": "/assets/director.png",
+    "name": "조영진",
+    "title": "시술을 해 준 사람이 아닌,\n고마운 사람이 되겠습니다.",
+    "paragraphs": [
+      "상담에서 가장 먼저 보는 것은\n어디까지가 필요한 범위인지입니다.",
+      "두상과 기존 모발의 흐름을 살펴,\n현재 모습에 어우러지는 방향을 함께 고민합니다.",
+      "그래서 상담부터 사후관리까지 직접 진행하고,\n하루에 만나는 고객 수를 제한합니다."
+    ],
+    "note_label": "INDEPENDENT STUDIO",
+    "note_text": "특정 프랜차이즈에 소속되지 않은 독립 브랜드로, 실제 작업과 고객 상담에 집중하는 운영 방식을 유지합니다."
+  },
+  "statement": {
+    "show": true,
+    "title": "더하는 것보다,\n어우러지는 방향을\n먼저 생각합니다.",
+    "text": "유블랙은 개인의 두상과 기존 모발의 방향, 두피가 드러나는 범위를 함께 살펴본 뒤 시각적으로 자연스럽게 어우러질 수 있는 디자인 방향을 상담합니다."
+  },
+  "cases": {
+    "show": true,
+    "title": "실제 작업 사례",
+    "desc": "같은 고객, 같은 각도에서 촬영한 실제 사진만 게시합니다.",
+    "items": [
+      {
+        "id": "CASE 014",
+        "area": "우먼 헤어라인",
+        "image": "/assets/cases-sm/hair/z10.jpg"
+      },
+      {
+        "id": "CASE 021",
+        "area": "맨즈 헤어라인",
+        "image": "/assets/cases-sm/hair/z13.jpg"
+      },
+      {
+        "id": "CASE 027",
+        "area": "정수리",
+        "image": "/assets/cases-sm/crown/1790228230416.jpg"
+      }
+    ]
+  },
+  "why": {
+    "show": true,
+    "title": "한 사람의 기준으로\n처음부터 끝까지.",
+    "items": [
+      {
+        "title": "ONE ARTIST",
+        "desc": "상담부터 디자인, 시술과 사후관리까지 대표원장이 직접 진행합니다."
+      },
+      {
+        "title": "LIMITED SESSIONS",
+        "desc": "하루 시술 인원을 제한해 한 고객에게 집중할 수 있는 운영 방식을 유지합니다."
+      },
+      {
+        "title": "DESIGN FIRST",
+        "desc": "기존 모발의 흐름과 두상의 형태, 필요한 범위를 고려해 디자인을 함께 조율합니다."
+      },
+      {
+        "title": "NO EXCESS",
+        "desc": "필요하지 않은 범위를 무리하게 권하지 않는 상담을 지향합니다."
+      }
+    ]
+  },
+  "programs": {
+    "show": true,
+    "title": "프로그램",
+    "items": [
+      {
+        "name": "탈모 커버",
+        "en": "VISUAL COVER",
+        "link": "/program#cover",
+        "desc": "두피 노출이 신경 쓰이는 범위를 주변 모발과 자연스럽게 어우러져 보이도록 시각적으로 보완하는 방향을 상담합니다.",
+        "image": "/assets/cases-sm/crown/z05.jpg"
+      },
+      {
+        "name": "삭발 디자인",
+        "en": "SHAVED DESIGN",
+        "link": "/program#shaved",
+        "desc": "짧은 삭발 스타일에서 두상 전체의 톤과 헤어라인 형태를 함께 디자인합니다.",
+        "image": "/assets/cases-sm/shaved/1790228230564.jpg"
+      },
+      {
+        "name": "흉터 커버",
+        "en": "SCAR COVER",
+        "link": "/program#scar",
+        "desc": "흉터 부위의 톤과 질감을 확인한 뒤 주변과의 시각적 연결감을 고려해 상담합니다.",
+        "image": "/assets/cases-sm/scar/z02.jpg"
+      },
+      {
+        "name": "M자 디자인",
+        "en": "M-LINE",
+        "link": "/program#m-line",
+        "desc": "앞쪽 두피 노출 범위와 기존 헤어라인의 흐름을 함께 살펴 디자인합니다.",
+        "image": "/assets/cases-sm/hair/z12.jpg"
+      },
+      {
+        "name": "정수리",
+        "en": "CROWN",
+        "link": "/program#crown",
+        "desc": "정수리 모발의 방향과 두피가 드러나는 범위를 확인해 시각적 밀도감을 상담합니다.",
+        "image": "/assets/cases-sm/crown/z01.jpg"
+      },
+      {
+        "name": "가르마",
+        "en": "PART",
+        "link": "/program#part",
+        "desc": "가르마 라인이 넓어 보이는 부분을 기존 모발과 어우러지도록 디자인합니다.",
+        "image": "/assets/cases/part-01.jpg"
+      },
+      {
+        "name": "여성 헤어라인",
+        "en": "WOMEN'S HAIRLINE",
+        "link": "/program#women",
+        "desc": "이마 형태와 잔머리의 흐름을 고려해 부드러운 라인을 조율합니다.",
+        "image": "/assets/cases-sm/hair/z00.png"
+      },
+      {
+        "name": "남성 헤어라인",
+        "en": "HAIRLINE",
+        "link": "/program#hairline",
+        "desc": "얼굴형과 나이대에 어울리는 헤어라인 높이와 형태를 함께 정합니다.",
+        "image": "/assets/cases-sm/hair/z07.jpg"
+      },
+      {
+        "name": "원형탈모 부위 커버",
+        "en": "SPOT COVER",
+        "link": "/program#spot",
+        "desc": "두피 노출이 두드러지는 부위를 주변 모발과의 연결감을 고려해 커버 상담합니다.",
+        "image": "/assets/cases-sm/scar/z03.jpg"
+      }
+    ]
+  },
+  "records": {
+    "show": true,
+    "title": "작업의 기록",
+    "desc": "다양한 시술 및 교육 경험을 바탕으로 운영됩니다.",
+    "items": [
+      {
+        "label": "CAREER",
+        "text": "대한두피문신전문가협회 회장 · SMP 교육 인증기관 (2023)",
+        "image": "/assets/cases/store-06.jpg"
+      },
+      {
+        "label": "AWARDS",
+        "text": "2025 KOREA SMP Global Brand Award · 2nd IPSN KOREA International Beauty Contest 2024",
+        "image": "/assets/cases/store-04.jpg"
+      },
+      {
+        "label": "JUDGING",
+        "text": "2nd World Top Tier Olympics · Supervisor (2025)",
+        "image": "/assets/cases/store-02.jpg"
+      },
+      {
+        "label": "EDUCATION",
+        "text": "서울대학교 SMP MASTER PROGRAM · 유블랙 아카데미 운영",
+        "image": "/assets/cases/store-03.jpg"
+      },
+      {
+        "label": "ACTIVITY",
+        "text": "월드뷰티페스티벌 · IPSN KOREA International Beauty Conference (베트남)",
+        "image": "/assets/cases/store-05.jpg"
+      }
+    ]
+  },
+  "process": {
+    "show": true,
+    "title": "상담부터\n이후 확인까지.",
+    "cost": "비용은 작업 범위와 현재 상태, 필요한 디자인에 따라 달라질 수 있어 상담 후 안내됩니다.",
+    "steps": [
+      {
+        "title": "INQUIRY",
+        "desc": "현재 고민 부위와 원하는 방향을 이야기합니다."
+      },
+      {
+        "title": "CHECK",
+        "desc": "두피 상태와 기존 모발 흐름, 필요한 범위를 확인합니다."
+      },
+      {
+        "title": "DESIGN",
+        "desc": "두상과 모발 방향을 고려해 디자인 방향을 조율합니다."
+      },
+      {
+        "title": "SESSION",
+        "desc": "상담한 디자인을 기준으로 작업을 진행합니다."
+      },
+      {
+        "title": "AFTERCARE",
+        "desc": "작업 후 관리 방법과 필요한 내용을 안내합니다."
+      },
+      {
+        "title": "FOLLOW-UP",
+        "desc": "추후 상태를 확인하고 필요한 경우 안내합니다."
+      }
+    ]
+  },
+  "studies": {
+    "show": true,
+    "title": "상담에서 작업까지",
+    "items": [
+      {
+        "title": "M자 헤어라인",
+        "worry": "앞쪽 두피 노출.",
+        "direction": "기존 헤어라인과 모발 방향을 함께 살펴 시각적 연결감을 고려.",
+        "image": "/assets/cases-sm/hair/z12.jpg"
+      },
+      {
+        "title": "정수리",
+        "worry": "정수리 부위 두피 노출.",
+        "direction": "가마 방향과 주변 모발 톤을 기준으로 도트 밀도를 조율.",
+        "image": "/assets/cases-sm/crown/z03.jpg"
+      },
+      {
+        "title": "흉터 커버",
+        "worry": "짧은 머리에서 흉터 라인이 드러남.",
+        "direction": "흉터 주변 피부 톤을 확인하고 주변 모발과 어우러지는 범위로 한정.",
+        "image": "/assets/cases-sm/scar/z01.jpg"
+      }
+    ]
+  },
+  "reviews": {
+    "show": true,
+    "title": "실제 고객 이야기"
+  },
+  "academy": {
+    "show": true,
+    "title": "작업 기준을\n교육과 심사 활동으로\n이어갑니다.",
+    "text": "현장에서 쌓아온 디자인 기준을 교육과 세미나, 심사 활동을 통해 공유합니다.",
+    "image1": "/assets/root-meitu_20251116_161556974-mvroa53e-tqm4.jpg",
+    "image1_label": "SEMINAR",
+    "image2": "/assets/root-1790228231215-mvroalg2-c04e.jpg",
+    "image2_label": "JUDGING"
+  },
+  "journal": {
+    "show": true,
+    "title": "상담 전에 읽어보세요",
+    "desc": "처음 문의하시는 분들이 자주 궁금해하시는 내용을 블로그에 정리했습니다.",
+    "items": [
+      {
+        "label": "BEFORE CONSULT",
+        "title": "상담 전 알아두면 좋은 내용",
+        "desc": "상담 과정, 비용 안내 방식, 준비하면 좋은 점을 정리했습니다.",
+        "link": "https://m.blog.naver.com/nnn0100"
+      },
+      {
+        "label": "ABOUT SMP",
+        "title": "SMP(두피문신)는 어떤 작업인가요",
+        "desc": "두피에 도트를 표현해 모발이 있는 것처럼 보이도록 하는 미용 작업을 설명합니다.",
+        "link": "https://m.blog.naver.com/nnn0100"
+      },
+      {
+        "label": "AFTERCARE",
+        "title": "작업 후 관리 안내",
+        "desc": "작업 직후부터 일상 관리까지, 알아두시면 좋은 내용을 안내합니다.",
+        "link": "https://m.blog.naver.com/nnn0100"
+      }
+    ]
+  },
+  "space": {
+    "show": true,
+    "title": "ULSAN STUDIO"
+  },
+  "faq": {
+    "show": true,
+    "title": "자주 묻는 질문",
+    "items": [
+      {
+        "q": "비용은 어떻게 결정되나요?",
+        "a": "작업 범위와 현재 상태, 필요한 디자인을 확인한 뒤 상담을 통해 견적을 안내합니다."
+      },
+      {
+        "q": "작업 기간은 어떻게 안내되나요?",
+        "a": "작업 범위와 상태에 따라 상담 시 안내됩니다."
+      },
+      {
+        "q": "상담 후 바로 진행해야 하나요?",
+        "a": "상담 후 충분히 고민하신 뒤 결정하셔도 됩니다."
+      },
+      {
+        "q": "기존 두피문신이 있어도 상담할 수 있나요?",
+        "a": "현재 상태를 먼저 확인한 뒤 보완 방향을 상담합니다."
+      },
+      {
+        "q": "흉터 부위도 상담할 수 있나요?",
+        "a": "흉터의 위치와 상태를 확인한 뒤 가능한 디자인 방향을 상담합니다."
+      },
+      {
+        "q": "리터치는 어떻게 안내되나요?",
+        "a": "리터치 일정과 범위는 작업 후 상태를 확인한 뒤 상담을 통해 안내합니다."
+      },
+      {
+        "q": "예약은 어떻게 하나요?",
+        "a": "카카오톡 채널(유블랙) 또는 전화 010-3924-0143으로 상담 일정을 잡으실 수 있습니다."
+      }
+    ]
+  }
+}
