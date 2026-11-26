@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html><head>
+<!-- 검색로봇용 미리 그린 화면: 방문자에게 보이는 화면과 같은 내용 (functions/_middleware.js 가 로봇에게만 보냄) --><style>
+    .sc-placeholder{background:color-mix(in srgb,currentColor 8%,transparent);
+      border:1px solid color-mix(in srgb,currentColor 50%,transparent);
+      border-radius:2px;box-sizing:border-box;overflow:hidden}
+    @keyframes sc-shine{0%{background-position:100% 50%}100%{background-position:0% 50%}}
+    html.sc-dc-streaming .sc-placeholder,
+    html.sc-dc-streaming .sc-interp.sc-missing{position:relative;
+      background:color-mix(in srgb,currentColor 5%,transparent);
+      border-color:transparent}
+    html.sc-dc-streaming .sc-placeholder::before,
+    html.sc-dc-streaming .sc-interp.sc-missing::before{content:'';
+      position:absolute;inset:0;pointer-events:none;
+      background:linear-gradient(90deg,rgba(217,119,87,0) 25%,rgba(247,225,211,.95) 37%,rgba(217,119,87,0) 63%);
+      background-size:400% 100%;animation:sc-shine 1.4s ease infinite}
+    html.sc-dc-streaming .sc-placeholder:nth-child(n+9 of .sc-placeholder)::before,
+    html.sc-dc-streaming .sc-interp.sc-missing:nth-child(n+9 of .sc-interp.sc-missing)::before{animation:none;
+      background:color-mix(in srgb,currentColor 8%,transparent)}
+    .sc-placeholder-error{padding:4px 8px;font:11px/1.4 ui-monospace,monospace;
+      color:color-mix(in srgb,currentColor 70%,transparent);word-break:break-word}
+    .sc-interp.sc-missing{display:inline-block;width:2em;height:1em;overflow:hidden;
+      vertical-align:text-bottom;background:rgba(255,255,255,.3);border:1px solid rgba(0,0,0,.5);
+      border-radius:2px;box-sizing:border-box;color:transparent;
+      user-select:none}
+    .sc-interp.sc-unresolved{font-family:ui-monospace,monospace;font-size:.85em;
+      color:color-mix(in srgb,currentColor 50%,transparent);
+      background:color-mix(in srgb,currentColor 10%,transparent);border-radius:3px;
+      padding:0 3px}
+    .sc-host.sc-has-error{position:relative}
+    .sc-logic-error{position:absolute;top:8px;left:8px;z-index:2147483647;max-width:60ch;
+      padding:6px 10px;background:#b00020;color:#fff;font:12px/1.4 ui-monospace,monospace;
+      border-radius:4px;white-space:pre-wrap;pointer-events:none}
+    /* Mirrors PRINT_BASELINE_CSS in apps/web deck-stage-export.ts — keep both
+       in sync until dc-runtime regains a build step. */
+    @media print {
+      @page { margin: 0.5cm; }
+      figure, table { break-inside: avoid; }
+      #dc-root, #dc-root > .sc-host { height: auto; }
+      *, *::before, *::after {
+        print-color-adjust: exact; -webkit-print-color-adjust: exact;
+        backdrop-filter: none !important; -webkit-backdrop-filter: none !important;
+        animation-delay: -99s !important; animation-duration: .001s !important;
+        animation-iteration-count: 1 !important; animation-fill-mode: both !important;
+        animation-play-state: running !important; transition-duration: 0s !important;
+      }
+    }
+  </style>
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>x-dc{display:none!important}</style>
+<style>html,body{height:100%;margin:0}#dc-root,#dc-root>.sc-host{height:100%}</style><link rel="canonical" href="https://ublack.kr/brand"><meta property="og:site_name" content="U.BLACK 유블랙"><meta property="og:type" content="website"><meta property="og:url" content="https://ublack.kr/brand"><meta property="og:image" content="https://ublack.kr/assets/director.png"><link rel="alternate" type="application/rss+xml" title="U.BLACK 유블랙" href="/rss.xml"><title>BRAND — 유블랙 브랜드 · 대표원장 | U.BLACK</title><meta name="description" content="유블랙 브랜드 이야기와 대표원장의 운영 철학. 상담부터 사후관리까지 한 사람의 기준으로 이어가는 독립 SMP 스튜디오."><style></style><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&amp;display=swap"><style>
+html{scroll-behavior:auto}
+body{margin:0;background:#080808;color:#080808;font-family:"Pretendard Variable",Pretendard,"Helvetica Neue",Helvetica,sans-serif;-webkit-font-smoothing:antialiased;word-break:keep-all;overflow-wrap:break-word}
+a{color:inherit;text-decoration:none}
+a:hover{color:inherit;opacity:.72}
+*{box-sizing:border-box}
+html,body{overflow-x:hidden;max-width:100%}
+img,iframe,video{max-width:100%}
+/* Mobile only: preserve all desktop rules and inline layouts. */
+@media (max-width:640px){
+ body{font-size:16px}
+ h1,h2,h3{word-break:keep-all}
+ main{padding-bottom:calc(60px + env(safe-area-inset-bottom,0px))}
+ main section div[style*="flex:"]{min-width:0;max-width:100%}
+ main section[data-screen-label="01 Hero"]{gap:36px!important}
+ main section[data-screen-label="01 Hero"] h1{font-size:clamp(32px,9.5vw,38px)!important}
+ [role="dialog"]{overflow-y:auto;padding-bottom:calc(24px + env(safe-area-inset-bottom,0px))!important}
+ [role="dialog"]>div:first-child{flex-shrink:0}
+ [role="dialog"] nav{margin-top:8px!important}
+ [role="dialog"] nav a{padding:12px 0!important;font-size:22px!important;min-height:44px}
+ [role="dialog"]>div:last-child{margin-top:24px!important}
+ div[style*="z-index:850"]{padding-bottom:env(safe-area-inset-bottom,0px)}
+ div[role="menu"][style*="bottom:60px"]{bottom:calc(60px + env(safe-area-inset-bottom,0px))!important}
+ main a,main button{touch-action:manipulation}
+}
+@media (max-width:380px){
+ main dl>div[style*="grid-template-columns:96px"]{grid-template-columns:60px minmax(0,1fr)!important;gap:12px!important}
+}
+::selection{background:#080808;color:#fff}
+@media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important}}
+</style></head>
+<body>
+<div id="dc-root"><div class="sc-host" data-sc-name="brand"><div class="sc-host" data-sc-name="SiteChrome"><header style="position: fixed; top: 0px; left: 0px; right: 0px; z-index: 900; height: 76px; display: flex; align-items: center; justify-content: space-between; padding: 0px clamp(20px, 4vw, 56px); background: rgba(8, 8, 8, 0); color: rgb(255, 255, 255); border-bottom: 1px solid rgba(255, 255, 255, 0); backdrop-filter: blur(14px); transition: background 0.45s, color 0.45s, border-color 0.45s;">
+  <a href="/" aria-label="U.BLACK 홈" style="display: flex; align-items: center; gap: 12px; height: 40px;">
+    <img src="/assets/symbol-white.png" alt="" style="height: 26px; width: auto; display: block;">
+    <img src="/assets/wordmark-white.png" alt="U BLACK" style="height: 12px; width: auto; display: block;">
+  </a>
+  
+    <nav aria-label="주 메뉴" style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); display: flex; align-items: center; gap: clamp(20px, 2.6vw, 40px);">
+      
+        <a href="/brand" style="position: relative; display: flex; flex-direction: column; align-items: center; gap: 3px; padding: 8px 0px;">
+          <span data-cms="site.nav.0.label" style="font-size: 12.5px; font-weight: 500; letter-spacing: 0.14em;"><span class="sc-interp">BRAND</span></span>
+          <span data-cms="site.nav.0.ko" style="font-size: 10.5px; font-weight: 400; opacity: 0.62;"><span class="sc-interp">브랜드</span></span>
+          <span style="position: absolute; left: 0px; right: 0px; bottom: 0px; height: 1px; background: currentcolor; opacity: 1;"></span>
+        </a>
+      
+        <a href="/program" style="position: relative; display: flex; flex-direction: column; align-items: center; gap: 3px; padding: 8px 0px;">
+          <span data-cms="site.nav.1.label" style="font-size: 12.5px; font-weight: 500; letter-spacing: 0.14em;"><span class="sc-interp">PROGRAM</span></span>
+          <span data-cms="site.nav.1.ko" style="font-size: 10.5px; font-weight: 400; opacity: 0.62;"><span class="sc-interp">시술 안내</span></span>
+          <span style="position: absolute; left: 0px; right: 0px; bottom: 0px; height: 1px; background: currentcolor; opacity: 0;"></span>
+        </a>
+      
+        <a href="/cases" style="position: relative; display: flex; flex-direction: column; align-items: center; gap: 3px; padding: 8px 0px;">
+          <span data-cms="site.nav.2.label" style="font-size: 12.5px; font-weight: 500; letter-spacing: 0.14em;"><span class="sc-interp">CASES</span></span>
+          <span data-cms="site.nav.2.ko" style="font-size: 10.5px; font-weight: 400; opacity: 0.62;"><span class="sc-interp">시술 사례</span></span>
+          <span style="position: absolute; left: 0px; right: 0px; bottom: 0px; height: 1px; background: currentcolor; opacity: 0;"></span>
+        </a>
+      
+        <a href="/academy" style="position: relative; display: flex; flex-direction: column; align-items: center; gap: 3px; padding: 8px 0px;">
+          <span data-cms="site.nav.3.label" style="font-size: 12.5px; font-weight: 500; letter-spacing: 0.14em;"><span class="sc-interp">ACADEMY</span></span>
+          <span data-cms="site.nav.3.ko" style="font-size: 10.5px; font-weight: 400; opacity: 0.62;"><span class="sc-interp">아카데미</span></span>
+          <span style="position: absolute; left: 0px; right: 0px; bottom: 0px; height: 1px; background: currentcolor; opacity: 0;"></span>
+        </a>
+      
+        <a href="/reviews" style="position: relative; display: flex; flex-direction: column; align-items: center; gap: 3px; padding: 8px 0px;">
+          <span data-cms="site.nav.4.label" style="font-size: 12.5px; font-weight: 500; letter-spacing: 0.14em;"><span class="sc-interp">REVIEWS</span></span>
+          <span data-cms="site.nav.4.ko" style="font-size: 10.5px; font-weight: 400; opacity: 0.62;"><span class="sc-interp">고객 후기</span></span>
+          <span style="position: absolute; left: 0px; right: 0px; bottom: 0px; height: 1px; background: currentcolor; opacity: 0;"></span>
+        </a>
+      
+        <a href="/contact" style="position: relative; display: flex; flex-direction: column; align-items: center; gap: 3px; padding: 8px 0px;">
+          <span data-cms="site.nav.5.label" style="font-size: 12.5px; font-weight: 500; letter-spacing: 0.14em;"><span class="sc-interp">CONTACT</span></span>
+          <span data-cms="site.nav.5.ko" style="font-size: 10.5px; font-weight: 400; opacity: 0.62;"><span class="sc-interp">상담 · 오시는 길</span></span>
+          <span style="position: absolute; left: 0px; right: 0px; bottom: 0px; height: 1px; background: currentcolor; opacity: 0;"></span>
+        </a>
+      
+    </nav>
+    <a href="#consultation" style="display: flex; flex-direction: column; align-items: center; gap: 3px; padding: 8px 16px; border: 1px solid;"><span style="font-size: 12px; font-weight: 600; letter-spacing: 0.14em;">CONSULTATION</span><span style="font-size: 10.5px; opacity: 0.7;">상담 / 예약</span></a>
+  
+  </header>
+  <aside aria-label="빠른 문의" style="position: fixed; right: 20px; top: 50%; transform: translateY(-50%); z-index: 800; width: 68px; display: flex; flex-direction: column; background: rgb(8, 8, 8); color: rgb(255, 255, 255); border: 1px solid rgba(255, 255, 255, 0.16); box-shadow: rgba(0, 0, 0, 0.18) 0px 10px 30px;">
+    <a href="/cases" aria-label="시술 사진 보기" class="scp0" style="height: 76px; display: flex; align-items: center; justify-content: center; border-bottom: 1px solid rgb(34, 34, 34); text-align: center; transition: background 0.3s;">
+      <span style="font-size: 13px; font-weight: 600; line-height: 1.3;">시술<br>사진</span>
+    </a>
+    <button data-fab="" aria-expanded="false" aria-label="상담 예약 채널 열기" style="color-scheme: unset; forced-color-adjust: unset; math-depth: unset; position: unset; position-anchor: unset; text-size-adjust: unset; appearance: unset; font: unset; font-palette: unset; font-synthesis: unset; position-area: unset; text-orientation: unset; text-rendering: unset; text-spacing-trim: unset; -webkit-font-smoothing: unset; -webkit-locale: unset; -webkit-text-orientation: unset; -webkit-writing-mode: unset; writing-mode: unset; zoom: unset; accent-color: unset; align-content: unset; place-self: unset; alignment-baseline: unset; anchor-name: unset; anchor-scope: unset; animation-composition: unset; animation: unset; animation-trigger: unset; app-region: unset; aspect-ratio: unset; backdrop-filter: unset; backface-visibility: unset; background-blend-mode: unset; baseline-shift: unset; baseline-source: unset; block-size: unset; border-block: unset; border: unset; border-radius: unset; border-collapse: unset; border-end-end-radius: unset; border-end-start-radius: unset; border-inline: unset; border-shape: unset; border-start-end-radius: unset; border-start-start-radius: unset; inset: unset; box-decoration-break: unset; box-shadow: unset; break-after: unset; break-before: unset; break-inside: unset; buffered-rendering: unset; caption-side: unset; caret-animation: unset; caret-color: unset; caret-shape: unset; clear: unset; clip: unset; clip-path: unset; clip-rule: unset; color-interpolation: unset; color-interpolation-filters: unset; color-rendering: unset; columns: unset; column-fill: unset; gap: unset; rule-break: unset; rule: unset; rule-inset: unset; rule-visibility-items: unset; column-span: unset; contain: unset; contain-intrinsic-block-size: unset; contain-intrinsic-size: unset; contain-intrinsic-inline-size: unset; container: unset; content: unset; content-visibility: unset; corner-shape: unset; corner-block-end-shape: unset; corner-block-start-shape: unset; counter-increment: unset; counter-reset: unset; counter-set: unset; cx: unset; cy: unset; d: unset; dominant-baseline: unset; dynamic-range-limit: unset; empty-cells: unset; field-sizing: unset; fill: unset; fill-opacity: unset; fill-rule: unset; filter: unset; flex: unset; flex-flow: unset; flex-line-count: unset; float: unset; flood-color: unset; flood-opacity: unset; frame-sizing: unset; grid: unset; grid-area: unset; hyphenate-character: unset; hyphenate-limit-chars: unset; hyphens: unset; image-orientation: unset; image-rendering: unset; initial-letter: unset; inline-size: unset; inset-block: unset; inset-inline: unset; interactivity: unset; interest-delay: unset; interpolate-size: unset; isolation: unset; justify-items: unset; letter-spacing: unset; lighting-color: unset; line-break: unset; list-style: unset; margin-block: unset; margin: unset; margin-inline: unset; margin-trim: unset; marker: unset; mask: unset; mask-type: unset; math-shift: unset; math-style: unset; max-block-size: unset; max-height: unset; max-inline-size: unset; max-width: unset; min-block-size: unset; min-height: unset; min-inline-size: unset; min-width: unset; mix-blend-mode: unset; object-fit: unset; object-position: unset; object-view-box: unset; offset: unset; opacity: unset; order: unset; orphans: unset; outline: unset; outline-offset: unset; overflow-anchor: unset; overflow-block: unset; overflow-clip-margin: unset; overflow-inline: unset; overflow-wrap: unset; overflow: unset; overlay: unset; overscroll-behavior-block: unset; overscroll-behavior-inline: unset; overscroll-behavior: unset; padding-block: unset; padding: unset; padding-inline: unset; page: unset; page-margin-safety: unset; page-orientation: unset; paint-order: unset; perspective: unset; perspective-origin: unset; pointer-events: unset; position-try: unset; position-visibility: unset; print-color-adjust: unset; quotes: unset; r: unset; reading-flow: unset; reading-order: unset; resize: unset; rotate: unset; ruby-align: unset; ruby-overhang: unset; ruby-position: unset; rule-overlap: unset; rx: unset; ry: unset; scale: unset; scroll-axis-lock: unset; scroll-behavior: unset; scroll-initial-target: unset; scroll-margin-block: unset; scroll-margin: unset; scroll-margin-inline: unset; scroll-marker-group: unset; scroll-padding-block: unset; scroll-padding: unset; scroll-padding-inline: unset; scroll-snap-align: unset; scroll-snap-stop: unset; scroll-snap-type: unset; scroll-target-group: unset; scroll-timeline: unset; scrollbar-color: unset; scrollbar-gutter: unset; scrollbar-width: unset; shape-image-threshold: unset; shape-margin: unset; shape-outside: unset; shape-rendering: unset; size: unset; speak: unset; stop-color: unset; stop-opacity: unset; stroke: unset; stroke-dasharray: unset; stroke-dashoffset: unset; stroke-linecap: unset; stroke-linejoin: unset; stroke-miterlimit: unset; stroke-opacity: unset; stroke-width: unset; tab-size: unset; table-layout: unset; text-align-last: unset; text-anchor: unset; text-autospace: unset; text-box: unset; text-combine-upright: unset; text-decoration: unset; text-decoration-inset: unset; text-decoration-skip-ink: unset; text-emphasis: unset; text-emphasis-position: unset; text-fit: unset; text-indent: unset; text-justify: unset; text-overflow: unset; text-shadow: unset; text-transform: unset; text-underline-offset: unset; text-underline-position: unset; text-wrap: unset; timeline-scope: unset; timeline-trigger: unset; touch-action: unset; transform: unset; transform-box: unset; transform-origin: unset; transform-style: unset; translate: unset; trigger-scope: unset; user-select: unset; vector-effect: unset; vertical-align: unset; view-timeline: unset; view-transition-class: unset; view-transition-group: unset; view-transition-name: unset; view-transition-scope: unset; visibility: unset; border-spacing: unset; -webkit-box-align: unset; -webkit-box-decoration-break: unset; -webkit-box-direction: unset; -webkit-box-flex: unset; -webkit-box-ordinal-group: unset; -webkit-box-orient: unset; -webkit-box-pack: unset; -webkit-box-reflect: unset; -webkit-line-break: unset; -webkit-line-clamp: unset; -webkit-mask-box-image: unset; -webkit-rtl-ordering: unset; -webkit-ruby-position: unset; -webkit-tap-highlight-color: unset; -webkit-text-combine: unset; -webkit-text-decorations-in-effect: unset; -webkit-text-fill-color: unset; -webkit-text-security: unset; -webkit-text-stroke: unset; -webkit-user-drag: unset; white-space-collapse: unset; widows: unset; width: unset; will-change: unset; window-drag: unset; word-break: unset; word-spacing: unset; x: unset; y: unset; z-index: unset; box-sizing: border-box; cursor: pointer; height: 76px; display: flex; align-items: center; justify-content: center; background: rgb(255, 255, 255); color: rgb(8, 8, 8); text-align: center; transition: background 0.3s, color 0.3s;">
+      <span style="font-size: 13px; font-weight: 700; line-height: 1.3;"><span class="sc-interp">상담</span><br><span class="sc-interp">예약</span></span>
+    </button>
+    
+  </aside></div><main><section data-theme="dark" data-screen-label="01 Brand Hero" style="background: rgb(8, 8, 8); color: rgb(255, 255, 255); min-height: min(88svh, 760px); padding: clamp(112px, 16vw, 160px) clamp(20px, 6vw, 96px) clamp(40px, 6vw, 64px); display: flex; flex-direction: column; justify-content: space-between; gap: 64px;">
+  <div data-cms="brand.t.k01" style="font-size: 12px; letter-spacing: 0.2em; color: rgb(183, 183, 183);">BRAND</div>
+  <div style="max-width: 1320px; width: 100%; margin: 0px auto; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 48px;">
+    <div data-reveal="" data-rv="1"><h1 data-cms="brand.t.k02" style="margin: 0px; font-size: clamp(44px, 7vw, 108px); line-height: 1.02; font-weight: 500; letter-spacing: -0.035em; white-space: pre-line;">SCALP
+DESIGN
+STUDIO</h1><p data-cms="brand.t.k03" style="margin: 22px 0px 0px; font-size: clamp(17px, 1.6vw, 22px); line-height: 1.5; font-weight: 500; color: rgb(183, 183, 183);">브랜드 소개</p></div>
+    <img data-reveal="" src="/assets/symbol-white.png" data-cms-img="brand.t.img01" alt="" style="width: clamp(90px, 10vw, 150px); height: auto; opacity: 0; transform: translate3d(0px, 20px, 0px); transition: opacity 0.8s cubic-bezier(0.2, 0.7, 0.2, 1), transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);" data-rv="1">
+  </div>
+  <div style="max-width: 1320px; width: 100%; margin: 0px auto; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 24px; font-size: 17px; line-height: 1.8; color: rgb(183, 183, 183); border-top: 1px solid rgb(42, 42, 42); padding-top: 28px;">
+    <span data-cms="brand.t.k04">유블랙 · U.BLACK · ULSAN</span><span data-cms="brand.t.k05" style="max-width: 460px;">대표원장이 직접 운영하는 독립적인 SMP 브랜드로, 상담부터 사후관리까지 한 사람의 기준으로 이어갑니다.</span>
+  </div></section><section data-theme="light" data-screen-label="02 Story" style="background: rgb(246, 246, 244); padding: clamp(110px, 13vw, 200px) clamp(20px, 6vw, 96px);">
+  <div style="max-width: 1320px; margin: 0px auto; display: flex; flex-wrap: wrap; gap: 48px 72px;">
+    <div data-cms="brand.t.k06" data-reveal="" style="font-size: 12px; letter-spacing: 0.2em; font-weight: 500; opacity: 1; transform: none; transition: opacity 0.8s cubic-bezier(0.2, 0.7, 0.2, 1), transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);" data-rv="1">U.BLACK STORY</div>
+    <div style="flex: 2 1 460px; min-width: 0px;">
+      <h2 data-cms="brand.t.k07" data-reveal="" style="margin: 0px; font-size: clamp(30px, 4vw, 58px); line-height: 1.35; font-weight: 500; letter-spacing: -0.03em; white-space: pre-line; opacity: 0; transform: translate3d(0px, 20px, 0px); transition: opacity 0.8s cubic-bezier(0.2, 0.7, 0.2, 1), transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);" data-rv="1">보이게 만드는 것보다
+어우러지게 만드는 것.</h2>
+      <div data-reveal="" style="margin-top: 48px; display: flex; flex-direction: column; gap: 22px; font-size: clamp(17px, 1.3vw, 19px); line-height: 1.95; color: rgb(51, 51, 51); max-width: 620px; opacity: 1; transform: none; transition: opacity 0.8s cubic-bezier(0.2, 0.7, 0.2, 1), transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);" data-rv="1">
+        <p data-cms="brand.t.k08" style="margin: 0px;">유블랙은 개인의 두상과 기존 모발의 방향, 두피가 드러나는 범위를 함께 살펴본 뒤 시각적으로 자연스럽게 어우러질 수 있는 디자인 방향을 상담합니다.</p>
+      </div>
+    </div>
+  </div></section><section data-theme="dark" data-screen-label="03 Philosophy" style="background: rgb(8, 8, 8); color: rgb(255, 255, 255); padding: clamp(110px, 12vw, 180px) clamp(20px, 6vw, 96px);">
+  <div style="max-width: 1320px; margin: 0px auto;">
+    <div data-cms="brand.t.k09" data-reveal="" style="font-size: 12px; letter-spacing: 0.2em; color: rgb(183, 183, 183); margin-bottom: 56px; opacity: 0; transform: translate3d(0px, 20px, 0px); transition: opacity 0.8s cubic-bezier(0.2, 0.7, 0.2, 1), transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);" data-rv="1">PHILOSOPHY</div>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 0px 48px; border-top: 1px solid rgb(42, 42, 42);">
+      
+        <div data-reveal="" style="padding: 40px 0px; border-bottom: 1px solid rgb(42, 42, 42); opacity: 0; transform: translate3d(0px, 20px, 0px); transition: opacity 0.8s cubic-bezier(0.2, 0.7, 0.2, 1), transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);" data-rv="1">
+          <div style="font-family: &quot;IBM Plex Mono&quot;, monospace; font-size: 13px; color: rgb(119, 119, 119);"><span class="sc-interp">01</span></div>
+          <h3 data-cms="brand.phil.0.t" style="margin: 24px 0px 18px; font-size: clamp(22px, 2vw, 28px); font-weight: 500; letter-spacing: 0.04em;"><span class="sc-interp">FLOW</span></h3>
+          <p data-cms="brand.phil.0.d" style="margin: 0px; font-size: 17px; line-height: 1.85; color: rgb(183, 183, 183);"><span class="sc-interp">두피 위의 도트가 아니라 기존 모발의 방향과 흐름을 기준으로 디자인합니다.</span></p>
+        </div>
+      
+        <div data-reveal="" style="padding: 40px 0px; border-bottom: 1px solid rgb(42, 42, 42); opacity: 0; transform: translate3d(0px, 20px, 0px); transition: opacity 0.8s cubic-bezier(0.2, 0.7, 0.2, 1), transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);" data-rv="1">
+          <div style="font-family: &quot;IBM Plex Mono&quot;, monospace; font-size: 13px; color: rgb(119, 119, 119);"><span class="sc-interp">02</span></div>
+          <h3 data-cms="brand.phil.1.t" style="margin: 24px 0px 18px; font-size: clamp(22px, 2vw, 28px); font-weight: 500; letter-spacing: 0.04em;"><span class="sc-interp">RANGE</span></h3>
+          <p data-cms="brand.phil.1.d" style="margin: 0px; font-size: 17px; line-height: 1.85; color: rgb(183, 183, 183);"><span class="sc-interp">넓게 채우기보다 필요한 범위가 어디까지인지 먼저 확인합니다.</span></p>
+        </div>
+      
+        <div data-reveal="" style="padding: 40px 0px; border-bottom: 1px solid rgb(42, 42, 42); opacity: 0; transform: translate3d(0px, 20px, 0px); transition: opacity 0.8s cubic-bezier(0.2, 0.7, 0.2, 1), transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);" data-rv="1">
+          <div style="font-family: &quot;IBM Plex Mono&quot;, monospace; font-size: 13px; color: rgb(119, 119, 119);"><span class="sc-interp">03</span></div>
+          <h3 data-cms="brand.phil.2.t" style="margin: 24px 0px 18px; font-size: clamp(22px, 2vw, 28px); font-weight: 500; letter-spacing: 0.04em;"><span class="sc-interp">CONTINUITY</span></h3>
+          <p data-cms="brand.phil.2.d" style="margin: 0px; font-size: 17px; line-height: 1.85; color: rgb(183, 183, 183);"><span class="sc-interp">상담한 사람이 작업하고, 작업한 사람이 이후 상태를 확인합니다.</span></p>
+        </div>
+      
+    </div>
+  </div></section><section data-theme="light" data-screen-label="04 Director" style="background: rgb(255, 255, 255); padding: clamp(110px, 12vw, 180px) clamp(20px, 6vw, 96px);">
+  <div style="max-width: 1320px; margin: 0px auto; display: flex; flex-wrap: wrap; gap: 56px clamp(40px, 6vw, 110px); align-items: flex-start;">
+    <div data-reveal="" data-sticky="" style="flex: 1 1 380px; max-width: 580px; position: sticky; top: 110px; opacity: 0; transform: translate3d(0px, 20px, 0px); transition: opacity 0.8s cubic-bezier(0.2, 0.7, 0.2, 1), transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);" data-rv="1">
+      <div style="aspect-ratio: 4 / 5; overflow: hidden; background: rgb(119, 119, 119);"><img src="/assets/director.png" data-cms-img="brand.t.img02" alt="유블랙 대표원장 프로필 사진" style="width: 100%; height: 100%; object-fit: cover; object-position: 50% 30%; display: block;"></div>
+    </div>
+    <div style="flex: 1 1 420px; min-width: 0px;">
+      <div data-cms="brand.t.k10" data-reveal="" style="font-size: 12px; letter-spacing: 0.2em; color: rgb(102, 102, 102); opacity: 0; transform: translate3d(0px, 20px, 0px); transition: opacity 0.8s cubic-bezier(0.2, 0.7, 0.2, 1), transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);" data-rv="1">DIRECTOR</div>
+      <div data-cms="brand.t.k11" data-reveal="" style="margin-top: 14px; font-size: 22px; font-weight: 500; opacity: 0; transform: translate3d(0px, 20px, 0px); transition: opacity 0.8s cubic-bezier(0.2, 0.7, 0.2, 1), transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);" data-rv="1">조영진</div>
+      <h2 data-cms="brand.t.k12" data-reveal="" style="margin: 48px 0px 0px; font-size: clamp(30px, 3.6vw, 54px); line-height: 1.38; font-weight: 500; letter-spacing: -0.03em; white-space: pre-line; opacity: 0; transform: translate3d(0px, 20px, 0px); transition: opacity 0.8s cubic-bezier(0.2, 0.7, 0.2, 1), transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);" data-rv="1">시술을 해 준 사람이 아닌,
+고마운 사람이 되겠습니다.</h2>
+      <div data-reveal="" style="margin-top: 56px; display: flex; flex-direction: column; gap: 22px; font-size: clamp(17px, 1.3vw, 19px); line-height: 1.95; color: rgb(51, 51, 51); max-width: 560px; opacity: 0; transform: translate3d(0px, 20px, 0px); transition: opacity 0.8s cubic-bezier(0.2, 0.7, 0.2, 1), transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);" data-rv="1">
+        <p data-cms="brand.t.k13" style="margin: 0px;">상담에서 가장 먼저 보는 것은 얼마나 넓게 채울 수 있는지가 아니라, 어디까지가 필요한 범위인지입니다.</p>
+        <p data-cms="brand.t.k14" style="margin: 0px;">두상과 기존 모발의 흐름, 두피가 드러나는 방향을 살펴 지나치게 채우기보다 현재 모습에 자연스럽게 어우러지는 방향을 함께 고민합니다.</p>
+      </div>
+      <div style="margin-top: 64px; border-top: 1px solid rgb(8, 8, 8);">
+        
+          <div data-reveal="" style="padding: 28px 0px; border-bottom: 1px solid rgb(232, 232, 232); opacity: 0; transform: translate3d(0px, 20px, 0px); transition: opacity 0.8s cubic-bezier(0.2, 0.7, 0.2, 1), transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);" data-rv="1">
+            <h3 data-cms="brand.why.0.t" style="margin: 0px 0px 10px; font-size: 15px; letter-spacing: 0.16em; font-weight: 600;"><span class="sc-interp">ONE ARTIST</span></h3>
+            <p data-cms="brand.why.0.d" style="margin: 0px; font-size: 17px; line-height: 1.8; color: rgb(68, 68, 68);"><span class="sc-interp">상담부터 디자인, 시술과 사후관리까지 대표원장이 직접 진행합니다.</span></p>
+          </div>
+        
+          <div data-reveal="" style="padding: 28px 0px; border-bottom: 1px solid rgb(232, 232, 232); opacity: 0; transform: translate3d(0px, 20px, 0px); transition: opacity 0.8s cubic-bezier(0.2, 0.7, 0.2, 1), transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);" data-rv="1">
+            <h3 data-cms="brand.why.1.t" style="margin: 0px 0px 10px; font-size: 15px; letter-spacing: 0.16em; font-weight: 600;"><span class="sc-interp">LIMITED SESSIONS</span></h3>
+            <p data-cms="brand.why.1.d" style="margin: 0px; font-size: 17px; line-height: 1.8; color: rgb(68, 68, 68);"><span class="sc-interp">하루 시술 인원을 제한해 한 고객에게 집중할 수 있는 운영 방식을 유지합니다.</span></p>
+          </div>
+        
+          <div data-reveal="" style="padding: 28px 0px; border-bottom: 1px solid rgb(232, 232, 232); opacity: 0; transform: translate3d(0px, 20px, 0px); transition: opacity 0.8s cubic-bezier(0.2, 0.7, 0.2, 1), transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);" data-rv="1">
+            <h3 data-cms="brand.why.2.t" style="margin: 0px 0px 10px; font-size: 15px; letter-spacing: 0.16em; font-weight: 600;"><span class="sc-interp">NO EXCESS</span></h3>
+            <p data-cms="brand.why.2.d" style="margin: 0px; font-size: 17px; line-height: 1.8; color: rgb(68, 68, 68);"><span class="sc-interp">필요하지 않은 범위를 무리하게 권하지 않는 상담을 지향합니다.</span></p>
+          </div>
+        
+      </div>
+    </div>
+  </div></section><section data-theme="light" data-screen-label="05 Independent Studio" style="background: rgb(232, 232, 232); padding: clamp(100px, 11vw, 160px) clamp(20px, 6vw, 96px);">
+  <div data-reveal="" style="max-width: 1000px; margin: 0px auto; opacity: 0; transform: translate3d(0px, 20px, 0px); transition: opacity 0.8s cubic-bezier(0.2, 0.7, 0.2, 1), transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);" data-rv="1">
+    <div data-cms="brand.t.k15" style="font-size: 12px; letter-spacing: 0.2em; color: rgb(85, 85, 85); margin-bottom: 32px;">INDEPENDENT STUDIO</div>
+    <p data-cms="brand.t.k16" style="margin: 0px; font-size: clamp(24px, 2.8vw, 38px); line-height: 1.55; font-weight: 500; letter-spacing: -0.02em;">유블랙은 특정 프랜차이즈에 소속되지 않은 독립적인 두피문신 브랜드입니다. 상담부터 디자인, 작업과 사후관리까지 대표원장이 직접 진행합니다.</p>
+    <p data-cms="brand.t.k17" style="margin: 40px 0px 0px; font-size: 17px; line-height: 1.85; color: rgb(51, 51, 51); max-width: 620px;">브랜드 운영 구조보다 실제 작업과 고객 상담에 집중하는 독립적인 운영 방식을 유지합니다.</p>
+  </div></section><section data-theme="dark" data-screen-label="06 Record" style="background: rgb(18, 18, 18); color: rgb(255, 255, 255); padding: clamp(110px, 12vw, 180px) clamp(20px, 6vw, 96px);">
+  <div style="max-width: 1320px; margin: 0px auto;">
+    <div data-reveal="" style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 32px; align-items: flex-end; margin-bottom: 56px; opacity: 0; transform: translate3d(0px, 20px, 0px); transition: opacity 0.8s cubic-bezier(0.2, 0.7, 0.2, 1), transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);" data-rv="1">
+      <div><div data-cms="brand.t.k18" style="font-size: 12px; letter-spacing: 0.2em; color: rgb(183, 183, 183); margin-bottom: 24px;">RECORD</div><h2 data-cms="brand.t.k19" style="margin: 0px; font-size: clamp(30px, 3.4vw, 50px); font-weight: 500; letter-spacing: -0.025em;">경력 · 활동 아카이브</h2></div>
+      <p data-cms="brand.t.k20" style="margin: 0px; max-width: 420px; font-size: 17px; line-height: 1.8; color: rgb(183, 183, 183);">다양한 시술 및 교육 경험을 바탕으로 운영됩니다.</p>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); gap: 24px;">
+      
+        <figure data-reveal="" style="margin: 0px; opacity: 0; transform: translate3d(0px, 20px, 0px); transition: opacity 0.8s cubic-bezier(0.2, 0.7, 0.2, 1), transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);" data-rv="1">
+          <div style="aspect-ratio: 4 / 5; overflow: hidden; position: relative; background: rgb(27, 27, 27);"><img src="/assets/record-3.jpg" data-cms-img="brand.archive.0.image" alt="국회의원 표창장 수상" loading="lazy" style="position: absolute; inset: 0px; width: 100%; height: 100%; object-fit: cover; object-position: 50% 50%; display: block;"></div>
+          <figcaption style="display: flex; flex-direction: column; gap: 6px; margin-top: 16px;">
+            <span style="display: flex; justify-content: space-between; gap: 12px; font-size: 12px; letter-spacing: 0.16em; font-weight: 600;"><span data-cms="brand.archive.0.k"><span class="sc-interp">AWARD</span></span><span data-cms="brand.archive.0.year" style="color: rgb(183, 183, 183); letter-spacing: 0.08em; font-weight: 500;"><span class="sc-interp">2025</span></span></span>
+            <span data-cms="brand.archive.0.t" style="font-size: 15.5px; line-height: 1.55; color: rgb(232, 232, 232);"><span class="sc-interp">국회의원 표창장 수상</span></span>
+          </figcaption>
+        </figure>
+      
+        <figure data-reveal="" style="margin: 0px; opacity: 0; transform: translate3d(0px, 20px, 0px); transition: opacity 0.8s cubic-bezier(0.2, 0.7, 0.2, 1), transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);" data-rv="1">
+          <div style="aspect-ratio: 4 / 5; overflow: hidden; position: relative; background: rgb(27, 27, 27);"><img src="/assets/record-8.jpg" data-cms-img="brand.archive.1.image" alt="World Top Tier Olympics 수퍼바이저 무대" loading="lazy" style="position: absolute; inset: 0px; width: 100%; height: 100%; object-fit: cover; object-position: 50% 30%; display: block;"></div>
+          <figcaption style="display: flex; flex-direction: column; gap: 6px; margin-top: 16px;">
+            <span style="display: flex; justify-content: space-between; gap: 12px; font-size: 12px; letter-spacing: 0.16em; font-weight: 600;"><span data-cms="brand.archive.1.k"><span class="sc-interp">SUPERVISOR</span></span><span data-cms="brand.archive.1.year" style="color: rgb(183, 183, 183); letter-spacing: 0.08em; font-weight: 500;"><span class="sc-interp">2025</span></span></span>
+            <span data-cms="brand.archive.1.t" style="font-size: 15.5px; line-height: 1.55; color: rgb(232, 232, 232);"><span class="sc-interp">2nd World Top Tier Olympics · Supervisor</span></span>
+          </figcaption>
+        </figure>
+      
+        <figure data-reveal="" style="margin: 0px; opacity: 0; transform: translate3d(0px, 20px, 0px); transition: opacity 0.8s cubic-bezier(0.2, 0.7, 0.2, 1), transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);" data-rv="1">
+          <div style="aspect-ratio: 4 / 5; overflow: hidden; position: relative; background: rgb(27, 27, 27);"><img src="/assets/record-9.jpg" data-cms-img="brand.archive.2.image" alt="World Top Tier Olympics 수상 기념" loading="lazy" style="position: absolute; inset: 0px; width: 100%; height: 100%; object-fit: cover; object-position: 72% 40%; display: block;"></div>
+          <figcaption style="display: flex; flex-direction: column; gap: 6px; margin-top: 16px;">
+            <span style="display: flex; justify-content: space-between; gap: 12px; font-size: 12px; letter-spacing: 0.16em; font-weight: 600;"><span data-cms="brand.archive.2.k"><span class="sc-interp">SUPERVISOR</span></span><span data-cms="brand.archive.2.year" style="color: rgb(183, 183, 183); letter-spacing: 0.08em; font-weight: 500;"><span class="sc-interp">2025</span></span></span>
+            <span data-cms="brand.archive.2.t" style="font-size: 15.5px; line-height: 1.55; color: rgb(232, 232, 232);"><span class="sc-interp">2nd World Top Tier Olympics · 수상</span></span>
+          </figcaption>
+        </figure>
+      
+        <figure data-reveal="" style="margin: 0px; opacity: 0; transform: translate3d(0px, 20px, 0px); transition: opacity 0.8s cubic-bezier(0.2, 0.7, 0.2, 1), transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);" data-rv="1">
+          <div style="aspect-ratio: 4 / 5; overflow: hidden; position: relative; background: rgb(27, 27, 27);"><img src="/assets/record-4.jpg" data-cms-img="brand.archive.3.image" alt="월드뷰티페스티벌 시상" loading="lazy" style="position: absolute; inset: 0px; width: 100%; height: 100%; object-fit: cover; object-position: 50% 40%; display: block;"></div>
+          <figcaption style="display: flex; flex-direction: column; gap: 6px; margin-top: 16px;">
+            <span style="display: flex; justify-content: space-between; gap: 12px; font-size: 12px; letter-spacing: 0.16em; font-weight: 600;"><span data-cms="brand.archive.3.k"><span class="sc-interp">AWARD</span></span><span data-cms="brand.archive.3.year" style="color: rgb(183, 183, 183); letter-spacing: 0.08em; font-weight: 500;"><span class="sc-interp">2025</span></span></span>
+            <span data-cms="brand.archive.3.t" style="font-size: 15.5px; line-height: 1.55; color: rgb(232, 232, 232);"><span class="sc-interp">제16회 월드뷰티페스티벌</span></span>
+          </figcaption>
+        </figure>
+      
+        <figure data-reveal="" style="margin: 0px; opacity: 0; transform: translate3d(0px, 20px, 0px); transition: opacity 0.8s cubic-bezier(0.2, 0.7, 0.2, 1), transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);" data-rv="1">
+          <div style="aspect-ratio: 4 / 5; overflow: hidden; position: relative; background: rgb(27, 27, 27);"><img src="/assets/record-1.jpg" data-cms-img="brand.archive.4.image" alt="IPSN KOREA 베트남 호치민 컨퍼런스" loading="lazy" style="position: absolute; inset: 0px; width: 100%; height: 100%; object-fit: cover; object-position: 35% 55%; display: block;"></div>
+          <figcaption style="display: flex; flex-direction: column; gap: 6px; margin-top: 16px;">
+            <span style="display: flex; justify-content: space-between; gap: 12px; font-size: 12px; letter-spacing: 0.16em; font-weight: 600;"><span data-cms="brand.archive.4.k"><span class="sc-interp">CONFERENCE</span></span><span data-cms="brand.archive.4.year" style="color: rgb(183, 183, 183); letter-spacing: 0.08em; font-weight: 500;"><span class="sc-interp">2025</span></span></span>
+            <span data-cms="brand.archive.4.t" style="font-size: 15.5px; line-height: 1.55; color: rgb(232, 232, 232);"><span class="sc-interp">3rd IPSN KOREA International Beauty Conference · 호치민</span></span>
+          </figcaption>
+        </figure>
+      
+        <figure data-reveal="" style="margin: 0px; opacity: 0; transform: translate3d(0px, 20px, 0px); transition: opacity 0.8s cubic-bezier(0.2, 0.7, 0.2, 1), transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);" data-rv="1">
+          <div style="aspect-ratio: 4 / 5; overflow: hidden; position: relative; background: rgb(27, 27, 27);"><img src="/assets/record-6.jpg" data-cms-img="brand.archive.5.image" alt="웰라 프로페셔널 행사" loading="lazy" style="position: absolute; inset: 0px; width: 100%; height: 100%; object-fit: cover; object-position: 55% 60%; display: block;"></div>
+          <figcaption style="display: flex; flex-direction: column; gap: 6px; margin-top: 16px;">
+            <span style="display: flex; justify-content: space-between; gap: 12px; font-size: 12px; letter-spacing: 0.16em; font-weight: 600;"><span data-cms="brand.archive.5.k"><span class="sc-interp">CONFERENCE</span></span><span data-cms="brand.archive.5.year" style="color: rgb(183, 183, 183); letter-spacing: 0.08em; font-weight: 500;"><span class="sc-interp">2025</span></span></span>
+            <span data-cms="brand.archive.5.t" style="font-size: 15.5px; line-height: 1.55; color: rgb(232, 232, 232);"><span class="sc-interp">IPSN KOREA × WELLA Professionals · 베트남</span></span>
+          </figcaption>
+        </figure>
+      
+        <figure data-reveal="" style="margin: 0px; opacity: 0; transform: translate3d(0px, 20px, 0px); transition: opacity 0.8s cubic-bezier(0.2, 0.7, 0.2, 1), transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);" data-rv="1">
+          <div style="aspect-ratio: 4 / 5; overflow: hidden; position: relative; background: rgb(27, 27, 27);"><img src="/assets/record-7.jpg" data-cms-img="brand.archive.6.image" alt="IPSN KOREA 하노이 대회 수상" loading="lazy" style="position: absolute; inset: 0px; width: 100%; height: 100%; object-fit: cover; object-position: 45% 60%; display: block;"></div>
+          <figcaption style="display: flex; flex-direction: column; gap: 6px; margin-top: 16px;">
+            <span style="display: flex; justify-content: space-between; gap: 12px; font-size: 12px; letter-spacing: 0.16em; font-weight: 600;"><span data-cms="brand.archive.6.k"><span class="sc-interp">AWARD</span></span><span data-cms="brand.archive.6.year" style="color: rgb(183, 183, 183); letter-spacing: 0.08em; font-weight: 500;"><span class="sc-interp">2024</span></span></span>
+            <span data-cms="brand.archive.6.t" style="font-size: 15.5px; line-height: 1.55; color: rgb(232, 232, 232);"><span class="sc-interp">2nd IPSN KOREA International Beauty Contest · 하노이</span></span>
+          </figcaption>
+        </figure>
+      
+        <figure data-reveal="" style="margin: 0px; opacity: 0; transform: translate3d(0px, 20px, 0px); transition: opacity 0.8s cubic-bezier(0.2, 0.7, 0.2, 1), transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);" data-rv="1">
+          <div style="aspect-ratio: 4 / 5; overflow: hidden; position: relative; background: rgb(27, 27, 27);"><img src="/assets/record-2.jpg" data-cms-img="brand.archive.7.image" alt="아시아 모델 어워즈 참석" loading="lazy" style="position: absolute; inset: 0px; width: 100%; height: 100%; object-fit: cover; object-position: 50% 55%; display: block;"></div>
+          <figcaption style="display: flex; flex-direction: column; gap: 6px; margin-top: 16px;">
+            <span style="display: flex; justify-content: space-between; gap: 12px; font-size: 12px; letter-spacing: 0.16em; font-weight: 600;"><span data-cms="brand.archive.7.k"><span class="sc-interp">ACTIVITY</span></span><span data-cms="brand.archive.7.year" style="color: rgb(183, 183, 183); letter-spacing: 0.08em; font-weight: 500;"><span class="sc-interp">2025</span></span></span>
+            <span data-cms="brand.archive.7.t" style="font-size: 15.5px; line-height: 1.55; color: rgb(232, 232, 232);"><span class="sc-interp">2025 Asia Model Awards</span></span>
+          </figcaption>
+        </figure>
+      
+        <figure data-reveal="" style="margin: 0px; opacity: 0; transform: translate3d(0px, 20px, 0px); transition: opacity 0.8s cubic-bezier(0.2, 0.7, 0.2, 1), transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);" data-rv="1">
+          <div style="aspect-ratio: 4 / 5; overflow: hidden; position: relative; background: rgb(27, 27, 27);"><img src="/assets/record-5.jpg" data-cms-img="brand.archive.8.image" alt="World Top Tier Olympics 포토월" loading="lazy" style="position: absolute; inset: 0px; width: 100%; height: 100%; object-fit: cover; object-position: 45% 45%; display: block;"></div>
+          <figcaption style="display: flex; flex-direction: column; gap: 6px; margin-top: 16px;">
+            <span style="display: flex; justify-content: space-between; gap: 12px; font-size: 12px; letter-spacing: 0.16em; font-weight: 600;"><span data-cms="brand.archive.8.k"><span class="sc-interp">SUPERVISOR</span></span><span data-cms="brand.archive.8.year" style="color: rgb(183, 183, 183); letter-spacing: 0.08em; font-weight: 500;"><span class="sc-interp">2025</span></span></span>
+            <span data-cms="brand.archive.8.t" style="font-size: 15.5px; line-height: 1.55; color: rgb(232, 232, 232);"><span class="sc-interp">World Top Tier Olympics · KOREA SMP</span></span>
+          </figcaption>
+        </figure>
+      
+    </div>
+  </div></section><section data-theme="light" data-screen-label="08 Space" style="background: rgb(255, 255, 255); padding: clamp(100px, 11vw, 160px) clamp(20px, 4vw, 56px);">
+  <div style="max-width: 1440px; margin: 0px auto;">
+    <div data-reveal="" style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 24px; align-items: flex-end; margin-bottom: 40px; opacity: 0; transform: translate3d(0px, 20px, 0px); transition: opacity 0.8s cubic-bezier(0.2, 0.7, 0.2, 1), transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);" data-rv="1"><div><div data-cms="brand.t.k21" style="font-size: 12px; letter-spacing: 0.2em; color: rgb(102, 102, 102); margin-bottom: 18px;">SPACE</div><h2 data-cms="brand.t.k22" style="margin: 0px; font-size: clamp(30px, 3.4vw, 50px); font-weight: 500; letter-spacing: -0.025em;">ULSAN STUDIO</h2></div><a data-cms="brand.t.k23" href="/contact" style="font-size: 13px; letter-spacing: 0.16em; font-weight: 600; border-bottom: 1px solid rgb(8, 8, 8); padding-bottom: 6px;">LOCATION →</a></div>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 16px;">
+      <div data-reveal="" style="aspect-ratio: 4 / 5; background: rgb(232, 232, 232); position: relative; overflow: hidden; opacity: 0; transform: translate3d(0px, 20px, 0px); transition: opacity 0.8s cubic-bezier(0.2, 0.7, 0.2, 1), transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);" data-rv="1"><img src="/assets/cases/store-06.jpg" data-cms-img="brand.t.img03" alt="" loading="lazy" draggable="false" style="position: absolute; inset: 0px; width: 100%; height: 100%; object-fit: cover; display: block;"></div>
+      <div data-reveal="" data-reveal-delay="100" style="aspect-ratio: 4 / 5; background: rgb(232, 232, 232); position: relative; overflow: hidden; opacity: 0; transform: translate3d(0px, 20px, 0px); transition: opacity 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) 100ms, transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) 100ms;" data-rv="1"><img src="/assets/cases/store-01.jpg" data-cms-img="brand.t.img04" alt="" loading="lazy" draggable="false" style="position: absolute; inset: 0px; width: 100%; height: 100%; object-fit: cover; display: block;"></div>
+      <div data-reveal="" data-reveal-delay="200" style="aspect-ratio: 4 / 5; background: rgb(232, 232, 232); position: relative; overflow: hidden; opacity: 0; transform: translate3d(0px, 20px, 0px); transition: opacity 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) 200ms, transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) 200ms;" data-rv="1"><img src="/assets/cases/store-03.jpg" data-cms-img="brand.t.img05" alt="" loading="lazy" draggable="false" style="position: absolute; inset: 0px; width: 100%; height: 100%; object-fit: cover; display: block;"></div>
+    </div>
+  </div></section></main><div class="sc-host" data-sc-name="SiteFooter"><section id="consultation" data-theme="dark" data-screen-label="Consultation" style="scroll-margin-top: 76px; background: rgb(8, 8, 8); color: rgb(255, 255, 255); padding: clamp(96px, 14vw, 200px) clamp(20px, 6vw, 96px) clamp(80px, 10vw, 140px);">
+  <div style="max-width: 1320px; margin: 0px auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 440px), 1fr)); gap: 56px; align-items: end;">
+    <div data-reveal="" data-rv="1" style="opacity: 1; transform: none; transition: opacity 0.8s cubic-bezier(0.2, 0.7, 0.2, 1), transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);">
+      <div style="font-size: 12px; letter-spacing: 0.2em; color: rgb(183, 183, 183); font-weight: 500; margin-bottom: 28px;">CONSULTATION</div>
+      
+      <h2 style="margin: 0px; font-size: clamp(26px, 3.8vw, 56px); line-height: 1; font-weight: 500; letter-spacing: -0.02em;">START WITH<br>A CONVERSATION.</h2>
+      <p data-cms="site.cta_text" style="margin: 32px 0px 0px; font-size: clamp(19px, 2vw, 24px); line-height: 1.6; color: rgb(232, 232, 232); font-weight: 400; white-space: pre-line;"><span class="sc-interp">필요한 범위부터
+먼저 이야기해보세요.</span></p>
+    </div>
+    <div data-reveal="" data-reveal-delay="120" style="display: flex; flex-direction: column; border-top: 1px solid rgb(42, 42, 42); opacity: 1; transform: none; transition: opacity 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) 120ms, transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) 120ms;" data-rv="1">
+      <a href="http://pf.kakao.com/_nxenxmG" target="_blank" rel="noopener" data-cursor="TALK" style="display: flex; justify-content: space-between; align-items: center; padding: 26px 0px; border-bottom: 1px solid rgb(42, 42, 42); font-size: clamp(18px, 1.8vw, 22px); font-weight: 500; letter-spacing: 0.06em;"><span>KAKAO CONSULT</span><span style="font-size: 15px; color: rgb(183, 183, 183); letter-spacing: 0px;">카카오톡 채널 상담 →</span></a>
+      <a href="tel:01039240143" data-cursor="TALK" style="display: flex; justify-content: space-between; align-items: center; padding: 26px 0px; border-bottom: 1px solid rgb(42, 42, 42); font-size: clamp(18px, 1.8vw, 22px); font-weight: 500; letter-spacing: 0.06em;"><span>CALL</span><span style="font-size: 15px; color: rgb(183, 183, 183); letter-spacing: 0.02em;"><span class="sc-interp">010-3924-0143</span> →</span></a>
+      <a href="/contact" data-cursor="TALK" style="display: flex; justify-content: space-between; align-items: center; padding: 26px 0px; border-bottom: 1px solid rgb(42, 42, 42); font-size: clamp(18px, 1.8vw, 22px); font-weight: 500; letter-spacing: 0.06em;"><span>VISIT</span><span style="font-size: 15px; color: rgb(183, 183, 183); letter-spacing: 0px;">오시는 길 →</span></a>
+    </div>
+  </div></section><footer data-theme="dark" style="background: rgb(8, 8, 8); color: rgb(183, 183, 183); border-top: 1px solid rgb(27, 27, 27); padding: 72px clamp(20px, 6vw, 96px) 120px;">
+  <div style="max-width: 1320px; margin: 0px auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr)); gap: 48px;">
+    <div style="display: flex; flex-direction: column; gap: 18px;">
+      <img src="/assets/logo-white.png" alt="U BLACK" style="width: 72px; height: auto;">
+      <div style="font-size: 12px; letter-spacing: 0.2em; color: rgb(255, 255, 255);">SCALP DESIGN STUDIO · ULSAN</div>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 12px; font-size: 15px;">
+      <div style="font-size: 11px; letter-spacing: 0.2em; color: rgb(119, 119, 119); margin-bottom: 6px;">MENU</div>
+      <a href="/brand">Brand</a><a href="/program">Program</a><a href="/cases">Cases</a><a href="/academy">Academy</a><a href="/reviews">Reviews</a><a href="/contact">Contact</a>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 12px; font-size: 15px;">
+      <div style="font-size: 11px; letter-spacing: 0.2em; color: rgb(119, 119, 119); margin-bottom: 6px;">CHANNEL</div>
+      <a href="http://pf.kakao.com/_nxenxmG" target="_blank" rel="noopener">KakaoTalk</a>
+      <a href="https://naver.me/xoHQXTFw" target="_blank" rel="noopener">Naver Place</a>
+      <a href="https://m.blog.naver.com/nnn0100" target="_blank" rel="noopener">Blog</a>
+      <a href="https://www.instagram.com/u.black_scalp" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://youtube.com/@u.black_sclap" target="_blank" rel="noopener">YouTube</a>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 12px; font-size: 15px; line-height: 1.6;">
+      <div style="font-size: 11px; letter-spacing: 0.2em; color: rgb(119, 119, 119); margin-bottom: 6px;">CONTACT</div>
+      <a href="tel:01039240143" data-cms="site.phone" style="color: rgb(255, 255, 255);"><span class="sc-interp">010-3924-0143</span></a>
+      <span><span data-cms="site.address"><span class="sc-interp">울산광역시 북구 신천로 55-22, 404호</span></span><br><span data-cms="site.address_detail"><span class="sc-interp">(신천동, 신천수테라스타운)</span></span></span>
+      
+    </div>
+  </div>
+  <div style="max-width: 1320px; margin: 64px auto 0px; padding-top: 24px; border-top: 1px solid rgb(27, 27, 27); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; font-size: 12.5px; color: rgb(119, 119, 119); line-height: 1.7;">
+    <span>상호 <span class="sc-interp">유블랙 울산본점</span> · 대표 <span class="sc-interp">조영진</span> · 사업자등록번호 <span class="sc-interp">876-34-01323</span><br>© U.BLACK. All rights reserved.</span>
+    <span data-cms="site.disclaimer"><span class="sc-interp">유블랙의 SMP(두피문신)는 미용 목적의 시각적 보완 작업이며, 결과에는 개인차가 있습니다.</span></span>
+  </div></footer></div></div></div>
+
+
+
+
+</body></html>
